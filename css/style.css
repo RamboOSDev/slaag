@@ -134,3 +134,4 @@ main,section,.card,.list,.row,.terms,.opts{max-width:100%;min-width:0}
 .numf{display:flex;gap:8px;margin:10px 0}.numf input{flex:1;font-size:1.3rem;padding:12px;border-radius:12px;border:2px solid #ccd;text-align:center}
 .numf input.right{border-color:var(--g,#16a34a)}.numf input.wrong{border-color:var(--r,#dc2626)}
 .stage .opt.num span{visibility:hidden}.stage .opt.num.right span{visibility:visible}
+.numf input{min-width:0}.numf button{flex:none;width:auto;padding:0 16px}
