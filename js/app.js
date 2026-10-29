@@ -45,19 +45,25 @@ async function firstRun(){
   if(b.id==='go'){app.onclick=null;LS.set('ui',pc);LS.set('ex',st.ex);loadLang(pc).then(start)}};
 }
 function start(){
- $('#menuBtn').innerHTML=ICON.menu;$('#menuBtn').onclick=toggleMenu;
+ $('#menuBtn').innerHTML=ICON.menu;$('#menuBtn').onclick=toggleMenu;$('#menuBtn').setAttribute('aria-expanded','false');
  if(STREAM){document.body.classList.add('stream');return stream()}
  window.onhashchange=route;route();updCount();
  if('serviceWorker' in navigator)navigator.serviceWorker.register('sw.js').catch(()=>{});
 }
 function go(h){location.hash=h}
-function route(){closeMenu();clearTimers();const [v,a]=(location.hash.slice(1)||'home').split('/');
+function route(){menuHist=false;closeMenu(true);clearTimers();const [v,a]=(location.hash.slice(1)||'home').split('/');
  ({home,lessons,lesson:()=>lesson(a),practice:()=>quiz('practice',a),mistakes:()=>quiz('mistakes'),exam:examIntro}[v]||home)()}
 
 /* ---------- Menu (everything non-essential lives here) ---------- */
 function toggleMenu(){const m=$('#menu');m.hidden?openMenu():closeMenu()}
-function closeMenu(){$('#menu').hidden=true}
-function openMenu(){const m=$('#menu');m.hidden=false;
+let menuHist=false;
+function closeMenu(fromPop){const m=$('#menu');if(m.hidden)return;m.hidden=true;$('#backdrop').hidden=true;document.body.classList.remove('noscroll');
+ if(menuHist&&!fromPop){menuHist=false;history.back()}menuHist=false;$('#menuBtn').setAttribute('aria-expanded','false');$('#menuBtn').focus({preventScroll:true})}
+window.addEventListener('popstate',()=>{if(menuHist){menuHist=false;closeMenu(true)}});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!$('#menu').hidden){e.stopPropagation();closeMenu()}},true);
+function openMenu(){const m=$('#menu');m.hidden=false;$('#backdrop').hidden=false;document.body.classList.add('noscroll');
+ $('#backdrop').onclick=()=>closeMenu();if(!menuHist){history.pushState({menu:1},'');menuHist=true}$('#menuBtn').setAttribute('aria-expanded','true');
+ let x0=null;m.ontouchstart=e=>{x0=e.touches[0].clientX};m.ontouchend=e=>{if(x0==null)return;const dx=e.changedTouches[0].clientX-x0;x0=null;if(Math.abs(dx)>60&&((dx>0)===(document.dir!=='rtl')))closeMenu()};
  m.innerHTML=`<button class="icon-btn close" id="mx">${ICON.x}</button>
  <a href="#home">${ICON.home}${t('home')}</a><a href="#lessons">${ICON.book}${t('lessons')}</a><a href="#practice">${ICON.play}${t('practice')}</a>
  <a href="#mistakes">${ICON.repeat}${t('mistakes')}</a><a href="#exam">${ICON.exam}${t('exam')}</a><a href="?stream=1" target="_blank">${ICON.tv}${t('stream')}</a>
@@ -65,7 +71,7 @@ function openMenu(){const m=$('#menu');m.hidden=false;
  <label>${ICON.exam}${t('examLang')}<select id="sEx"><option value="nl">Nederlands</option><option value="fr" ${st.ex==='fr'?'selected':''}>Français</option></select></label>
  <label>${ICON.next}${t('autoDelay')}<select id="sDl">${[0,1,1.5,2,3].map(v=>`<option value="${v}" ${v==st.delay?'selected':''}>${v||t('off')}</option>`).join('')}</select></label>
  <button id="rst" class="ghost">${ICON.x}${t('reset')}</button><p class="note">⚠ ${t('sample')}</p>`;
- $('#mx').onclick=closeMenu;
+ $('#mx').onclick=()=>closeMenu();m.querySelectorAll('a').forEach(a=>a.onclick=()=>{if(a.target)closeMenu();else{menuHist=false;}});setTimeout(()=>$('#mx').focus(),0);
  $('#sUi').onchange=e=>{LS.set('ui',e.target.value);loadLang(e.target.value).then(()=>{route();updCount()})};
  $('#sEx').onchange=e=>{st.ex=e.target.value;LS.set('ex',st.ex);route()};
  $('#sDl').onchange=e=>{st.delay=+e.target.value;LS.set('delay',st.delay)};
@@ -83,7 +89,8 @@ function home(){const n=M.list().length,pos=LS.get('pos',{}).practice;
  </div><p class="note">⚠ ${t('sample')}</p></section>`}
 function lessons(){app.innerHTML=`<section><h2>${ICON.book}${t('lessons')}</h2><div class="list">${L.map((l,i)=>`<a class="row" href="#lesson/${l.id}"><b>${i+1}</b>${esc(l.title[st.ui]||l.title.en)}${ICON.next}</a>`).join('')}</div></section>`}
 function lesson(id){const l=L.find(x=>x.id===id);if(!l)return lessons();const ui=st.ui in l.body?st.ui:'en';
- app.innerHTML=`<section class="lesson"><h2>${ICON.book}${esc(l.title[ui])}</h2><ul>${l.body[ui].map(x=>`<li>${esc(x)}</li>`).join('')}</ul>
+ const li=(Q.find(q=>q.lesson===l.id&&q.img)||{}).img;
+ app.innerHTML=`<section class="lesson"><h2>${ICON.book}${esc(l.title[ui])}</h2>${li?`<div class="qimg sm"><img src="${li}" alt=""></div>`:''}<ul>${l.body[ui].map(x=>`<li>${esc(x)}</li>`).join('')}</ul>
  <h3>${ICON.tr}${t('terms')}</h3><div class="terms">${l.terms.map(w=>`<button class="term" data-w="${esc(w[st.ex])}">${ICON.audio}<b>${esc(w[st.ex])}</b><span>${esc(w[ui]||w.en)}</span></button>`).join('')}</div>
  <a class="primary" href="#practice/${l.id}">${ICON.play}${t('quiz')}</a></section>`;
  app.querySelectorAll('.term').forEach(b=>b.onclick=()=>say(b.dataset.w))}
@@ -97,7 +104,7 @@ function card(q,i,n,opt={}){const ex=st.ex,ui=st.ui in q.q?st.ui:'en';
   <div class="qtop"><span class="pill">${i+1}/${n}</span>${q.weight>1?`<span class="pill red" title="${t('serious')}">⚠ ×5</span>`:''}
    ${opt.timer?`<span class="pill timer">${ICON.timer}<b id="tm">15</b></span>`:''}<span class="sp"></span>
    ${opt.tools===false?'':`<button class="icon-btn ${st.tr?'on':''}" id="bTr" title="${t('translate')}">${ICON.tr}</button><button class="icon-btn" id="bAu" title="${t('listen')}">${ICON.audio}</button>`}</div>
-  ${q.sign?`<div class="signbox">${SIGN[q.sign]||''}</div>`:''}
+  ${q.img?`<div class="qimg"><img src="${q.img}" alt="" width="600" height="340" decoding="async"></div>`:q.sign?`<div class="signbox">${SIGN[q.sign]||''}</div>`:''}
   <p class="qt" dir="ltr" lang="${ex}">${esc(q.q[ex])}</p>${st.tr&&ui!==ex?`<p class="qtr">${esc(q.q[ui])}</p>`:''}
   <div class="opts">${q.opts[ex].map((o,k)=>`<button class="opt" dir="ltr" data-k="${k}"><i>${'ABC'[k]}</i><span dir="ltr" lang="${ex}">${esc(o)}</span>${st.tr&&ui!==ex?`<small>${esc(q.opts[ui][k])}</small>`:''}<em class="mk"></em></button>`).join('')}</div>
   <div id="fb"></div></div>`}
@@ -169,7 +176,7 @@ function exam(){const qs=shuffle(Q).slice(0,50),n=qs.length,ans=[];let i=0,left,
    <p class="hint">${ICON.no}<b>${wrong.length}</b> · ${ICON.repeat}${t('mistakes')}</p>
    <div class="list review">${wrong.map(j=>{const q=qs[j],a=ans[j];return `<div class="rv card">
      <div class="qtop"><span class="pill">${j+1}</span>${q.weight>1?'<span class="pill red">⚠ ×5</span>':''}</div>
-     ${q.sign?`<div class="signbox">${SIGN[q.sign]||''}</div>`:''}<p class="qt" dir="ltr">${esc(q.q[ex])}</p>
+     ${q.img?`<div class="qimg sm"><img src="${q.img}" alt="" loading="lazy"></div>`:''}<p class="qt" dir="ltr">${esc(q.q[ex])}</p>
      <p class="fb bad" dir="ltr">${ICON.no}${a==null?'⏱ '+esc(t('noAns')):esc(q.opts[ex][a])}</p>
      <p class="fb ok" dir="ltr">${ICON.ok}${esc(q.opts[ex][q.answer])}</p>
      <button class="ghost bE" data-j="${j}">${ICON.bulb}<span>${t('explain')}</span></button><div class="exw"></div></div>`}).join('')}</div>
@@ -180,10 +187,10 @@ function exam(){const qs=shuffle(Q).slice(0,50),n=qs.length,ans=[];let i=0,left,
 }
 
 /* ---------- Stream mode (?stream=1) — no personal data ---------- */
-function stream(){let layout=P.get('layout')||'h',qs=shuffle(Q),i=0,left,shown=false;$('#top').hidden=true;
+function stream(){let layout=P.get('layout')||(innerWidth<innerHeight?'v':'h'),qs=shuffle(Q),i=0,left,shown=false;$('#top').hidden=true;
  function render(){clearTimers();shown=false;left=15;const q=qs[i];document.body.dataset.layout=layout;
   app.innerHTML=`<section class="stage ${layout}"><div class="sbar"><img src="img/logo.svg" alt=""><b>Slaag</b><span class="pill timer">${ICON.timer}<b id="tm">15</b></span></div>
-   ${q.sign?`<div class="signbox">${SIGN[q.sign]}</div>`:''}<p class="qt" dir="ltr">${esc(q.q[st.ex])}</p>
+   ${q.img?`<div class="qimg"><img src="${q.img}" alt=""></div>`:q.sign?`<div class="signbox">${SIGN[q.sign]}</div>`:''}<p class="qt" dir="ltr">${esc(q.q[st.ex])}</p>
    <div class="opts">${q.opts[st.ex].map((o,k)=>`<div class="opt" dir="ltr"><i>${'ABC'[k]}</i><span dir="ltr">${esc(o)}</span><em class="mk"></em></div>`).join('')}</div>
    <div id="fb"></div><div class="wm"><img class="wl" src="img/logo.svg" alt="Slaag"><img src="img/qr.svg" alt="QR"><span>ramboosdev.github.io/slaag<br>${esc(t('tagline'))}</span></div></section>
    <div class="ctrl">${ib('eye',t('reveal'),'id="bR" class="primary"')}${ib('bulb',t('explain'),'id="bE"')}${ib('next',t('next'),'id="bN"')}

@@ -36,7 +36,8 @@
   "explain": {
    "ar": "داخل المنطقة السكنية (بعد لوحة اسم البلدة) السرعة العادية 50، إلا إذا في إشارة غير.",
    "en": "Inside a built-up area (after the town-name sign) the default is 50 unless signs say otherwise."
-  }
+  },
+  "img": "img/q/q01.svg"
  },
  {
   "id": "q02",
@@ -75,7 +76,8 @@
   "explain": {
    "ar": "على الأوتوستراد ببلجيكا الحد الأقصى 120.",
    "en": "The Belgian motorway limit is 120 km/h."
-  }
+  },
+  "img": "img/q/q02.svg"
  },
  {
   "id": "q03",
@@ -114,7 +116,8 @@
   "explain": {
    "ar": "بفلاندرن وبروكسل خارج المدن 70، أما بوالونيا 90.",
    "en": "In Flanders and Brussels it is 70; in Wallonia 90."
-  }
+  },
+  "img": "img/q/q03.svg"
  },
  {
   "id": "q04",
@@ -153,7 +156,8 @@
   "explain": {
    "ar": "بوالونيا الحد خارج المدن 90.",
    "en": "In Wallonia it is 90 km/h."
-  }
+  },
+  "img": "img/q/q04.svg"
  },
  {
   "id": "q05",
@@ -192,7 +196,8 @@
   "explain": {
    "ar": "الدائرة الحمرا مع رقم = سرعة قصوى إجبارية.",
    "en": "Red circle with a number = mandatory maximum speed."
-  }
+  },
+  "img": "img/q/q05.svg"
  },
  {
   "id": "q06",
@@ -231,7 +236,8 @@
   "explain": {
    "ar": "بروكسل صارت مدينة 30 بأغلب الشوارع (إلا إذا في إشارة غير).",
    "en": "Brussels is mostly a 30 km/h city unless signs say otherwise."
-  }
+  },
+  "img": "img/q/q06.svg"
  },
  {
   "id": "q07",
@@ -270,7 +276,8 @@
   "explain": {
    "ar": "الرقم هو الحد الأقصى، مش السرعة المطلوبة. لازم تخفف حسب الظروف.",
    "en": "The limit is a maximum; you must adapt to conditions."
-  }
+  },
+  "img": "img/q/q07.svg"
  },
  {
   "id": "q08",
@@ -309,7 +316,8 @@
   "explain": {
    "ar": "الحد العام 0.5 بالألف بالدم.",
    "en": "The general limit is 0.5‰."
-  }
+  },
+  "img": "img/q/q08.svg"
  },
  {
   "id": "q09",
@@ -348,7 +356,8 @@
   "explain": {
    "ar": "السائق المحترف حدّه أقل: 0.2 بالألف.",
    "en": "Professional drivers: 0.2‰."
-  }
+  },
+  "img": "img/q/q09.svg"
  },
  {
   "id": "q10",
@@ -387,7 +396,8 @@
   "explain": {
    "ar": "القهوة ما بتنزّل الكحول. بس الوقت. لا تسوق أبداً.",
    "en": "Coffee doesn't remove alcohol; only time does. Never drive."
-  }
+  },
+  "img": "img/q/q10.svg"
  },
  {
   "id": "q11",
@@ -426,7 +436,8 @@
   "explain": {
    "ar": "ممنوع تماماً.",
    "en": "Strictly forbidden."
-  }
+  },
+  "img": "img/q/q11.svg"
  },
  {
   "id": "q12",
@@ -465,7 +476,8 @@
   "explain": {
    "ar": "القاعدة الأساسية ببلجيكا: الأولوية لليمين.",
    "en": "Basic Belgian rule: priority to the right."
-  }
+  },
+  "img": "img/q/q12.svg"
  },
  {
   "id": "q13",
@@ -504,7 +516,8 @@
   "explain": {
    "ar": "STOP يعني وقوف كامل عالخط، حتى لو الطريق فاضي.",
    "en": "STOP means a full stop at the line, even if the road is empty."
-  }
+  },
+  "img": "img/q/q13.svg"
  },
  {
   "id": "q14",
@@ -543,7 +556,8 @@
   "explain": {
    "ar": "المثلث المقلوب = أعطِ الأولوية للطريق اللي بتقطعه.",
    "en": "Inverted triangle = give way to the road you are entering."
-  }
+  },
+  "img": "img/q/q14.svg"
  },
  {
   "id": "q15",
@@ -582,7 +596,8 @@
   "explain": {
    "ar": "المعين الأصفر = طريقك إلو أولوية بالتقاطعات الجاية.",
    "en": "Yellow diamond = your road has priority at upcoming junctions."
-  }
+  },
+  "img": "img/q/q15.svg"
  },
  {
   "id": "q16",
@@ -621,7 +636,8 @@
   "explain": {
    "ar": "المشاة على ممر المشاة إلهم الأولوية دايماً.",
    "en": "Pedestrians at a zebra crossing have priority."
-  }
+  },
+  "img": "img/q/q16.svg"
  },
  {
   "id": "q17",
@@ -660,7 +676,8 @@
   "explain": {
    "ar": "سيارات الطوارئ بالصفارة والضو الأزرق إلها الأولوية. افتحلها بأمان.",
    "en": "Emergency vehicles with siren and blue light have priority; make way safely."
-  }
+  },
+  "img": "img/q/q17.svg"
  },
  {
   "id": "q18",
@@ -699,7 +716,8 @@
   "explain": {
    "ar": "الإشارة الزرقا الدائرية = إجباري. هون دوّار.",
    "en": "Round blue sign = mandatory; here a roundabout."
-  }
+  },
+  "img": "img/q/q18.svg"
  },
  {
   "id": "q19",
@@ -738,7 +756,8 @@
   "explain": {
    "ar": "دائرة حمرا مع خط أبيض = ممنوع تفوت بهالاتجاه.",
    "en": "Red disc with white bar = no entry in this direction."
-  }
+  },
+  "img": "img/q/q19.svg"
  },
  {
   "id": "q20",
@@ -777,7 +796,8 @@
   "explain": {
    "ar": "السيارة الحمرا جنب السودا = ممنوع تتجاوز السيارات.",
    "en": "Red car beside black car = no overtaking."
-  }
+  },
+  "img": "img/q/q20.svg"
  },
  {
   "id": "q21",
@@ -816,7 +836,8 @@
   "explain": {
    "ar": "دائرة زرقا بخط أحمر واحد = ممنوع تركن.",
    "en": "Blue disc with one red bar = no parking."
-  }
+  },
+  "img": "img/q/q21.svg"
  },
  {
   "id": "q22",
@@ -855,7 +876,8 @@
   "explain": {
    "ar": "المثلث بحافة حمرا = انتبه، في خطر قدامك.",
    "en": "Red-bordered triangle = warning of danger ahead."
-  }
+  },
+  "img": "img/q/q22.svg"
  },
  {
   "id": "q23",
@@ -894,7 +916,8 @@
   "explain": {
    "ar": "من هون بتبلّش قواعد المنطقة السكنية (عادة 50).",
    "en": "Built-up area rules start here (usually 50)."
-  }
+  },
+  "img": "img/q/q23.svg"
  },
  {
   "id": "q24",
@@ -933,7 +956,8 @@
   "explain": {
    "ar": "الإشارة الخضرا/الزرقا مع جسر = أوتوستراد، والحد 120.",
    "en": "Motorway sign; limit 120."
-  }
+  },
+  "img": "img/q/q24.svg"
  },
  {
   "id": "q25",
@@ -972,7 +996,8 @@
   "explain": {
    "ar": "الأحمر يعني وقوف، دايماً.",
    "en": "Red means stop, always."
-  }
+  },
+  "img": "img/q/q25.svg"
  },
  {
   "id": "q26",
@@ -1011,7 +1036,8 @@
   "explain": {
    "ar": "البرتقالي = وقّف، إلا إذا ما فيك توقف بأمان.",
    "en": "Amber = stop unless you cannot do so safely."
-  }
+  },
+  "img": "img/q/q26.svg"
  },
  {
   "id": "q27",
@@ -1050,7 +1076,8 @@
   "explain": {
    "ar": "الحزام إجباري لكل الركاب، قدام وورا.",
    "en": "Seatbelts are mandatory for everyone, front and back."
-  }
+  },
+  "img": "img/q/q27.svg"
  },
  {
   "id": "q28",
@@ -1089,7 +1116,8 @@
   "explain": {
    "ar": "ممنوع تمسك الموبايل وقت السواقة، حتى عالضو الأحمر.",
    "en": "Holding a phone while driving is banned, even at a red light."
-  }
+  },
+  "img": "img/q/q28.svg"
  },
  {
   "id": "q29",
@@ -1128,7 +1156,8 @@
   "explain": {
    "ar": "الأولاد الصغار لازم كرسي أطفال مناسب لطولهم ووزنهم.",
    "en": "Small children need a suitable child seat."
-  }
+  },
+  "img": "img/q/q29.svg"
  },
  {
   "id": "q30",
@@ -1167,7 +1196,8 @@
   "explain": {
    "ar": "التعب خطير متل الكحول. وقّف وارتاح.",
    "en": "Fatigue is as dangerous as alcohol; stop and rest."
-  }
+  },
+  "img": "img/q/q30.svg"
  },
  {
   "id": "q31",
@@ -1206,7 +1236,8 @@
   "explain": {
    "ar": "رقم الطوارئ بأوروبا 112.",
    "en": "The European emergency number is 112."
-  }
+  },
+  "img": "img/q/q31.svg"
  },
  {
   "id": "q32",
@@ -1245,7 +1276,8 @@
   "explain": {
    "ar": "التجاوز عادة من الشمال. ببلجيكا منسوق عاليمين.",
    "en": "Overtake on the left; Belgium drives on the right."
-  }
+  },
+  "img": "img/q/q32.svg"
  },
  {
   "id": "q33",
@@ -1284,7 +1316,8 @@
   "explain": {
    "ar": "خليك يمين، والمسرب الشمال للتجاوز.",
    "en": "Keep right; the left lane is for overtaking."
-  }
+  },
+  "img": "img/q/q33.svg"
  },
  {
   "id": "q34",
@@ -1323,6 +1356,7 @@
   "explain": {
    "ar": "قاعدة الثانيتين: عد ثانيتين بينك وبين اللي قدامك.",
    "en": "Use the 2-second rule."
-  }
+  },
+  "img": "img/q/q34.svg"
  }
 ]
