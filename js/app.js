@@ -94,10 +94,11 @@ function home(){const n=M.list().length,pos=LS.get('pos',{}).practice;
   <a class="tile ${n?'warn':''}" href="#mistakes">${ICON.repeat}<span>${t('mistakes')}</span><small>${n?`${n} ${t('left')}`:'✔'}</small></a>
   <a class="tile dark" href="#exam">${ICON.exam}<span>${t('exam')}</span><small>${ICON.timer}15s</small></a>
  </div><p class="note">⚠ ${t('sample')}</p></section>`}
+function inL(q,id){if(q.lesson===id)return true;const l=L.find(x=>x.id===id);return !!(l&&l.qids&&l.qids.includes(q.id))}
 function lessons(){app.innerHTML=`<section><h2>${ICON.book}${t('lessons')}</h2><div class="list">${L.map((l,i)=>`<a class="row" href="#lesson/${l.id}"><b>${i+1}</b><span>${esc(l.title[st.ui]||l.title.en)}${l.n?` <small class="mut">(${l.n})</small>`:''}</span>${ICON.next}</a>`).join('')}</div></section>`}
 function lesson(id){const l=L.find(x=>x.id===id);if(!l)return lessons();const ui=st.ui in l.body?st.ui:'nl';
- const li=(Q.find(q=>q.lesson===l.id&&q.img)||{}).img;
- app.innerHTML=`<section class="lesson"><h2>${ICON.book}${esc(l.title[st.ui]||l.title.en)}</h2>${li?`<div class="qimg sm"><img src="${li}" alt=""></div>`:''}<ul>${l.body[ui].map((x,k)=>`<li>${esc(x)}${ui!=='nl'&&l.body.nl[k]!==x?`<small class="nl" dir="ltr">${esc(l.body.nl[k])}</small>`:''}</li>`).join('')}</ul>
+ const li=(Q.find(q=>inL(q,l.id)&&q.img)||{}).img;
+ app.innerHTML=`<section class="lesson"><h2>${ICON.book}${esc(l.title[st.ui]||l.title.en)}</h2>${li?`<div class="qimg sm"><img src="${li}" alt=""></div>`:''}<ul>${l.body[ui].map((x,k)=>x||l.body.ar[k]).map((x,k)=>`<li>${esc(x)}${ui!=='nl'&&l.body.nl[k]&&l.body.nl[k]!==x?`<small class="nl" dir="ltr">${esc(l.body.nl[k])}</small>`:''}</li>`).join('')}</ul>
  ${l.terms.length?`<h3>${ICON.tr}${t('terms')}</h3><div class="terms">${l.terms.map(w=>`<button class="term" data-w="${esc(w[st.ex])}">${ICON.audio}<b>${esc(w[st.ex])}</b><span>${esc(w[ui]||w.en)}</span></button>`).join('')}</div>`:''}
  ${l.n?`<a class="primary" href="#practice/${l.id}">${ICON.play}${t('quiz')} (${l.n})</a>`:''}</section>`;
  app.querySelectorAll('.term').forEach(b=>b.onclick=()=>say(b.dataset.w,b))}
@@ -150,9 +151,9 @@ let timers=[];const clearTimers=()=>{stopSound();timers.forEach(clearTimeout);ti
 function quiz(mode,lessonId){
  let pool;
  if(mode==='mistakes'){pool=M.list().map(byId);if(!pool.length){app.innerHTML=`<section class="empty">${ICON.ok}<h2>${t('none')}</h2><a class="primary" href="#practice">${ICON.play}${t('practice')}</a></section>`;return}}
- else{pool=lessonId?Q.filter(q=>q.lesson===lessonId):Q.slice();
+ else{pool=lessonId?Q.filter(q=>inL(q,lessonId)):Q.slice();
   // mix due mistakes into practice: one every 4 questions
-  const due=M.due().map(byId).filter(q=>!lessonId||q.lesson===lessonId);const mixed=[];let d=0;
+  const due=M.due().map(byId).filter(q=>!lessonId||inL(q,lessonId));const mixed=[];let d=0;
   pool.forEach((q,i)=>{mixed.push(q);if(i%4===3&&d<due.length)mixed.push(Object.assign({},due[d++],{_rev:1}))});pool=mixed}
  const key=mode+(lessonId||'');const pos=LS.get('pos',{});let i=Math.min(pos[key]||0,pool.length-1),answered={};
  const savePos=()=>{const p=LS.get('pos',{});p[key]=i;LS.set('pos',p)};
