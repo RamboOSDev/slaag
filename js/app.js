@@ -36,7 +36,7 @@ async function boot(){
 async function loadLang(c){T=await fetch(`i18n/${c}.json`).then(r=>r.json());st.ui=c;document.documentElement.lang=c;document.documentElement.dir=T._dir||'ltr'}
 async function firstRun(){
  const names=await Promise.all(LANGS.map(c=>fetch(`i18n/${c}.json`).then(r=>r.json()).then(x=>[c,x._name])));
- app.innerHTML=`<section class="pick"><img src="img/logo.svg" width="90" alt=""><h1>Slaag</h1><p class="big">${ICON.globe}</p>
+ app.innerHTML=`<section class="pick"><img src="img/logo-full.svg" width="130" alt="Slaag"><p class="big">${ICON.globe}</p>
   <div class="grid2">${names.map(([c,n])=>`<button class="lang" data-c="${c}">${esc(n)}</button>`).join('')}</div>
   <p class="big">📝 ${ICON.exam}</p><div class="grid2"><button class="lang ex" data-e="nl">🇧🇪 Nederlands</button><button class="lang ex" data-e="fr">🇧🇪 Français</button></div>
   <button id="go" class="primary">${ICON.play}</button></section>`;
@@ -74,7 +74,7 @@ function openMenu(){const m=$('#menu');m.hidden=false;
 
 /* ---------- Screens ---------- */
 function home(){const n=M.list().length,pos=LS.get('pos',{}).practice;
- app.innerHTML=`<section class="home"><h1 class="tag">${esc(t('tagline'))}</h1>
+ app.innerHTML=`<section class="home"><img class="home-logo" src="img/logo-full.svg" alt="Slaag"><h1 class="tag">${esc(t('tagline'))}</h1>
  <div class="tiles">
   <a class="tile" href="#lessons">${ICON.book}<span>${t('lessons')}</span></a>
   <a class="tile" href="#practice">${ICON.play}<span>${t('practice')}</span>${pos?`<small>${ICON.next}${pos+1}/${Q.length}</small>`:''}</a>
@@ -174,7 +174,7 @@ function stream(){let layout=P.get('layout')||'h',qs=shuffle(Q),i=0,left,shown=f
   app.innerHTML=`<section class="stage ${layout}"><div class="sbar"><img src="img/logo.svg" alt=""><b>Slaag</b><span class="pill timer">${ICON.timer}<b id="tm">15</b></span></div>
    ${q.sign?`<div class="signbox">${SIGN[q.sign]}</div>`:''}<p class="qt" dir="ltr">${esc(q.q[st.ex])}</p>
    <div class="opts">${q.opts[st.ex].map((o,k)=>`<div class="opt" dir="ltr"><i>${'ABC'[k]}</i><span dir="ltr">${esc(o)}</span><em class="mk"></em></div>`).join('')}</div>
-   <div id="fb"></div><div class="wm"><img src="img/qr.svg" alt="QR"><span>ramboosdev.github.io/slaag<br>${esc(t('tagline'))}</span></div></section>
+   <div id="fb"></div><div class="wm"><img class="wl" src="img/logo.svg" alt="Slaag"><img src="img/qr.svg" alt="QR"><span>ramboosdev.github.io/slaag<br>${esc(t('tagline'))}</span></div></section>
    <div class="ctrl">${ib('eye',t('reveal'),'id="bR" class="primary"')}${ib('bulb',t('explain'),'id="bE"')}${ib('next',t('next'),'id="bN"')}
     <button id="bL" class="icon-btn">${layout==='h'?ICON.portrait:ICON.landscape}</button><button id="bX" class="icon-btn">${ICON.globe}</button></div>`;
   $('#bR').onclick=reveal;$('#bN').onclick=()=>{i=(i+1)%qs.length;render()};$('#bE').onclick=()=>{reveal();explain(q)};

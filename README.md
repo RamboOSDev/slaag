@@ -1,4 +1,4 @@
-# Slaag — رخصتك بلغتك 🐝⚠️
+# Slaag — رخصتك بلغتك 🛞✔️
 
 **Slaag. Your licence, your language.** Free static web app to practise the Belgian theory driving exam (B).
 Live: https://ramboosdev.github.io/slaag/
