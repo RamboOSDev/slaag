@@ -113,3 +113,4 @@ main,section,.card,.list,.row,.terms,.opts{max-width:100%;min-width:0}
 .sl{flex:1;min-width:0}.srow b{font-size:1.2rem;white-space:nowrap}.srow.g b{color:var(--g)}.srow.o b{color:var(--o)}
 .bigbtn{width:100%;font-size:1.3rem;padding:18px;margin-top:8px}.bigbtn .ic{width:1.6em;height:1.6em}
 [dir=rtl] .bigbtn .ic{transform:scaleX(-1)}
+.review .rv{text-align:start;margin:10px 0}.review .rv .qt{font-size:1rem}.review .fb{margin:6px 0}.review .bE{margin-top:6px}

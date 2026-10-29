@@ -148,24 +148,32 @@ function examIntro(){const n=Math.min(50,Q.length),need=Math.ceil(41*n/50);
  app.innerHTML=`<section class="intro"><p class="lic">${esc(t('licence'))}</p><h2>${ICON.exam}${t('exam')}</h2>
  <div class="scard">${r(ICON.exam,t('nQ'),n)}${r(ICON.timer,t('tQ'),`15 ${esc(t('sec'))}`)}${r(ICON.ok,t('need'),`${need}/${n}`,'g')}${r('⚠',t('sf'),'<span dir="ltr">−5</span>','o')}</div>
  <p class="note">${esc(t('real'))}</p><button class="primary bigbtn" id="go"><span>${t('start')}</span>${ICON.play}</button></section>`;$('#go').onclick=exam}
-function exam(){const qs=shuffle(Q).slice(0,50),n=qs.length,ans=[];let i=0,left;
- function render(){clearTimers();const q=qs[i];left=15;
-  app.innerHTML=`<section class="quiz">${card(q,i,n,{timer:true,tools:true})}</section><div class="navbar">${ib('next',t('next'),'id="bN" class="primary"')}</div>`;
-  bindTools(q,()=>{const a=ans[i];render();if(a!=null)mark(a)});
-  app.querySelectorAll('.opt').forEach(b=>b.onclick=()=>{ans[i]=+b.dataset.k;mark(ans[i])});
-  $('#bN').onclick=adv;
-  document.onkeydown=e=>{if(e.key>='1'&&e.key<='3'){ans[i]=+e.key-1;mark(ans[i])}else if(e.key==='Enter')adv()};
-  timers.push(setInterval(()=>{left--;const el=$('#tm');if(el)el.textContent=left;if(left<=5)el&&el.parentNode.classList.add('red');if(left<=0)adv()},1000));}
- function mark(k){app.querySelectorAll('.opt').forEach((b,j)=>b.classList.toggle('sel',j===k))}
- function adv(){if(i<n-1){i++;render()}else finish()}
+function exam(){const qs=shuffle(Q).slice(0,50),n=qs.length,ans=[];let i=0,left,cur=null,done=false;
+ /* Real-exam rules: pick → confirm → next. No feedback, no going back, 15s → counts as unanswered. */
+ function render(){clearTimers();const q=qs[i];left=15;cur=null;done=false;
+  app.innerHTML=`<section class="quiz">${card(q,i,n,{timer:true,tools:true})}</section><div class="navbar">${ib('ok',t('confirm'),'id="bN" class="primary" disabled')}</div>`;
+  bindTools(q,()=>{const c=cur,l=left;render();left=l;$('#tm').textContent=l;if(c!=null)sel(c)});
+  app.querySelectorAll('.opt').forEach(b=>b.onclick=()=>sel(+b.dataset.k));
+  $('#bN').onclick=confirmA;
+  document.onkeydown=e=>{if(e.target.tagName==='SELECT')return;if(e.key>='1'&&e.key<='3')sel(+e.key-1);else if(e.key==='Enter'){e.preventDefault();confirmA()}};
+  timers.push(setInterval(()=>{left--;const el=$('#tm');if(el){el.textContent=Math.max(0,left);if(left<=5)el.parentNode.classList.add('red')}if(left<=0)commit(null)},1000));}
+ function sel(k){if(done)return;cur=k;app.querySelectorAll('.opt').forEach((b,j)=>b.classList.toggle('sel',j===k));const bn=$('#bN');if(bn)bn.disabled=false}
+ function confirmA(){if(cur!=null)commit(cur)}
+ function commit(k){if(done)return;done=true;ans[i]=k;M.record(qs[i].id,k===qs[i].answer);if(i<n-1){i++;render()}else finish()}
  function finish(){clearTimers();let score=n;const wrong=[];
-  qs.forEach((q,j)=>{const ok=ans[j]===q.answer;if(!ok){score-=q.weight>1?5:1;wrong.push(j)}});
-  qs.forEach((q,j)=>M.record(q.id,ans[j]===q.answer)); // mistakes added AFTER the exam
-  score=Math.max(0,score);const need=Math.ceil(41*n/50),pass=score>=need;
+  qs.forEach((q,j)=>{if(ans[j]!==q.answer){score-=q.weight>1?5:1;wrong.push(j)}});
+  score=Math.max(0,score);const need=Math.ceil(41*n/50),pass=score>=need,ex=st.ex;
   app.innerHTML=`<section class="result ${pass?'ok':'bad'}"><div class="big">${pass?ICON.ok:ICON.no}</div><h2>${pass?t('pass'):t('fail')}</h2>
    <p class="score">${score}/${n} <small>(${ICON.ok}${need})</small></p>
-   <div class="list">${wrong.map(j=>{const q=qs[j];return `<div class="row bad">${ICON.no}<span dir="ltr">${esc(q.q[st.ex])}</span><b>${ICON.ok}${esc(q.opts[st.ex][q.answer])}</b></div>`}).join('')}</div>
+   <p class="hint">${ICON.no}<b>${wrong.length}</b> · ${ICON.repeat}${t('mistakes')}</p>
+   <div class="list review">${wrong.map(j=>{const q=qs[j],a=ans[j];return `<div class="rv card">
+     <div class="qtop"><span class="pill">${j+1}</span>${q.weight>1?'<span class="pill red">⚠ ×5</span>':''}</div>
+     ${q.sign?`<div class="signbox">${SIGN[q.sign]||''}</div>`:''}<p class="qt" dir="ltr">${esc(q.q[ex])}</p>
+     <p class="fb bad" dir="ltr">${ICON.no}${a==null?'⏱ '+esc(t('noAns')):esc(q.opts[ex][a])}</p>
+     <p class="fb ok" dir="ltr">${ICON.ok}${esc(q.opts[ex][q.answer])}</p>
+     <button class="ghost bE" data-j="${j}">${ICON.bulb}<span>${t('explain')}</span></button><div class="exw"></div></div>`}).join('')}</div>
    <div class="navbar static">${ib('repeat',t('mistakes'),'id="bM" class="primary"')}${ib('home',t('home'),'id="bH"')}</div></section>`;
+  app.querySelectorAll('.bE').forEach(b=>b.onclick=()=>{const q=qs[+b.dataset.j],ui=st.ui in q.explain?st.ui:'en',w=b.nextElementSibling;if(!w.innerHTML)w.innerHTML=`<div class="ex">${ICON.bulb}<p>${esc(q.explain[ui])}</p></div>`});
   $('#bM').onclick=()=>go('mistakes');$('#bH').onclick=()=>go('home');}
  render();
 }
