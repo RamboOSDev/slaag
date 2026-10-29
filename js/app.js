@@ -3,7 +3,7 @@
 const $=s=>document.querySelector(s), app=$('#app');
 const LS={get:(k,d)=>{try{return JSON.parse(localStorage.getItem('slaag.'+k))??d}catch(e){return d}},set:(k,v)=>localStorage.setItem('slaag.'+k,JSON.stringify(v))};
 const P=new URLSearchParams(location.search), STREAM=P.get('stream')==='1';
-let T={}, LANGS=[], Q=[], L=[], st={ui:LS.get('ui',null),ex:LS.get('ex','nl'),delay:LS.get('delay',1.5),tr:LS.get('tr',false),auto:LS.get('auto',true)};
+let T={}, LANGS=[], Q=[], L=[], st={ui:LS.get('ui',null),ex:LS.get('ex','nl'),delay:LS.get('delay',1.5),tr:LS.get('tr',false),auto:LS.get('auto',true),read:LS.get('read',false)};
 const SESSION=sessionStorage.getItem('slaag.s')||String(Date.now()); sessionStorage.setItem('slaag.s',SESSION);
 const t=k=>T[k]||k, esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const ib=(ic,label,attrs='')=>`<button ${attrs}>${ICON[ic]}<span>${esc(label)}</span></button>`;
@@ -124,26 +124,33 @@ function sndOn(b){if(!b)return;SB=b;SBH=b.innerHTML;b.classList.remove('err');b.
 function say(txt,b){const was=b&&b===SB;stopSound();if(was)return;
  if(!('speechSynthesis' in window)||!txt){if(b){SB=b;SBH=b.innerHTML;sndReset(true)}return}
  const u=new SpeechSynthesisUtterance(txt);u.lang=st.ex==='fr'?'fr-BE':'nl-BE';sndOn(b);const me=SB;
- u.onend=()=>{if(SB===me)sndReset()};u.onerror=e=>{if(SB===me)sndReset(e.error!=='interrupted'&&e.error!=='canceled')};speechSynthesis.speak(u)}
+ u.onend=()=>{if(SB===me)sndReset()};u.onerror=e=>{if(SB!==me)return;if(e.error==='not-allowed')return sndBlocked();sndReset(e.error!=='interrupted'&&e.error!=='canceled')};speechSynthesis.speak(u)}
+function sndBlocked(){const b=SB;sndReset();if(b){b.classList.add('blocked');b.title=t('tapResume')}}
 function play(q,fb,b){if(b&&b===SB){stopSound();return}stopSound();if(!q.aud)return say(fb,b);
  const a=AU=new Audio(q.aud);sndOn(b);const me=SB;
  a.onended=()=>{if(AU===a){AU=null;if(SB===me)sndReset()}};
  a.onerror=()=>{if(AU===a){AU=null;if(SB===me){SB.classList.remove('playing');SB.innerHTML=SBH;SB=null}say(fb,b)}};
- a.play().catch(()=>a.onerror&&a.onerror())}
+ a.play().catch(e=>{if(e&&e.name==='NotAllowedError'&&AU===a){AU=null;sndBlocked()}else if(a.onerror)a.onerror()})}
+document.addEventListener('visibilitychange',()=>{if(document.hidden)stopSound()});
 
 /* ---------- Question card ---------- */
 function card(q,i,n,opt={}){const ex=st.ex,ui=st.ui in q.q?st.ui:'nl';
  return `<div class="card">
   <div class="qtop"><span class="pill">${i+1}/${n}</span>${q.weight>1?`<span class="pill red" title="${t('serious')}">⚠ ×5</span>`:''}
    ${opt.timer?`<span class="pill timer">${ICON.timer}<b id="tm">15</b></span>`:''}<span class="sp"></span>
-   ${opt.tools===false?'':`<button class="icon-btn ${st.tr?'on':''}" id="bTr" title="${t('translate')}">${ICON.tr}</button><button class="icon-btn snd ${q.aud?'':'tts'}" id="bAu" aria-pressed="false" title="${t('listen')}${q.aud?'':' · '+t('ttsOnly')}">${ICON.audio}</button>`}</div>
+   ${opt.tools===false?'':`<button class="icon-btn ${st.tr?'on':''}" id="bTr" title="${t('translate')}">${ICON.tr}</button><button class="icon-btn snd ${q.aud?'':'tts'}" id="bAu" aria-pressed="${st.read}" title="${t('listen')}${q.aud?'':' · '+t('ttsOnly')}">${ICON.audio}</button>`}</div>
   ${q.img?`<div class="qimg"><img src="${q.img}" alt="" width="600" height="340" decoding="async"></div>`:q.sign?`<div class="signbox">${SIGN[q.sign]||''}</div>`:''}
   <p class="qt" dir="ltr" lang="${ex}">${esc(tx(q.q,ex))}</p>${st.tr&&ui!==ex?`<p class="qtr">${esc(tx(q.q,ui))}</p>`:''}
   ${q.num!=null?`<form class="numf" id="nf"><input id="ni" inputmode="decimal" autocomplete="off" dir="ltr" placeholder="…"><button class="primary" type="submit">${ICON.okc}</button></form>`:
   `<div class="opts">${tx(q.opts,ex).map((o,k)=>`<button class="opt" dir="ltr" data-k="${k}"><i>${'ABC'[k]}</i><span dir="ltr" lang="${ex}">${esc(o)}</span>${st.tr&&ui!==ex?`<small>${esc(tx(q.opts,ui)[k])}</small>`:''}<em class="mk"></em></button>`).join('')}</div>`}
   <div id="fb"></div></div>`}
+const readTxt=q=>tx(q.q,st.ex)+'. '+(q.num!=null?'':tx(q.opts,st.ex).map((o,k)=>'ABC'[k]+': '+o).join('. '));
+function readBtn(a,q){if(!a)return;const set=()=>{a.classList.toggle('on',st.read);a.setAttribute('aria-pressed',st.read);a.title=t(st.read?'readOn':'readOff')};set();
+ a.onclick=()=>{if(a.classList.contains('blocked')){a.classList.remove('blocked');set();return play(q,readTxt(q),a)}
+  st.read=!st.read;LS.set('read',st.read);set();if(st.read)play(q,readTxt(q),a);else stopSound()};
+ if(st.read)setTimeout(()=>{if(a.isConnected&&!SB)play(q,readTxt(q),a)},150)}
 function bindTools(q,rerender){const a=$('#bAu'),b=$('#bTr');
- if(a)a.onclick=()=>play(q,tx(q.q,st.ex)+'. '+tx(q.opts,st.ex).map((o,k)=>'ABC'[k]+': '+o).join('. '),a);
+ readBtn(a,q);
  if(b)b.onclick=()=>{st.tr=!st.tr;LS.set('tr',st.tr);rerender()}}
 
 /* ---------- Practice / lesson quiz / mistakes ---------- */
@@ -232,7 +239,7 @@ function stream(){let layout=P.get('layout')||(innerWidth<innerHeight?'v':'h'),q
    ${q.num!=null?`<div class="opts"><div class="opt num" dir="ltr"><i>#</i><span>${esc(q.num)}</span><em class="mk"></em></div></div>`:''}<div class="opts">${(q.num!=null?[]:tx(q.opts,st.ex)).map((o,k)=>`<div class="opt" dir="ltr"><i>${'ABC'[k]}</i><span dir="ltr">${esc(o)}</span><em class="mk"></em></div>`).join('')}</div>
    <div id="fb"></div><div class="wm"><img class="wl" src="img/logo.svg" alt="Slaag"><img src="img/qr.svg" alt="QR"><span>ramboosdev.github.io/slaag<br>${esc(t('tagline'))}</span></div></section>
    <div class="ctrl">${ib('eye',t('reveal'),'id="bR" class="primary"')}${ib('bulb',t('explain'),'id="bE"')}${ib('next',t('next'),'id="bN"')}
-    <button id="bL" class="icon-btn">${layout==='h'?ICON.portrait:ICON.landscape}</button><button id="bX" class="icon-btn">${ICON.globe}</button></div>`;
+    <button id="bL" class="icon-btn">${layout==='h'?ICON.portrait:ICON.landscape}</button><button id="bX" class="icon-btn">${ICON.globe}</button><button id="bAu" class="icon-btn snd">${ICON.audio}</button></div>`;readBtn($('#bAu'),q);
   $('#bR').onclick=reveal;$('#bN').onclick=()=>{i=(i+1)%qs.length;render()};$('#bE').onclick=()=>{reveal();explain(q)};
   $('#bL').onclick=()=>{layout=layout==='h'?'v':'h';render()};$('#bX').onclick=()=>{st.tr=!st.tr;render()};
   document.onkeydown=e=>{if(e.key===' '||e.key==='r')reveal();if(e.key==='Enter'||e.key==='ArrowRight')$('#bN').click()};
