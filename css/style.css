@@ -114,3 +114,6 @@ main,section,.card,.list,.row,.terms,.opts{max-width:100%;min-width:0}
 .bigbtn{width:100%;font-size:1.3rem;padding:18px;margin-top:8px}.bigbtn .ic{width:1.6em;height:1.6em}
 [dir=rtl] .bigbtn .ic{transform:scaleX(-1)}
 .review .rv{text-align:start;margin:10px 0}.review .rv .qt{font-size:1rem}.review .fb{margin:6px 0}.review .bE{margin-top:6px}
+.navbar .auto{flex:0 0 auto;max-width:none;padding:12px 14px;display:flex;flex-direction:column;align-items:center;gap:2px;font-size:.8rem;background:#eef2f7;color:#667;border:2px solid transparent}
+.navbar .auto.on{background:#fff4e6;color:#e8730c;border-color:#f59e0b}
+#bC .ic{width:1.5em;height:1.5em}

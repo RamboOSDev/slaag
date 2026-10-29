@@ -3,7 +3,7 @@
 const $=s=>document.querySelector(s), app=$('#app');
 const LS={get:(k,d)=>{try{return JSON.parse(localStorage.getItem('slaag.'+k))??d}catch(e){return d}},set:(k,v)=>localStorage.setItem('slaag.'+k,JSON.stringify(v))};
 const P=new URLSearchParams(location.search), STREAM=P.get('stream')==='1';
-let T={}, LANGS=[], Q=[], L=[], st={ui:LS.get('ui',null),ex:LS.get('ex','nl'),delay:LS.get('delay',1.5),tr:LS.get('tr',false)};
+let T={}, LANGS=[], Q=[], L=[], st={ui:LS.get('ui',null),ex:LS.get('ex','nl'),delay:LS.get('delay',1.5),tr:LS.get('tr',false),auto:LS.get('auto',true)};
 const SESSION=sessionStorage.getItem('slaag.s')||String(Date.now()); sessionStorage.setItem('slaag.s',SESSION);
 const t=k=>T[k]||k, esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const ib=(ic,label,attrs='')=>`<button ${attrs}>${ICON[ic]}<span>${esc(label)}</span></button>`;
@@ -151,13 +151,14 @@ function examIntro(){const n=Math.min(50,Q.length),need=Math.ceil(41*n/50);
 function exam(){const qs=shuffle(Q).slice(0,50),n=qs.length,ans=[];let i=0,left,cur=null,done=false;
  /* Real-exam rules: pick → confirm → next. No feedback, no going back, 15s → counts as unanswered. */
  function render(){clearTimers();const q=qs[i];left=15;cur=null;done=false;
-  app.innerHTML=`<section class="quiz">${card(q,i,n,{timer:true,tools:true})}</section><div class="navbar">${ib('ok',t('confirm'),'id="bN" class="primary" disabled')}</div>`;
+  app.innerHTML=`<section class="quiz">${card(q,i,n,{timer:true,tools:true})}</section><div class="navbar"><button id="bA" class="auto ${st.auto?'on':''}" aria-pressed="${st.auto}">${ICON.bolt}<span>${t('auto')}</span></button>${ib('okc',t('confirm'),'id="bC" class="primary" disabled')}</div>`;
+  $('#bA').onclick=()=>{st.auto=!st.auto;LS.set('auto',st.auto);const b=$('#bA');b.classList.toggle('on',st.auto);b.setAttribute('aria-pressed',st.auto)};
   bindTools(q,()=>{const c=cur,l=left;render();left=l;$('#tm').textContent=l;if(c!=null)sel(c)});
   app.querySelectorAll('.opt').forEach(b=>b.onclick=()=>sel(+b.dataset.k));
-  $('#bN').onclick=confirmA;
+  $('#bC').onclick=confirmA;
   document.onkeydown=e=>{if(e.target.tagName==='SELECT')return;if(e.key>='1'&&e.key<='3')sel(+e.key-1);else if(e.key==='Enter'){e.preventDefault();confirmA()}};
   timers.push(setInterval(()=>{left--;const el=$('#tm');if(el){el.textContent=Math.max(0,left);if(left<=5)el.parentNode.classList.add('red')}if(left<=0)commit(null)},1000));}
- function sel(k){if(done)return;cur=k;app.querySelectorAll('.opt').forEach((b,j)=>b.classList.toggle('sel',j===k));const bn=$('#bN');if(bn)bn.disabled=false}
+ function sel(k){if(done)return;cur=k;app.querySelectorAll('.opt').forEach((b,j)=>b.classList.toggle('sel',j===k));const bn=$('#bC');if(bn)bn.disabled=false;if(st.auto)commit(k)}
  function confirmA(){if(cur!=null)commit(cur)}
  function commit(k){if(done)return;done=true;ans[i]=k;M.record(qs[i].id,k===qs[i].answer);if(i<n-1){i++;render()}else finish()}
  function finish(){clearTimers();let score=n;const wrong=[];

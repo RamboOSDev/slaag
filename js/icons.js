@@ -3,6 +3,8 @@ const S=(b,v='0 0 24 24')=>`<svg viewBox="${v}" class="ic" aria-hidden="true" fi
 const ICON={
  next:S('<path d="M8 4l9 8-9 8z" fill="currentColor"/>'),
  back:S('<path d="M16 4 7 12l9 8z" fill="currentColor"/>'),
+ okc:S('<circle cx="12" cy="12" r="10"/><path d="M7 12.5l3.5 3.5L17 9"/>'),
+ bolt:S('<path d="M13 2L4 14h7l-1 8 9-12h-7z"/>'),
  ok:S('<path d="M4 12l5 5L20 6"/>'),
  no:S('<path d="M5 5l14 14M19 5 5 19"/>'),
  audio:S('<path d="M4 9h4l5-4v14l-5-4H4z" fill="currentColor"/><path d="M16 8a5 5 0 0 1 0 8M19 5a9 9 0 0 1 0 14"/>'),
