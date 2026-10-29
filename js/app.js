@@ -74,7 +74,7 @@ function openMenu(){const m=$('#menu');m.hidden=false;
 
 /* ---------- Screens ---------- */
 function home(){const n=M.list().length,pos=LS.get('pos',{}).practice;
- app.innerHTML=`<section class="home"><img class="home-logo" src="img/logo-full.svg" alt="Slaag"><h1 class="tag">${esc(t('tagline'))}</h1>
+ app.innerHTML=`<section class="home"><img class="home-logo" src="img/logo-full.svg" alt="Slaag"><h1 class="tag">${esc(t('tagline'))}</h1><p class="lic">${esc(t('licence'))}</p>
  <div class="tiles">
   <a class="tile" href="#lessons">${ICON.book}<span>${t('lessons')}</span></a>
   <a class="tile" href="#practice">${ICON.play}<span>${t('practice')}</span>${pos?`<small>${ICON.next}${pos+1}/${Q.length}</small>`:''}</a>
@@ -144,8 +144,10 @@ function swipe(el,cb){let x0=null;el.ontouchstart=e=>{x0=e.touches[0].clientX};e
 
 /* ---------- Mock exam ---------- */
 function examIntro(){const n=Math.min(50,Q.length),need=Math.ceil(41*n/50);
- app.innerHTML=`<section class="empty">${ICON.exam}<h2>${t('exam')}</h2><p class="big">${ICON.exam}${n} · ${ICON.timer}15s · ${ICON.ok}${need}/${n}</p><p>${t('rules')}</p>
- <button class="primary" id="go">${ICON.play}${t('start')}</button></section>`;$('#go').onclick=exam}
+ const r=(ic,l,v,c='')=>`<div class="srow ${c}"><span class="sic">${ic}</span><span class="sl">${esc(l)}</span><b>${v}</b></div>`;
+ app.innerHTML=`<section class="intro"><p class="lic">${esc(t('licence'))}</p><h2>${ICON.exam}${t('exam')}</h2>
+ <div class="scard">${r(ICON.exam,t('nQ'),n)}${r(ICON.timer,t('tQ'),`15 ${esc(t('sec'))}`)}${r(ICON.ok,t('need'),`${need}/${n}`,'g')}${r('⚠',t('sf'),'<span dir="ltr">−5</span>','o')}</div>
+ <p class="note">${esc(t('real'))}</p><button class="primary bigbtn" id="go"><span>${t('start')}</span>${ICON.play}</button></section>`;$('#go').onclick=exam}
 function exam(){const qs=shuffle(Q).slice(0,50),n=qs.length,ans=[];let i=0,left;
  function render(){clearTimers();const q=qs[i];left=15;
   app.innerHTML=`<section class="quiz">${card(q,i,n,{timer:true,tools:true})}</section><div class="navbar">${ib('next',t('next'),'id="bN" class="primary"')}</div>`;
