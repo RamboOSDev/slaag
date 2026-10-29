@@ -57,7 +57,7 @@ function start(){
  if('serviceWorker' in navigator)navigator.serviceWorker.register('sw.js').catch(()=>{});
 }
 function go(h){location.hash=h}
-function route(){menuHist=false;closeMenu(true);clearTimers();const [v,a]=(location.hash.slice(1)||'home').split('/');
+function route(){stopSound();menuHist=false;closeMenu(true);clearTimers();const [v,a]=(location.hash.slice(1)||'home').split('/');
  ({home,lessons,signs:()=>signs(a),lesson:()=>lesson(a),practice:()=>quiz('practice',a),mistakes:()=>quiz('mistakes'),exam:examIntro}[v]||home)()}
 
 /* ---------- Menu (everything non-essential lives here) ---------- */
@@ -100,7 +100,7 @@ function lesson(id){const l=L.find(x=>x.id===id);if(!l)return lessons();const ui
  app.innerHTML=`<section class="lesson"><h2>${ICON.book}${esc(l.title[st.ui]||l.title.en)}</h2>${li?`<div class="qimg sm"><img src="${li}" alt=""></div>`:''}<ul>${l.body[ui].map((x,k)=>`<li>${esc(x)}${ui!=='nl'&&l.body.nl[k]!==x?`<small class="nl" dir="ltr">${esc(l.body.nl[k])}</small>`:''}</li>`).join('')}</ul>
  ${l.terms.length?`<h3>${ICON.tr}${t('terms')}</h3><div class="terms">${l.terms.map(w=>`<button class="term" data-w="${esc(w[st.ex])}">${ICON.audio}<b>${esc(w[st.ex])}</b><span>${esc(w[ui]||w.en)}</span></button>`).join('')}</div>`:''}
  ${l.n?`<a class="primary" href="#practice/${l.id}">${ICON.play}${t('quiz')} (${l.n})</a>`:''}</section>`;
- app.querySelectorAll('.term').forEach(b=>b.onclick=()=>say(b.dataset.w))}
+ app.querySelectorAll('.term').forEach(b=>b.onclick=()=>say(b.dataset.w,b))}
 
 /* ---------- Signs & key facts (learning) ---------- */
 function signs(tab){tab=tab||'all';const cats=[...new Set(LR.signs.map(s=>s.cat))];
@@ -110,29 +110,43 @@ function signs(tab){tab=tab||'all';const cats=[...new Set(LR.signs.map(s=>s.cat)
  else if(tab==='facts')body=Object.entries(LR.factCats).map(([k,v])=>`<h3>${esc(v)}</h3><ul class="facts">${LR.facts.filter(x=>x.k===k).map(x=>`<li><button class="term" data-w="${esc(x.nl)}">${ICON.audio}</button>${esc(st.ui==='ar'?x.ar:x.nl)}<small class="nl" dir="ltr">${st.ui==='ar'?esc(x.nl)+' · ':''}Les ${x.l}</small></li>`).join('')}</ul>`).join('');
  else body=cats.map(c=>`<h3>${esc(c)}</h3><div class="sgrid">${LR.signs.filter(s=>s.cat===c).map(s=>`<button class="sg" data-w="${esc(s.nl)}"><img src="${s.img}" alt="${esc(s.c)}" loading="lazy"><b>${esc(st.ui==='ar'?s.ar:s.nl)}</b><small dir="ltr">${esc(s.c)}${st.ui==='ar'?' · '+esc(s.nl):''}</small></button>`).join('')}</div>`).join('');
  app.innerHTML=`<section class="learn"><h2>${ICON.danger||ICON.eye}${t('signs')}</h2><div class="chips">${tabs.map(([k,v])=>`<a class="chip ${k===tab?'on':''}" href="#signs/${k}">${esc(v)}</a>`).join('')}</div>${body}</section>`;
- app.querySelectorAll('[data-w]').forEach(b=>b.onclick=()=>say(b.dataset.w))}
+ app.querySelectorAll('[data-w]').forEach(b=>b.onclick=()=>say(b.dataset.w,b))}
 
 /* ---------- Speech ---------- */
-function say(txt){if(!('speechSynthesis' in window))return;speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(txt);u.lang=st.ex==='fr'?'fr-BE':'nl-BE';speechSynthesis.speak(u)}
-let AU=null;function play(q,fb){try{speechSynthesis.cancel()}catch(e){}if(AU){AU.pause();AU=null}if(q.aud){AU=new Audio(q.aud);AU.play().catch(()=>say(fb))}else say(fb)}
+/* Sound: one player for MP3 + browser voice, with a visible state on the button that started it */
+const STOPI='<svg class="ic" viewBox="0 0 24 24"><rect x="6" y="6" width="12" height="12" rx="2" fill="currentColor"/></svg>';
+let AU=null,SB=null,SBH='';
+function sndReset(err){if(SB){SB.classList.remove('playing');SB.innerHTML=SBH;SB.setAttribute('aria-pressed','false');if(err){SB.classList.add('err');SB.title=t('noAudio')}}SB=null}
+function stopSound(){if(AU){AU.onended=AU.onerror=null;AU.pause();AU=null}try{speechSynthesis.cancel()}catch(e){}sndReset()}
+function sndOn(b){if(!b)return;SB=b;SBH=b.innerHTML;b.classList.remove('err');b.classList.add('playing');b.setAttribute('aria-pressed','true');
+ const ic=b.querySelector('.ic,svg');if(ic)ic.outerHTML=STOPI;else b.insertAdjacentHTML('afterbegin',STOPI)}
+function say(txt,b){const was=b&&b===SB;stopSound();if(was)return;
+ if(!('speechSynthesis' in window)||!txt){if(b){SB=b;SBH=b.innerHTML;sndReset(true)}return}
+ const u=new SpeechSynthesisUtterance(txt);u.lang=st.ex==='fr'?'fr-BE':'nl-BE';sndOn(b);const me=SB;
+ u.onend=()=>{if(SB===me)sndReset()};u.onerror=e=>{if(SB===me)sndReset(e.error!=='interrupted'&&e.error!=='canceled')};speechSynthesis.speak(u)}
+function play(q,fb,b){if(b&&b===SB){stopSound();return}stopSound();if(!q.aud)return say(fb,b);
+ const a=AU=new Audio(q.aud);sndOn(b);const me=SB;
+ a.onended=()=>{if(AU===a){AU=null;if(SB===me)sndReset()}};
+ a.onerror=()=>{if(AU===a){AU=null;if(SB===me){SB.classList.remove('playing');SB.innerHTML=SBH;SB=null}say(fb,b)}};
+ a.play().catch(()=>a.onerror&&a.onerror())}
 
 /* ---------- Question card ---------- */
 function card(q,i,n,opt={}){const ex=st.ex,ui=st.ui in q.q?st.ui:'nl';
  return `<div class="card">
   <div class="qtop"><span class="pill">${i+1}/${n}</span>${q.weight>1?`<span class="pill red" title="${t('serious')}">⚠ ×5</span>`:''}
    ${opt.timer?`<span class="pill timer">${ICON.timer}<b id="tm">15</b></span>`:''}<span class="sp"></span>
-   ${opt.tools===false?'':`<button class="icon-btn ${st.tr?'on':''}" id="bTr" title="${t('translate')}">${ICON.tr}</button><button class="icon-btn" id="bAu" title="${t('listen')}">${ICON.audio}</button>`}</div>
+   ${opt.tools===false?'':`<button class="icon-btn ${st.tr?'on':''}" id="bTr" title="${t('translate')}">${ICON.tr}</button><button class="icon-btn snd ${q.aud?'':'tts'}" id="bAu" aria-pressed="false" title="${t('listen')}${q.aud?'':' · '+t('ttsOnly')}">${ICON.audio}</button>`}</div>
   ${q.img?`<div class="qimg"><img src="${q.img}" alt="" width="600" height="340" decoding="async"></div>`:q.sign?`<div class="signbox">${SIGN[q.sign]||''}</div>`:''}
   <p class="qt" dir="ltr" lang="${ex}">${esc(tx(q.q,ex))}</p>${st.tr&&ui!==ex?`<p class="qtr">${esc(tx(q.q,ui))}</p>`:''}
   ${q.num!=null?`<form class="numf" id="nf"><input id="ni" inputmode="decimal" autocomplete="off" dir="ltr" placeholder="…"><button class="primary" type="submit">${ICON.okc}</button></form>`:
   `<div class="opts">${tx(q.opts,ex).map((o,k)=>`<button class="opt" dir="ltr" data-k="${k}"><i>${'ABC'[k]}</i><span dir="ltr" lang="${ex}">${esc(o)}</span>${st.tr&&ui!==ex?`<small>${esc(tx(q.opts,ui)[k])}</small>`:''}<em class="mk"></em></button>`).join('')}</div>`}
   <div id="fb"></div></div>`}
 function bindTools(q,rerender){const a=$('#bAu'),b=$('#bTr');
- if(a)a.onclick=()=>play(q,tx(q.q,st.ex)+'. '+tx(q.opts,st.ex).map((o,k)=>'ABC'[k]+': '+o).join('. '));
+ if(a)a.onclick=()=>play(q,tx(q.q,st.ex)+'. '+tx(q.opts,st.ex).map((o,k)=>'ABC'[k]+': '+o).join('. '),a);
  if(b)b.onclick=()=>{st.tr=!st.tr;LS.set('tr',st.tr);rerender()}}
 
 /* ---------- Practice / lesson quiz / mistakes ---------- */
-let timers=[];const clearTimers=()=>{timers.forEach(clearTimeout);timers.forEach(clearInterval);timers=[];document.onkeydown=null};
+let timers=[];const clearTimers=()=>{stopSound();timers.forEach(clearTimeout);timers.forEach(clearInterval);timers=[];document.onkeydown=null};
 function quiz(mode,lessonId){
  let pool;
  if(mode==='mistakes'){pool=M.list().map(byId);if(!pool.length){app.innerHTML=`<section class="empty">${ICON.ok}<h2>${t('none')}</h2><a class="primary" href="#practice">${ICON.play}${t('practice')}</a></section>`;return}}

@@ -52,5 +52,7 @@
  "auto": "Auto",
  "signs": "Signs",
  "traps": "Look-alikes",
- "facts": "Key numbers"
+ "facts": "Key numbers",
+ "noAudio": "Audio unavailable",
+ "ttsOnly": "browser voice (no recording)"
 }

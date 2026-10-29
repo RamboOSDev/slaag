@@ -135,3 +135,11 @@ main,section,.card,.list,.row,.terms,.opts{max-width:100%;min-width:0}
 .numf input.right{border-color:var(--g,#16a34a)}.numf input.wrong{border-color:var(--r,#dc2626)}
 .stage .opt.num span{visibility:hidden}.stage .opt.num.right span{visibility:visible}
 .numf input{min-width:0}.numf button{flex:none;width:auto;padding:0 16px}
+/* audio state */
+.snd,.term,.sg{position:relative}
+.playing{background:var(--y,#1747a6)!important;color:#fff!important;box-shadow:0 0 0 0 #1747a680;animation:sndp 1.2s infinite}
+.sg.playing small,.term.playing span{color:#fff}
+@keyframes sndp{0%{box-shadow:0 0 0 0 #1747a688}70%{box-shadow:0 0 0 10px #1747a600}100%{box-shadow:0 0 0 0 #1747a600}}
+.snd.tts::after{content:"";position:absolute;top:3px;inset-inline-end:3px;width:7px;height:7px;border-radius:50%;background:#f59e0b}
+.err{outline:2px solid var(--r,#dc2626)!important;color:var(--r,#dc2626)!important}
+@media (prefers-reduced-motion:reduce){.playing{animation:none}}
