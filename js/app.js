@@ -117,17 +117,25 @@ function signs(tab){tab=tab||'all';const cats=[...new Set(LR.signs.map(s=>s.cat)
 /* Sound: one player for MP3 + browser voice, with a visible state on the button that started it */
 const STOPI='<svg class="ic" viewBox="0 0 24 24"><rect x="6" y="6" width="12" height="12" rx="2" fill="currentColor"/></svg>';
 let AU=null,SB=null,SBH='';
+/* iOS: one persistent <audio> element, unlocked inside the first user gesture; TTS unlocked the same way */
+const AEL=new Audio();AEL.preload='auto';AEL.setAttribute('playsinline','');let UNL=false;
+function unlock(){if(UNL)return;UNL=true;
+ try{if(!AU){AEL.muted=true;AEL.src='audio/silence.mp3';const pr=AEL.play();if(pr)pr.then(()=>{if(!AU){AEL.pause()}AEL.muted=false}).catch(()=>{AEL.muted=false})}}catch(e){}
+ try{if(!speechSynthesis.speaking){const u=new SpeechSynthesisUtterance(' ');u.volume=0;speechSynthesis.speak(u)}}catch(e){}}
+['touchend','pointerdown','click','keydown'].forEach(ev=>document.addEventListener(ev,unlock,{capture:true,passive:true}));
+let VO=null;function pickVoice(){try{const v=speechSynthesis.getVoices(),l=st.ex==='fr'?'fr':'nl';VO=v.find(x=>x.lang.replace('_','-')===(l==='fr'?'fr-BE':'nl-BE'))||v.find(x=>x.lang.toLowerCase().startsWith(l))||null}catch(e){}}
+if('speechSynthesis' in window){pickVoice();speechSynthesis.onvoiceschanged=pickVoice}
 function sndReset(err){if(SB){SB.classList.remove('playing');SB.innerHTML=SBH;SB.setAttribute('aria-pressed','false');if(err){SB.classList.add('err');SB.title=t('noAudio')}}SB=null}
 function stopSound(){if(AU){AU.onended=AU.onerror=null;AU.pause();AU=null}try{speechSynthesis.cancel()}catch(e){}sndReset()}
 function sndOn(b){if(!b)return;SB=b;SBH=b.innerHTML;b.classList.remove('err');b.classList.add('playing');b.setAttribute('aria-pressed','true');
  const ic=b.querySelector('.ic,svg');if(ic)ic.outerHTML=STOPI;else b.insertAdjacentHTML('afterbegin',STOPI)}
 function say(txt,b){const was=b&&b===SB;stopSound();if(was)return;
  if(!('speechSynthesis' in window)||!txt){if(b){SB=b;SBH=b.innerHTML;sndReset(true)}return}
- const u=new SpeechSynthesisUtterance(txt);u.lang=st.ex==='fr'?'fr-BE':'nl-BE';sndOn(b);const me=SB;
+ const u=new SpeechSynthesisUtterance(txt);if(!VO)pickVoice();if(VO){u.voice=VO;u.lang=VO.lang}else u.lang=st.ex==='fr'?'fr-BE':'nl-BE';try{speechSynthesis.resume()}catch(e){}sndOn(b);const me=SB;
  u.onend=()=>{if(SB===me)sndReset()};u.onerror=e=>{if(SB!==me)return;if(e.error==='not-allowed')return sndBlocked();sndReset(e.error!=='interrupted'&&e.error!=='canceled')};speechSynthesis.speak(u)}
 function sndBlocked(){const b=SB;sndReset();if(b){b.classList.add('blocked');b.title=t('tapResume')}}
 function play(q,fb,b){if(b&&b===SB){stopSound();return}stopSound();if(!q.aud)return say(fb,b);
- const a=AU=new Audio(q.aud);sndOn(b);const me=SB;
+ const a=AU=AEL;a.onended=a.onerror=null;a.muted=false;a.src=q.aud;sndOn(b);const me=SB;
  a.onended=()=>{if(AU===a){AU=null;if(SB===me)sndReset()}};
  a.onerror=()=>{if(AU===a){AU=null;if(SB===me){SB.classList.remove('playing');SB.innerHTML=SBH;SB=null}say(fb,b)}};
  a.play().catch(e=>{if(e&&e.name==='NotAllowedError'&&AU===a){AU=null;sndBlocked()}else if(a.onerror)a.onerror()})}
@@ -148,7 +156,7 @@ const readTxt=q=>tx(q.q,st.ex)+'. '+(q.num!=null?'':tx(q.opts,st.ex).map((o,k)=>
 function readBtn(a,q){if(!a)return;const set=()=>{a.classList.toggle('on',st.read);a.setAttribute('aria-pressed',st.read);a.title=t(st.read?'readOn':'readOff')};set();
  a.onclick=()=>{if(a.classList.contains('blocked')){a.classList.remove('blocked');set();return play(q,readTxt(q),a)}
   st.read=!st.read;LS.set('read',st.read);set();if(st.read)play(q,readTxt(q),a);else stopSound()};
- if(st.read)setTimeout(()=>{if(a.isConnected&&!SB)play(q,readTxt(q),a)},150)}
+ if(st.read&&!SB)play(q,readTxt(q),a)}
 function bindTools(q,rerender){const a=$('#bAu'),b=$('#bTr');
  readBtn(a,q);
  if(b)b.onclick=()=>{st.tr=!st.tr;LS.set('tr',st.tr);rerender()}}
