@@ -1,946 +1,1282 @@
 [
- {
-  "id": "speed",
-  "icon": "speed",
-  "title": {
-   "ar": "السرعة",
-   "en": "Speed"
-  },
-  "body": {
-   "ar": [
-    "داخل المنطقة السكنية: 50 كم/س (بروكسل غالباً 30).",
-    "خارج المدن: 70 بفلاندرن وبروكسل، 90 بوالونيا.",
-    "الأوتوستراد: 120.",
-    "الرقم هو الحد الأقصى. خفف بالمطر والضباب."
-   ],
-   "en": [
-    "Built-up area: 50 km/h (Brussels mostly 30).",
-    "Outside built-up areas: 70 in Flanders & Brussels, 90 in Wallonia.",
-    "Motorway: 120.",
-    "The limit is a maximum — slow down in rain or fog."
-   ]
-  },
-  "terms": [
-   {
-    "nl": "bebouwde kom",
-    "fr": "agglomération",
-    "ar": "منطقة سكنية",
-    "en": "built-up area"
-   },
-   {
-    "nl": "autosnelweg",
-    "fr": "autoroute",
-    "ar": "أوتوستراد",
-    "en": "motorway"
-   },
-   {
-    "nl": "snelheid",
-    "fr": "vitesse",
-    "ar": "سرعة",
-    "en": "speed"
-   }
-  ]
- },
- {
-  "id": "alcohol",
-  "icon": "alcohol",
-  "title": {
-   "ar": "الكحول والمخدرات",
-   "en": "Alcohol & drugs"
-  },
-  "body": {
-   "ar": [
-    "الحد العام: 0.5 بالألف.",
-    "السائق المحترف: 0.2 بالألف.",
-    "المخدرات: ممنوعة تماماً.",
-    "القهوة ما بتنزّل الكحول."
-   ],
-   "en": [
-    "General limit: 0.5‰.",
-    "Professional drivers: 0.2‰.",
-    "Drugs: never.",
-    "Coffee does not lower alcohol."
-   ]
-  },
-  "terms": [
-   {
-    "nl": "promille",
-    "fr": "pour mille",
-    "ar": "بالألف",
-    "en": "per mille"
-   },
-   {
-    "nl": "bestuurder",
-    "fr": "conducteur",
-    "ar": "سائق",
-    "en": "driver"
-   }
-  ]
- },
- {
-  "id": "priority",
-  "icon": "priority",
-  "title": {
-   "ar": "الأولوية",
-   "en": "Priority"
-  },
-  "body": {
-   "ar": [
-    "بلا إشارات: الأولوية لليمين.",
-    "STOP: وقوف كامل وأعطِ الأولوية.",
-    "المثلث المقلوب: أعطِ الأولوية.",
-    "المعين الأصفر: طريقك إلو أولوية.",
-    "المشاة عالممر والإسعاف: إلهم الأولوية."
-   ],
-   "en": [
-    "No signs: priority to the right.",
-    "STOP: full stop and give way.",
-    "Inverted triangle: give way.",
-    "Yellow diamond: you have priority.",
-    "Pedestrians on crossings and emergency vehicles have priority."
-   ]
-  },
-  "terms": [
-   {
-    "nl": "voorrang van rechts",
-    "fr": "priorité de droite",
-    "ar": "الأولوية لليمين",
-    "en": "priority to the right"
-   },
-   {
-    "nl": "voorrang verlenen",
-    "fr": "céder le passage",
-    "ar": "أعطِ الأولوية",
-    "en": "give way"
-   },
-   {
-    "nl": "kruispunt",
-    "fr": "carrefour",
-    "ar": "تقاطع",
-    "en": "junction"
-   },
-   {
-    "nl": "voetganger",
-    "fr": "piéton",
-    "ar": "شخص ماشي",
-    "en": "pedestrian"
-   }
-  ]
- },
- {
-  "id": "signs",
-  "icon": "signs",
-  "title": {
-   "ar": "الإشارات والأضواء",
-   "en": "Signs & lights"
-  },
-  "body": {
-   "ar": [
-    "مثلث أحمر = خطر.",
-    "دائرة حمرا = ممنوع.",
-    "دائرة زرقا = إجباري.",
-    "أحمر = وقوف. برتقالي = وقّف إذا فيك بأمان."
-   ],
-   "en": [
-    "Red triangle = danger.",
-    "Red circle = prohibition.",
-    "Blue circle = obligation.",
-    "Red = stop. Amber = stop if safe."
-   ]
-  },
-  "terms": [
-   {
-    "nl": "verkeersbord",
-    "fr": "panneau",
-    "ar": "إشارة سير",
-    "en": "road sign"
-   },
-   {
-    "nl": "verboden",
-    "fr": "interdit",
-    "ar": "ممنوع",
-    "en": "forbidden"
-   },
-   {
-    "nl": "verkeerslicht",
-    "fr": "feu",
-    "ar": "ضو السير",
-    "en": "traffic light"
-   }
-  ]
- },
- {
-  "id": "safety",
-  "icon": "safety",
-  "title": {
-   "ar": "الأمان",
-   "en": "Safety"
-  },
-  "body": {
-   "ar": [
-    "الحزام لكل الركاب.",
-    "ممنوع تمسك الموبايل وانت عم تسوق.",
-    "الأولاد أقصر من 1.35 م: كرسي أطفال.",
-    "تعبان؟ وقّف وارتاح. حادث: 112."
-   ],
-   "en": [
-    "Seatbelt for everyone.",
-    "No phone in hand while driving.",
-    "Children under 1.35 m: child seat.",
-    "Tired? Stop and rest. Accident: call 112."
-   ]
-  },
-  "terms": [
-   {
-    "nl": "gordel",
-    "fr": "ceinture",
-    "ar": "حزام",
-    "en": "seatbelt"
-   },
-   {
-    "nl": "gsm",
-    "fr": "GSM / téléphone",
-    "ar": "موبايل",
-    "en": "mobile phone"
-   },
-   {
-    "nl": "ongeval",
-    "fr": "accident",
-    "ar": "حادث",
-    "en": "accident"
-   }
-  ]
- },
- {
-  "id": "road",
-  "icon": "road",
-  "title": {
-   "ar": "الطريق ومستعملينه",
-   "en": "Road & road users"
-  },
-  "body": {
-   "ar": [
-    "الطريق (rijbaan) للسيارات، الرصيف للمشاة، وطريق الدراجات للدراجات.",
-    "بتمشي عاليمين قد ما فيك.",
-    "الولاد تحت 10 سنين مسموحلهم يسوقوا دراجة عالرصيف.",
-    "بالـwoonerf الشارع للكل والسرعة 20.",
-    "انتبه للمستعملين الضعاف: مشاة، دراجات، ولاد، كبار السن، خيّالة."
-   ],
-   "en": [
-    "The carriageway is for vehicles, the pavement for pedestrians, cycle tracks for cyclists.",
-    "Keep as far right as possible.",
-    "Children under 10 may cycle on the pavement.",
-    "In a residential zone (woonerf) the street is shared, max 20 km/h.",
-    "Watch out for vulnerable users: pedestrians, cyclists, children, elderly, riders."
-   ]
-  },
-  "terms": [
-   {
-    "nl": "rijbaan",
-    "fr": "chaussée",
-    "ar": "الطريق",
-    "en": "carriageway"
-   },
-   {
-    "nl": "rijstrook",
-    "fr": "bande de circulation",
-    "ar": "مسرب",
-    "en": "lane"
-   },
-   {
-    "nl": "trottoir",
-    "fr": "trottoir",
-    "ar": "رصيف",
-    "en": "pavement"
-   },
-   {
-    "nl": "fietspad",
-    "fr": "piste cyclable",
-    "ar": "طريق دراجات",
-    "en": "cycle track"
-   },
-   {
-    "nl": "berm",
-    "fr": "accotement",
-    "ar": "حافة الطريق",
-    "en": "verge"
-   }
-  ]
- },
- {
-  "id": "sign_dan",
-  "icon": "danger",
-  "title": {
-   "ar": "إشارات الخطر",
-   "en": "Danger signs"
-  },
-  "body": {
-   "ar": [
-    "مثلث أبيض بإطار أحمر = خطر قدامك.",
-    "بتنحط تقريباً 150 متر قبل الخطر برا المدن، وأقرب جوا المدن.",
-    "لما تشوفها: خفف وتوقّع."
-   ],
-   "en": [
-    "White triangle with red border = danger ahead.",
-    "Placed about 150 m before the danger outside built-up areas, closer inside.",
-    "When you see one: slow down and anticipate."
-   ]
-  },
-  "terms": [
-   {
-    "nl": "gevaar",
-    "fr": "danger",
-    "ar": "خطر",
-    "en": "danger"
-   },
-   {
-    "nl": "bocht",
-    "fr": "virage",
-    "ar": "منعطف",
-    "en": "bend"
-   },
-   {
-    "nl": "overweg",
-    "fr": "passage à niveau",
-    "ar": "سكة قطار",
-    "en": "level crossing"
-   },
-   {
-    "nl": "glibberig",
-    "fr": "glissant",
-    "ar": "زلق",
-    "en": "slippery"
-   }
-  ]
- },
- {
-  "id": "sign_pri",
-  "icon": "priority",
-  "title": {
-   "ar": "إشارات الأولوية",
-   "en": "Priority signs"
-  },
-  "body": {
-   "ar": [
-    "المثلث المقلوب = اعطِ الأولوية.",
-    "STOP = وقوف كامل واعطِ الأولوية.",
-    "المعين الأصفر = طريق إلو أولوية.",
-    "السهم الأحمر بجهتك = الجاي من قدام إلو الأولوية."
-   ],
-   "en": [
-    "Inverted triangle = give way.",
-    "STOP = full stop and give way.",
-    "Yellow diamond = priority road.",
-    "Red arrow on your side = oncoming traffic has priority."
-   ]
-  },
-  "terms": [
-   {
-    "nl": "voorrang",
-    "fr": "priorité",
-    "ar": "أولوية",
-    "en": "priority"
-   },
-   {
-    "nl": "voorrangsweg",
-    "fr": "route prioritaire",
-    "ar": "طريق أولوية",
-    "en": "priority road"
-   },
-   {
-    "nl": "stoppen",
-    "fr": "s'arrêter",
-    "ar": "يوقف",
-    "en": "to stop"
-   }
-  ]
- },
- {
-  "id": "sign_pro",
-  "icon": "no_entry",
-  "title": {
-   "ar": "إشارات المنع",
-   "en": "Prohibition signs"
-  },
-  "body": {
-   "ar": [
-    "دائرة بإطار أحمر = ممنوع.",
-    "الرقم جوا الدائرة = أقصى سرعة.",
-    "الإشارة الرمادية المشطوبة = نهاية المنع.",
-    "ممنوع الوقوف: أزرق بخط أحمر. ممنوع الوقوف والتوقف: أزرق بإكس أحمر."
-   ],
-   "en": [
-    "Circle with red border = prohibition.",
-    "A number inside = speed limit.",
-    "Grey crossed sign = end of the restriction.",
-    "No parking: blue with one red bar; no stopping: blue with red X."
-   ]
-  },
-  "terms": [
-   {
-    "nl": "verboden",
-    "fr": "interdit",
-    "ar": "ممنوع",
-    "en": "forbidden"
-   },
-   {
-    "nl": "inhalen",
-    "fr": "dépasser",
-    "ar": "تجاوز",
-    "en": "overtake"
-   },
-   {
-    "nl": "parkeren",
-    "fr": "stationner",
-    "ar": "يصف",
-    "en": "to park"
-   },
-   {
-    "nl": "stilstaan",
-    "fr": "s'arrêter",
-    "ar": "توقف قصير",
-    "en": "to stop briefly"
-   }
-  ]
- },
- {
-  "id": "sign_man",
-  "icon": "roundabout",
-  "title": {
-   "ar": "الإشارات الإجبارية",
-   "en": "Mandatory signs"
-  },
-  "body": {
-   "ar": [
-    "دائرة زرقا بشكل أبيض = إجباري.",
-    "طريق دراجات إجباري، دوار، اتجاه إجباري.",
-    "مسرب الباص للباصات."
-   ],
-   "en": [
-    "Blue circle with white symbol = mandatory.",
-    "Compulsory cycle track, roundabout, compulsory direction.",
-    "Bus lanes are for buses."
-   ]
-  },
-  "terms": [
-   {
-    "nl": "verplicht",
-    "fr": "obligatoire",
-    "ar": "إجباري",
-    "en": "compulsory"
-   },
-   {
-    "nl": "rotonde",
-    "fr": "giratoire",
-    "ar": "دوار",
-    "en": "roundabout"
-   },
-   {
-    "nl": "busstrook",
-    "fr": "bande bus",
-    "ar": "مسرب باص",
-    "en": "bus lane"
-   }
-  ]
- },
- {
-  "id": "sign_inf",
-  "icon": "motorway",
-  "title": {
-   "ar": "إشارات المعلومات",
-   "en": "Information signs"
-  },
-  "body": {
-   "ar": [
-    "مربع أو مستطيل = معلومة.",
-    "لوحة اسم البلدة = بداية المنطقة السكنية (50).",
-    "zone 30، مدرسة، woonerf (20)، شارع دراجات (30).",
-    "الأوتوستراد والـautoweg إلهم قواعد خاصة."
-   ],
-   "en": [
-    "Square or rectangle = information.",
-    "Town-name sign = start of built-up area (50).",
-    "Zone 30, school zone, woonerf (20), cycle street (30).",
-    "Motorways and expressways have special rules."
-   ]
-  },
-  "terms": [
-   {
-    "nl": "bebouwde kom",
-    "fr": "agglomération",
-    "ar": "منطقة سكنية",
-    "en": "built-up area"
-   },
-   {
-    "nl": "autosnelweg",
-    "fr": "autoroute",
-    "ar": "أوتوستراد",
-    "en": "motorway"
-   },
-   {
-    "nl": "eenrichtingsweg",
-    "fr": "sens unique",
-    "ar": "اتجاه واحد",
-    "en": "one-way"
-   },
-   {
-    "nl": "doodlopende weg",
-    "fr": "voie sans issue",
-    "ar": "طريق مسدود",
-    "en": "dead end"
-   }
-  ]
- },
- {
-  "id": "signals",
-  "icon": "danger",
-  "title": {
-   "ar": "الضو والخطوط والشرطي",
-   "en": "Lights, markings & officers"
-  },
-  "body": {
-   "ar": [
-    "الترتيب: الشرطي ← الضو ← الإشارات ← القواعد.",
-    "أحمر وقوف. أصفر ثابت وقوف إلا إذا ما بتقدر. أصفر بيغمز: انتبه وطبق الإشارات.",
-    "خط متواصل ممنوع تقطعه، متقطع مسموح.",
-    "أسنان القرش = اعطِ الأولوية."
-   ],
-   "en": [
-    "Order: officer → lights → signs → rules.",
-    "Red = stop. Steady amber = stop unless unsafe. Flashing amber = caution, apply signs.",
-    "Solid line: do not cross; broken line: may cross.",
-    "Shark teeth = give way."
-   ]
-  },
-  "terms": [
-   {
-    "nl": "verkeerslicht",
-    "fr": "feu",
-    "ar": "إشارة ضوئية",
-    "en": "traffic light"
-   },
-   {
-    "nl": "doorlopende streep",
-    "fr": "ligne continue",
-    "ar": "خط متواصل",
-    "en": "solid line"
-   },
-   {
-    "nl": "haaientanden",
-    "fr": "dents de requin",
-    "ar": "أسنان القرش",
-    "en": "shark teeth"
-   },
-   {
-    "nl": "agent",
-    "fr": "agent",
-    "ar": "شرطي",
-    "en": "officer"
-   }
-  ]
- },
- {
-  "id": "overtaking",
-  "icon": "no_overtaking",
-  "title": {
-   "ar": "التجاوز",
-   "en": "Overtaking"
-  },
-  "body": {
-   "ar": [
-    "التجاوز من الشمال. الترام من اليمين. واللي لافف شمال من يمينه.",
-    "قبل: مرايات، نقطة عميا، غماز، محل كافي.",
-    "ممنوع: قرب تقاطع (إلا عطريق الأولوية)، ممر مشاة، طلعة أو منعطف بدون رؤية، خط متواصل.",
-    "الدراجة: متر بالمدينة، متر ونص برا."
-   ],
-   "en": [
-    "Overtake on the left; trams and left-turning vehicles on the right.",
-    "Before: mirrors, blind spot, indicator, enough room.",
-    "Forbidden: near junctions (unless priority road), at crossings, blind hilltops/bends, solid lines.",
-    "Cyclists: 1 m in town, 1.5 m outside."
-   ]
-  },
-  "terms": [
-   {
-    "nl": "inhalen",
-    "fr": "dépasser",
-    "ar": "تجاوز",
-    "en": "overtake"
-   },
-   {
-    "nl": "dode hoek",
-    "fr": "angle mort",
-    "ar": "نقطة عميا",
-    "en": "blind spot"
-   },
-   {
-    "nl": "richtingaanwijzer",
-    "fr": "clignotant",
-    "ar": "غماز",
-    "en": "indicator"
-   }
-  ]
- },
- {
-  "id": "parking",
-  "icon": "no_parking",
-  "title": {
-   "ar": "التوقف والباركينغ",
-   "en": "Stopping & parking"
-  },
-  "body": {
-   "ar": [
-    "التوقف قصير لتنزيل ركاب أو أغراض، الباركينغ أطول.",
-    "ممنوع: عالرصيف وطريق الدراجات، عالتقاطع وأقل من 5 م منه، أقل من 5 م قبل ممر المشاة.",
-    "ممنوع الباركينغ 15 م قبل وبعد موقف الباص، وقدام الكراجات، وإذا ضل أقل من 3 م.",
-    "الزون الزرقا: القرص عالنص ساعة الجاية، عادة ساعتين."
-   ],
-   "en": [
-    "Stopping is brief; parking is longer.",
-    "Forbidden: on pavements and cycle tracks, on junctions and within 5 m, within 5 m before crossings.",
-    "No parking within 15 m of bus stops, before garages, or if under 3 m remains.",
-    "Blue zone: set the disc to the next half hour, usually 2 h."
-   ]
-  },
-  "terms": [
-   {
-    "nl": "parkeerschijf",
-    "fr": "disque de stationnement",
-    "ar": "قرص الباركينغ",
-    "en": "parking disc"
-   },
-   {
-    "nl": "blauwe zone",
-    "fr": "zone bleue",
-    "ar": "زون زرقا",
-    "en": "blue zone"
-   },
-   {
-    "nl": "bushalte",
-    "fr": "arrêt de bus",
-    "ar": "موقف باص",
-    "en": "bus stop"
-   }
-  ]
- },
- {
-  "id": "lights",
-  "icon": "tv",
-  "title": {
-   "ar": "الضو والزمور",
-   "en": "Lights & horn"
-  },
-  "body": {
-   "ar": [
-    "الضو الواطي بالليل ولما الرؤية أقل من 200 م وبالأنفاق.",
-    "الضو العالي بتنزله لما في حدا قدامك.",
-    "ضو الضباب الخلفي بس إذا الرؤية أقل من 100 م.",
-    "ضو الخطر للعطل والحوادث والزحمة المفاجئة.",
-    "الزمور بس للخطر."
-   ],
-   "en": [
-    "Dipped lights at night, visibility < 200 m and in tunnels.",
-    "Dip high beams when meeting or following traffic.",
-    "Rear fog light only if visibility < 100 m.",
-    "Hazard lights for breakdowns, accidents, sudden queues.",
-    "Horn only to warn of danger."
-   ]
-  },
-  "terms": [
-   {
-    "nl": "dimlicht",
-    "fr": "feux de croisement",
-    "ar": "ضو واطي",
-    "en": "dipped beam"
-   },
-   {
-    "nl": "grootlicht",
-    "fr": "feux de route",
-    "ar": "ضو عالي",
-    "en": "high beam"
-   },
-   {
-    "nl": "mistlicht",
-    "fr": "antibrouillard",
-    "ar": "ضو ضباب",
-    "en": "fog light"
-   }
-  ]
- },
- {
-  "id": "motorway",
-  "icon": "motorway",
-  "title": {
-   "ar": "الأوتوستراد",
-   "en": "Motorway"
-  },
-  "body": {
-   "ar": [
-    "أقصى 120، أقل 70.",
-    "ممنوع: رجوع لورا، لف، قطع الوسط، وقوف إلا للطوارئ.",
-    "بتدخل بمسرب الدخول وبتعطي الأولوية.",
-    "بالزحمة: ضو الخطر وممر الطوارئ.",
-    "المثلث 100 م لورا."
-   ],
-   "en": [
-    "Max 120, min 70.",
-    "Forbidden: reversing, U-turns, crossing the median, stopping except emergencies.",
-    "Join via the acceleration lane and yield.",
-    "In jams: hazard lights and an emergency corridor.",
-    "Triangle 100 m behind."
-   ]
-  },
-  "terms": [
-   {
-    "nl": "pechstrook",
-    "fr": "bande d'arrêt d'urgence",
-    "ar": "مسرب طوارئ",
-    "en": "hard shoulder"
-   },
-   {
-    "nl": "invoegstrook",
-    "fr": "bande d'accélération",
-    "ar": "مسرب دخول",
-    "en": "slip lane"
-   },
-   {
-    "nl": "afrit",
-    "fr": "sortie",
-    "ar": "مخرج",
-    "en": "exit"
-   },
-   {
-    "nl": "reddingsstrook",
-    "fr": "couloir de secours",
-    "ar": "ممر طوارئ",
-    "en": "emergency corridor"
-   }
-  ]
- },
- {
-  "id": "documents",
-  "icon": "exam",
-  "title": {
-   "ar": "الأوراق والمعدات والامتحان",
-   "en": "Documents, equipment & exam"
-  },
-  "body": {
-   "ar": [
-    "معك: رخصة، ورقة تسجيل، تأمين، فحص فني إذا لازم.",
-    "بالسيارة: مثلث، طفاية، علبة إسعاف، سترة فسفورية.",
-    "الرخصة B: لحد 3.5 طن و8 ركاب، من عمر 18.",
-    "النظري: 50 سؤال، بتنجح بـ41، الغلطة الخطيرة -5، صالح 3 سنين."
-   ],
-   "en": [
-    "Carry: licence, registration, insurance, inspection certificate if needed.",
-    "In the car: triangle, extinguisher, first-aid kit, hi-vis vest.",
-    "Licence B: up to 3.5 t and 8 passengers, from 18.",
-    "Theory: 50 questions, pass 41, serious fault −5, valid 3 years."
-   ]
-  },
-  "terms": [
-   {
-    "nl": "rijbewijs",
-    "fr": "permis de conduire",
-    "ar": "رخصة سواقة",
-    "en": "driving licence"
-   },
-   {
-    "nl": "inschrijvingsbewijs",
-    "fr": "certificat d'immatriculation",
-    "ar": "ورقة تسجيل",
-    "en": "registration certificate"
-   },
-   {
-    "nl": "verzekering",
-    "fr": "assurance",
-    "ar": "تأمين",
-    "en": "insurance"
-   },
-   {
-    "nl": "technische keuring",
-    "fr": "contrôle technique",
-    "ar": "فحص فني",
-    "en": "technical inspection"
-   }
-  ]
- },
- {
-  "id": "accident",
-  "icon": "danger",
-  "title": {
-   "ar": "الحوادث والعطل",
-   "en": "Accidents & breakdowns"
-  },
-  "body": {
-   "ar": [
-    "أمّن، اتصل، ساعد.",
-    "المثلث: 30 م عالطريق العادي، 100 م عالأوتوستراد.",
-    "112 إسعاف ومطافي، 101 شرطة.",
-    "حادث صغير: ورقة الحادث الأوروبية.",
-    "ممنوع تهرب من الحادث."
-   ],
-   "en": [
-    "Secure, alert, help.",
-    "Triangle: 30 m on normal roads, 100 m on motorways.",
-    "112 ambulance/fire, 101 police.",
-    "Minor accident: European accident report.",
-    "Never leave the scene."
-   ]
-  },
-  "terms": [
-   {
-    "nl": "ongeval",
-    "fr": "accident",
-    "ar": "حادث",
-    "en": "accident"
-   },
-   {
-    "nl": "gevarendriehoek",
-    "fr": "triangle de danger",
-    "ar": "مثلث تحذير",
-    "en": "warning triangle"
-   },
-   {
-    "nl": "aanrijdingsformulier",
-    "fr": "constat",
-    "ar": "ورقة الحادث",
-    "en": "accident report"
-   },
-   {
-    "nl": "fluohesje",
-    "fr": "gilet fluo",
-    "ar": "سترة فسفورية",
-    "en": "hi-vis vest"
-   }
-  ]
- },
- {
-  "id": "eco",
-  "icon": "bulb",
-  "title": {
-   "ar": "السواقة الاقتصادية",
-   "en": "Eco-driving"
-  },
-  "body": {
-   "ar": [
-    "طلّع الغيار بكير وتوقّع قدامك.",
-    "العجلات بالهوا الصح.",
-    "طفي المحرك إذا واقف أكتر من دقيقة.",
-    "السرعة العالية وصندوق السقف بيزيدوا الصرف.",
-    "مناطق LEZ: انتبه للسيارات القديمة."
-   ],
-   "en": [
-    "Shift up early and anticipate.",
-    "Keep correct tyre pressure.",
-    "Switch off when stationary over a minute.",
-    "High speed and roof boxes raise consumption.",
-    "LEZ zones restrict polluting cars."
-   ]
-  },
-  "terms": [
-   {
-    "nl": "verbruik",
-    "fr": "consommation",
-    "ar": "صرف",
-    "en": "consumption"
-   },
-   {
-    "nl": "bandenspanning",
-    "fr": "pression des pneus",
-    "ar": "ضغط العجل",
-    "en": "tyre pressure"
-   },
-   {
-    "nl": "lage-emissiezone",
-    "fr": "zone de basses émissions",
-    "ar": "منطقة انبعاثات منخفضة",
-    "en": "low-emission zone"
-   }
-  ]
- },
- {
-  "id": "technique",
-  "icon": "cog",
-  "title": {
-   "ar": "السيارة وتقنياتها",
-   "en": "Vehicle technique"
-  },
-  "body": {
-   "ar": [
-    "عمق خطوط العجل 1.6 ملم عالأقل.",
-    "ABS بيخليك تلف وإنت عم تفرمل.",
-    "الضو الأحمر بلوحة السيارة = وقف بأمان.",
-    "بالشتي انتبه للأكوابلانينغ.",
-    "نضّف التلج عن كل الزجاج والضو والسقف."
-   ],
-   "en": [
-    "Tread depth at least 1.6 mm.",
-    "ABS lets you steer while braking.",
-    "Red warning light = stop safely.",
-    "Beware of aquaplaning in rain.",
-    "Clear snow from all windows, lights and roof."
-   ]
-  },
-  "terms": [
-   {
-    "nl": "band",
-    "fr": "pneu",
-    "ar": "عجل",
-    "en": "tyre"
-   },
-   {
-    "nl": "rem",
-    "fr": "frein",
-    "ar": "فرام",
-    "en": "brake"
-   },
-   {
-    "nl": "profiel",
-    "fr": "sculpture",
-    "ar": "خطوط العجل",
-    "en": "tread"
-   },
-   {
-    "nl": "controlelampje",
-    "fr": "témoin",
-    "ar": "ضو تحذير",
-    "en": "warning light"
-   }
-  ]
- },
- {
-  "id": "serious",
-  "icon": "stop",
-  "title": {
-   "ar": "الأغلاط الخطيرة (−5)",
-   "en": "Serious faults (−5)"
-  },
-  "body": {
-   "ar": [
-    "الغلطة الخطيرة بتنقص 5 علامات بالامتحان.",
-    "أمثلة: قطع الأحمر، ما توقف عالـSTOP، أولوية المشاة، تجاوز ممنوع، عكس السير، سكر ومخدرات، التلفون بالإيد، سرعة كبيرة قرب مدرسة.",
-    "هالأسئلة عليها شارة ⚠ ×5."
-   ],
-   "en": [
-    "A serious fault costs 5 points on the exam.",
-    "Examples: red light, rolling a STOP, pedestrian priority, illegal overtaking, wrong way, alcohol/drugs, handheld phone, big speeding near schools.",
-    "These questions show a ⚠ ×5 badge."
-   ]
-  },
-  "terms": [
-   {
-    "nl": "zware fout",
-    "fr": "faute grave",
-    "ar": "غلطة خطيرة",
-    "en": "serious fault"
-   },
-   {
-    "nl": "overtreding",
-    "fr": "infraction",
-    "ar": "مخالفة",
-    "en": "offence"
-   }
-  ]
- }
+{
+"id": "les01",
+"icon": "book",
+"title": {
+"ar": "الدرس 1 – De rijbaan",
+"en": "Les 1 – De rijbaan",
+"nl": "Les 1 – De rijbaan"
+},
+"body": {
+"ar": [],
+"nl": []
+},
+"terms": [],
+"n": 49
+},
+{
+"id": "les02",
+"icon": "book",
+"title": {
+"ar": "الدرس 2 – De rijstroken",
+"en": "Les 2 – De rijstroken",
+"nl": "Les 2 – De rijstroken"
+},
+"body": {
+"ar": [
+"هو أي جهاز دفع يمكن قيادته بسرعة قصوى تبلغ 25 كم/ساعة.",
+"الدراجة المزودة بمحرك إضافي يمكن قيادتها بسرعة قصوى تبلغ 25 كم/ساعة هي أيضًا دراجة (مثل EBike).",
+"يرجى ملاحظة ما يلي: الدراجة البخارية ذات السرعة العالية (أو الدراجة البخارية من فئة P - بحد أقصى 45 كم/ساعة) تعتبر دراجة نارية من فئة B.",
+"يتم أيضًا التعامل مع الدراجات ذات الثلاث والأربع عجلات التي يبلغ عرضها الأقصى مترًا واحدًا فقط كدراجات."
+],
+"nl": [
+"Het is elk voortbewegingstoestel waarmee maximaal 25 km/uur kan gereden worden.",
+"Een fiets met hulpmotor waarmee maximaal 25 km/uur kan gereden worden, is ook een rijwiel (bv. EBike).",
+"Let wel: een speedpedelec (of bromfiets klasse P - max. 45 km/u), wordt wel aanzien als een bromfiets klasse B.",
+"Ook drie- en vierwielers die maximum maar 1 meter breed zijn, worden gelijkgesteld met fietsen."
+]
+},
+"terms": [],
+"n": 42
+},
+{
+"id": "les03",
+"icon": "book",
+"title": {
+"ar": "الدرس 3 – Het fietspad",
+"en": "Les 3 – Het fietspad",
+"nl": "Les 3 – Het fietspad"
+},
+"body": {
+"ar": [],
+"nl": []
+},
+"terms": [],
+"n": 33
+},
+{
+"id": "les04",
+"icon": "book",
+"title": {
+"ar": "الدرس 4 – De autosnelweg",
+"en": "Les 4 – De autosnelweg",
+"nl": "Les 4 – De autosnelweg"
+},
+"body": {
+"ar": [
+"In het Vlaams gewest: 70 km/uur.",
+"In het Waalse gewest: 90 km/uur.",
+"في منطقة بروكسل: 70 كم/ساعة.",
+"في المنطقة الفلمنكية: 70 كم/ساعة.",
+"في منطقة والون: 70 كم/ساعة.",
+"في منطقة فالدي، 90 كم/ساعة على طريق عادي. ولكن على طريق مركزي بسرعة 70 كم/ساعة.",
+"القيادة بسرعة تزيد على 40 كم/ساعة أسرع من السرعة القصوى المسموح بها على الطرق العادية يعاقب عليها بمصادرة الحق في قيادة السيارة لمدة لا تقل عن ثمانية أيام ولا تزيد على خمس سنوات.",
+"في منطقة بروكسل: 70 م/ساعة.",
+"توجد علامات الخطر على بعد 150 مترًا من موقع الخطر. لذا فإن العلامة أعلاه تعني في الواقع (150 مترًا أبعد) سلسلة من التلال. يمكن أن تشير العلامة السفلية الزرقاء إلى متى يبدأ الخطر على مسافة مختلفة.",
+"أسفل علامة الخطر يمكن أن تكون هناك علامة سفلية زرقاء بها سهمين أبيضين ومسافة. وتعني الأسهم البيضاء أن الخطر مستمر لهذه المسافة. مثال: طريق وعر على مسافة 500 متر."
+],
+"nl": [
+"In het Vlaams gewest: 70 km/uur.",
+"In het Waalse gewest: 90 km/uur.",
+"In het Brussels gewest: 70 km/uur.",
+"In het Vlaamse gewest: 70 km/uur.",
+"In het Waalse gewest: 70 km/uur.",
+"In het Waalde gewest op een gewone rijbaan 90 km/uur. Maar op een middenrijbaan 70 km/uur.",
+"Meer dan 40 km/uur sneller rijden dan de maximaal toegelaten snelheid op gewone wegen wordt gestraft met een verval van het recht tot het besturen van een motorvoertuig voor een duur van ten minste acht dagen en ten hoogste vijf jaar.",
+"In het Brusselse gewest: 70 m/uur.",
+"Gevaarsborden staan 150 meter voor de plaats van het gevaar. Het bord hierboven betekent dus in feite (150 meter verder) een ezelsrug. Op een blauw onderbord kan vermeld worden wanneer het gevaar op een andere afstand begint.",
+"Onder een gevaarsbord kan een blauw onderbord staan met twee witte pijltjes en een afstand. De witte pijltjes betekenen dan dat het gevaar zich deze afstand lang voordoet. Voorbeeld: over een afstand van 500 meter een hobbelige weg."
+]
+},
+"terms": [],
+"n": 61
+},
+{
+"id": "les05",
+"icon": "book",
+"title": {
+"ar": "الدرس 5 – De autoweg",
+"en": "Les 5 – De autoweg",
+"nl": "Les 5 – De autoweg"
+},
+"body": {
+"ar": [
+"في المناطق الفلمنكية وبروكسل: 70 كم/ساعة."
+],
+"nl": [
+"In het Vlaams en Brussels gewest: 70 km/uur."
+]
+},
+"terms": [],
+"n": 27
+},
+{
+"id": "les06",
+"icon": "book",
+"title": {
+"ar": "الدرس 6 – Speciale plaatsen",
+"en": "Les 6 – Speciale plaatsen",
+"nl": "Les 6 – Speciale plaatsen"
+},
+"body": {
+"ar": [
+"السرعة القصوى المسموح بها هي 30 كم/ساعة.",
+"السرعة القصوى المسموح بها في منطقة ركوب الدراجات هي 30 كم/ساعة.",
+"مسار الدراجات هو جزء من الطريق العام الذي يجب أن يركب عليه راكبو الدراجات والدراجات البخارية الصغيرة من الدرجة أ. يتم التعامل مع دراجات الشحن والدراجات ذات الثلاث والأربع عجلات على أنها دراجات هوائية إذا كان عرضها أقل من متر واحد.",
+"توجد علامة الخطر الحمراء على بعد حوالي 150 مترًا قبل المعبر.",
+"كما يمنع ركن السيارة على الطريق بمسافة 5 أمتار قبل المعبر لراكبي الدراجات الهوائية (أو المشاة)",
+"وهي تشير بشكل واضح إلى معبر مخصص لراكبي الدراجات الهوائية والدراجات ذات العجلتين، كما هو موضح أعلاه (يقع على بعد 150 متراً قبل المعبر).",
+"لا يجوز لك الوقوف ساكناً أو الوقوف على الطريق أو على حافة الطريق، لمسافة تصل إلى 5 أمتار قبل وبعد المكان الذي ينتهي فيه مسار الدراجة.",
+"ويمكن أن يسبقهم ويتبعهم، على مسافة حوالي 30 مترا، سيارة مرافقة؛ إذا كان هناك سيارة مرافقة واحدة فقط، فيجب أن تتبع المجموعة.",
+"في منطقة ركوب الدراجات، لا يُسمح للمركبات الآلية (بما في ذلك الدراجات البخارية) بتجاوز راكبي الدراجات والعربات السريعة والدراجات التي يصل عرضها إلى متر واحد.",
+"معبر لراكبي الدراجات وسائقي الدراجات ذات العجلتين. (ملاحظة: يقع قبل المعبر بـ 150 متر)"
+],
+"nl": [
+"De maximaal toegelaten snelheid is er 30 km/uur.",
+"De maximaal toegelaten snelheid in een fietszone is 30 km/u.",
+"Een fietspad is een onderdeel van de openbare weg, waarop fietsers en bromfietsers klasse A moeten rijden. Bakfietsen en drie- en vierwielers worden gelijkgesteld met fietsen als ze minder breed zijn dan 1 meter.",
+"Het rode gevaarsbord staat op ongeveer 150 meter voor de oversteekplaats.",
+"Het is ook verboden te parkeren op de rijbaan binnen 5 meter VOOR de oversteekplaats voor fietsers (of voetgangers)",
+"Het duidt uiteraard een oversteekplaats voor fietsers en tweewielige bromfietsen aan, zoals hierboven is uitgelegd (staat 150 meter voor de oversteekplaats).",
+"Je mag niet stilstaan en niet parkeren, op de rijbaan en op de berm, tot op 5 meter VOOR en VOORBIJ de plaats waar het fietspad ophoudt.",
+"Zij mogen voorafgegaan en gevolgd worden, op een afstand van ongeveer 30 meter, door een begeleidende auto; indien er slechts één begeleidende auto is, moet deze de groep volgen.",
+"In een fietszone mogen motorvoertuigen (dus ook niet bromfietsen) de fietsers, speed pedelecs en rijwielen tot 1 m breed niet inhalen.",
+"Oversteekplaats voor fietsers en bestuurders van tweewielige bromfietsen. (Opm. Staat 150 meter voor de oversteekplaats)"
+]
+},
+"terms": [],
+"n": 44
+},
+{
+"id": "les07",
+"icon": "book",
+"title": {
+"ar": "الدرس 7 – De voetgangers",
+"en": "Les 7 – De voetgangers",
+"nl": "Les 7 – De voetgangers"
+},
+"body": {
+"ar": [
+"امتحان النصيحة: على عكس الطرق العادية، يمكنك القيادة بسرعة تصل إلى 120 كم/ساعة على حارات الطريق السريع.",
+"هذه الإشارة تعني أن السرعة القصوى المسموح بها هي 90 كم/ساعة على المسارين الأيسر و70 كم/ساعة على المسار الأيمن.",
+"نصيحة للامتحان على الطريق السريع، يجب عليك القيادة بسرعة لا تقل عن 70 كم/ساعة، بالطبع إذا كانت الظروف تسمح بذلك.",
+"ومن أجل عدم تفاقم هذا الضباب الدخاني، يمكن فرض حد للسرعة يصل إلى 90 كم/ساعة مؤقتًا (لمدة يوم أو بضعة أيام) على الطرق السريعة.",
+"الطرق السريعة والطرق ذات الحارات 2×2 مفصولة بكتف: بحد أقصى 90 كم/ساعة.",
+"القيادة بسرعة تزيد عن 40 كم/ساعة أسرع من السرعة القصوى المسموح بها على الطريق السريع يعاقب عليها بمصادرة الحق في قيادة السيارة لمدة لا تقل عن ثمانية أيام وبحد أقصى خمس سنوات.",
+"أنت تخاطر بالسحب الفوري لرخصة القيادة الخاصة بك بمجرد القيادة بسرعة تزيد عن 30 كم / ساعة بسرعة كبيرة على الطرق السريعة والطرق السريعة والطرق العادية.",
+"ومع ذلك، إذا كنت تقود بسرعة تزيد عن 20 كم/ساعة بسرعة كبيرة في منطقة مبنية، أو منطقة 30، أو منطقة سكنية، فإنك تخاطر أيضًا بالانسحاب الفوري.",
+"أنت تخاطر بسحب حقك في قيادة السيارة بمجرد القيادة بسرعة تزيد عن 40 كم/ساعة على الطرق السريعة والطرق السريعة والطرق العادية.",
+"ومع ذلك، إذا كنت تقود السيارة في منطقة مبنية، أو منطقة 30، أو منطقة سكنية، فإنك تخاطر بسحب حقك في قيادة السيارة بمجرد القيادة بسرعة تزيد عن 30 كم/ساعة.",
+"ملاحظة: لا يجوز لك سحب السيارة بنفسك على الطرق السريعة والطرق السريعة. (مع وصلة الطوارئ على الطرق العادية: الحد الأقصى 25 كم/ساعة.)",
+"يمكنهم بعد ذلك القيادة بسرعة 20 كم/ساعة فقط أسرع من المركبات الأخرى،",
+"- السرعة القصوى 90 كم/ساعة على المسارين الأيسرين.",
+"السرعة القصوى المسموح بها عند المخرج: 90 كم/ساعة.",
+"نصيحة للاختبار إذا توقفت في حارة الطوارئ، فيجب عليك فوراً وضع مثلث تحذير على بعد 100 متر على الأقل أمام سيارتك.",
+"على الطرق العادية، لا يلزم ذلك إلا في حدود 30 مترًا.",
+"ويجب أن يكون مرئيًا دائمًا للسائقين القادمين من مسافة 50 مترًا",
+"يفصل خط متقطع بخطوط بيضاء طويلة طولها 10 أمتار ومسافة 2.5 متر بين حارة ساعة الذروة والمسارات العادية.",
+"تعلن اللافتة الوسطى أنه على بعد 1600 متر يوجد تقاطع مروري.",
+"لذا، عند حل التمارين أو أسئلة الامتحانات، انتبه جيدًا إلى ما إذا كان الأمر يتعلق بـ \"الإلغاء الفوري\" (الشرطة) أو \"الإعلان عن الحق في القيادة... (القاضي)\"."
+],
+"nl": [
+"Tip examen In tegenstelling tot gewone wegen, mag je op de rijstroken van een autosnelweg tot 120 km/uur rijden.",
+"Dit bord betekent dat op de twee linkse rijstroken de maximaal toegelaten snelheid 90 km/uur is en op de rechterrijstrook 70 km/uur.",
+"Tip examen Op een autosnelweg moet je minstens 70 km/uur rijden, uiteraard als de omstandigheden het toelaten.",
+"Om deze smog niet erger te maken, kan tijdelijk (één of enkele dagen) op autosnelwegen een snelheidsbeperking van maximaal 90 km/uur worden opgelegd.",
+"Autosnelwegen en wegen met 2x2 rijstroken gescheiden door een berm: maximaal 90 km/uur.",
+"Meer dan 40 km/uur sneller rijden dan de maximaal toegelaten snelheid op een autosnelweg wordt gestraft met een verval van het recht tot het besturen van een motorvoertuig voor een duur van ten minste acht dagen en ten hoogste vijf jaar.",
+"Je riskeert een onmiddellijke intrekking van je rijbewijs van zodra je méér dan 30 km/u te snel rijdt op autosnelwegen, autowegen en gewone wegen.",
+"Rij je echter in de bebouwde kom, een zone 30, of een woonerf meer dan 20 km/uur te snel, dan riskeer je ook een onmiddellijke intrekking.",
+"Je riskeert een vervallenverklaring van het recht tot het besturen van een motorvoertuig van zodra je méér dan 40 km/u te snel rijdt op autosnelwegen, autowegen en gewone wegen.",
+"Rij je echter in de bebouwde kom, een zone 30, een woonerf, dan riskeer je reeds een vervallenverklaring uit het recht tot het besturen van een motorvoertuig van zodra je méér dan 30 km/u te snel rijdt.",
+"NOTE: Op autosnelwegen en autowegen mag je niet zelf een voertuig slepen. (Met noodkoppeling op gewone wegen: maximaal 25 km/uur.)",
+"zij mogen dan slechts 20 km/uur sneller rijden dan de andere voertuigen,",
+"Op de twee linkerrijstroken maximaal 90 km/uur.",
+"Maximaal toegelaten snelheid op de afrit: 90 km/uur.",
+"Tip examen Stop je op de pechstrook, dan moet je onmiddellijk een gevarendriehoek op minstens 100 meter voor je auto plaatsen.",
+"Op gewone wegen moet dat slechts op 30 meter.",
+"Hij moet wel voor aankomende bestuurders altijd zichtbaar zijn vanop 50 meter",
+"Een streeplijn met lange witte strepen van 10m en een tussenafstand van 2,5m scheidt de spitsstrook van de gewone rijstroken.",
+"Het middelste bord kondigt aan dat 1600 meter verder een verkeerswisselaar is.",
+"Let dus bij het oplossen van oefeningen of examenvragen goed op of het gaat over een \"onmiddellijke intrekking\" (politie) of een \"vervallenverklaring van het recht tot besturen... (rechter)\"."
+]
+},
+"terms": [],
+"n": 28
+},
+{
+"id": "les08",
+"icon": "book",
+"title": {
+"ar": "الدرس 8 – De bestuurders",
+"en": "Les 8 – De bestuurders",
+"nl": "Les 8 – De bestuurders"
+},
+"body": {
+"ar": [
+"نصيحة للامتحان على الطرق خارج المناطق المبنية، يُسمح لك بالقيادة بسرعة 120 كم/ساعة في الظروف العادية:",
+"نصيحة للامتحان إذا كان الطريق السريع يسير \"داخل المنطقة المبنية\"، فإن السرعة القصوى هي 50 كم/ساعة وفي منطقة بروكسل 30 كم/ساعة.",
+"في المنطقة الفلمنكية ومنطقة بروكسل: 70 كم/ساعة.",
+"نصيحة للامتحان إذا كان الطريق السريع يسير \"داخل منطقة مبنية\"، فإن السرعة القصوى هي 50 كم/ساعة وفي منطقة بروكسل 30 كم/ساعة.",
+"لقطر مركبة أخرى باستخدام حل الطوارئ (على سبيل المثال بحبل). مسموح بذلك على الطريق العادي، السرعة القصوى 25 كم/ساعة)",
+"نصيحة للاختبار إذا تعرضت لعطل أو حادث على الطريق السريع، فيجب عليك وضع مثلث تحذير على بعد 30 مترًا على الأقل أمام السيارة.",
+"على الطريق السريع يجب أن يكون هذا 100 متر.",
+"ويجب أن يكون مرئيًا دائمًا للسائقين القادمين من مسافة 50 مترًا."
+],
+"nl": [
+"Tip examen Op wegen buiten de bebouwde kom, mag je onder normale omstandigheden, 120 km/uur rijden:",
+"Tip examen Loopt de autoweg \"binnen de bebouwde kom\", dan is de maximumsnelheid 50 km/uur en in het Brusselse gewest 30 km/uur.",
+"In het Vlaams gewest en Brusselse gewest: 70 km/uur.",
+"Tip examen Loopt de autoweg \"binnen een bebouwde kom\", dan is de maximumsnelheid 50 km/uur en in het Brusselse gewest 30 km/uur.",
+"Een ander voertuig te slepen met een noodoplossing (bijv. met een touw). Dat mag wel op een gewone weg, maximaal 25 km/uur)",
+"Tip examen Heb je pech of een ongeval op een autoweg, dan moet je een gevarendriehoek op minstens 30 meter voor de auto plaatsen.",
+"Op een autosnelweg moet dat op 100 meter.",
+"Hij moet wel voor aankomende bestuurders altijd zichtbaar zijn vanop 50 meter."
+]
+},
+"terms": [],
+"n": 17
+},
+{
+"id": "les09",
+"icon": "book",
+"title": {
+"ar": "الدرس 9 – De personenauto",
+"en": "Les 9 – De personenauto",
+"nl": "Les 9 – De personenauto"
+},
+"body": {
+"ar": [
+"نصيحة للامتحان داخل المنطقة المبنية، الحد الأقصى للسرعة المسموح بها في فلاندرز ووالونيا هو: 50 كم/ساعة. وفي منطقة بروكسل تبلغ السرعة 30 كم/ساعة.",
+"في هذا المثال، يُسمح للسائقين بالقيادة بسرعة 70 كم/ساعة حتى نقطة التنظيف التالية.",
+"في المنطقة الفلمنكية: الحد الأقصى. سرعة القيادة 70 كم/ساعة.",
+"في منطقة والون: الحد الأقصى. 90 كم / ساعة.",
+"تنبيه: اعتبارًا من 1/1/2021 منطقة بروكسل: 70 كم/ساعة وداخل المناطق المبنية 30 كم/ساعة، ما لم يُذكر خلاف ذلك.",
+"تشير العلامة العلوية في هذه الصورة إلى أنه لا يمكنك القيادة إلا بحد أقصى 50 كم/ساعة حتى التقاطع التالي ويتضمنه.",
+"نصيحة للامتحان في المناطق السكنية، الحد الأقصى للسرعة المسموح بها هو 20 كم/ساعة.",
+"يُسمح للمركبات المسموح بها على هذا الطريق بالقيادة بسرعة قصوى تبلغ 30 كم/ساعة فقط.",
+"بداية منطقة سكنية. (ملاحظة: السرعة القصوى 20 كم/ساعة حتى نهاية المنطقة السكنية)",
+"بداية المنطقة 30. (ملاحظة: الحد الأقصى 30 كم/ساعة حتى نهاية المنطقة)",
+"الطريق محجوز لبعض مستخدمي الطريق. (بحد أقصى 30 كم/ساعة).",
+"بداية شارع الدراجات (بحد أقصى 30 كم/ساعة)."
+],
+"nl": [
+"Tip examen Binnen een bebouwde kom is de maximaal toegelaten snelheid in Vlaanderen en Wallonie: 50 km/uur. In het Brusselse gewest is het 30 km/uur.",
+"In dit voorbeeld mogen bestuurders 70 km/uur rijden tot en met het eerstvolgende kuispunt.",
+"In het Vlaams gewest: max. 70 km/uur rijden.",
+"In het Waalse gewest: max. 90 km/uur.",
+"OPGELET: vanaf 1/1/2021 Brusselse gewest: 70 km/uur en binnen bebouwde kom 30 km/uur, behalve als het anders is aangegeven.",
+"Het bovenste bord op deze foto zegt dat je maar maximaal 50 km/uur mag rijden tot en met het eerstvolgende kruispunt.",
+"Tip examen In een woonerf is de maximaal toegelaten snelheid 20 km/uur.",
+"Voertuigen die op deze weg toegelaten zijn, mogen maar maximaal 30 km/uur rijden.",
+"Begin van een woonerf.(Opm: Maximaal 20 km/uur tot einde woonerf)",
+"Begin van een Zone 30.(Opm: Maximaal 30 km/uur tot einde zone)",
+"Weg voorbehouden voor bepaalde weggebruikers. (max 30 km/uur).",
+"Begin van een fietsstraat (max 30 km/uur)."
+]
+},
+"terms": [],
+"n": 21
+},
+{
+"id": "les10",
+"icon": "book",
+"title": {
+"ar": "الدرس 10 – Lading - zitplaatsen",
+"en": "Les 10 – Lading - zitplaatsen",
+"nl": "Les 10 – Lading - zitplaatsen"
+},
+"body": {
+"ar": [
+"يجب على المشاة استخدام معبر الحمار الوحشي إذا كان على بعد 20 مترًا.",
+"إذا كان هناك معبر مشاة أو معبر حمار وحشي على مسافة 20 مترًا (حتى 31/5/19: 30 مترًا)، فيجب على المشاة استخدامه.",
+"نصيحة للاختبار: لا يُسمح لك بالوقوف عند معبر (ليس على الطريق وليس على الحافة) أو التوقف للحظة للسماح لشخص ما بالدخول أو الخروج، على سبيل المثال. ولا يسمح لك بالسير على الطريق (ولكن على الحافة) حتى 5 أمتار قبل المعبر.",
+"يمكن التعرف على مركبات النقل المدرسي من خلال الإشارة الصفراء (0.40 متر على الأقل)، والتي يمكن رؤيتها بوضوح في الجزء الأمامي والخلفي من المركبة. يجب إزالة هذه العلامة أو تغطيتها في حالة عدم استخدام السيارة للنقل المدرسي.",
+"معبر المشاة (يقع على بعد 150 متراً قبل المعبر)."
+],
+"nl": [
+"Voetganger moet zebrapad gebruiken als dit binnen de 20 m is.",
+"Als er binnen een afstand van 20 meter (tot 31/5/19 : 30 meter)een oversteekplaats voor voetgangers of een zebrapad is, dan moeten voetgangers dat gebruiken.",
+"Tip examen Je mag niet op een oversteekplaats (niet op de rijbaan en niet op de berm) parkeren of even stilstaan om bijvoorbeeld iemand te laten in- of uitstappen. En je mag het ook niet op de rijbaan (wel op de berm) tot op 5 meter voor de oversteekplaats.",
+"Voertuigen voor schoolvervoer zijn te herkennen aan een geel bord (minstens 0,40 m), dat goed zichtbaar is aan de voor- en achterzijde van het voertuig. Dit bord moet worden verwijderd of afgedekt wanneer het voertuig niet gebruikt wordt voor schoolvervoer.",
+"Oversteekplaats voor voetgangers.(Staat 150 meter voor de oversteekplaats)."
+]
+},
+"terms": [],
+"n": 46
+},
+{
+"id": "les11",
+"icon": "book",
+"title": {
+"ar": "الدرس 11 – Lichten en claxon",
+"en": "Les 11 – Lichten en claxon",
+"nl": "Les 11 – Lichten en claxon"
+},
+"body": {
+"ar": [],
+"nl": []
+},
+"terms": [],
+"n": 38
+},
+{
+"id": "les12",
+"icon": "book",
+"title": {
+"ar": "الدرس 12 – Bevoegde personen",
+"en": "Les 12 – Bevoegde personen",
+"nl": "Les 12 – Bevoegde personen"
+},
+"body": {
+"ar": [
+"وهو طريق سريع ويتكون من حارتين × 2 يفصل بينهما كتف. يمكنك عادة القيادة بسرعة 120 كم/ساعة.",
+"لذا فإن الإجابة على هذا السؤال هي: السرعة القصوى 90 كم/ساعة.",
+"من الإشارة المرورية إلى التقاطع التالي، يمنع سائقي المركبات التي تحمل M.T.M. أكثر من 3.5 طن للقيادة بسرعة أكبر من 50 كم/ساعة. يجوز للسائقين الآخرين القيادة بسرعة تصل إلى 70 كم/ساعة كحد أقصى.",
+"بالمناسبة، الاتصال عبر الهاتف الخليوي هو جنحة من الدرجة الثالثة."
+],
+"nl": [
+"Het is een autoweg en zijn 2 x 2 rijstroken, die gescheiden zijn door een berm. Normaal gesproken mag je dus 120 km/uur rijden.",
+"Het antwoord op deze vraag is dus: maximaal 90 km/uur.",
+"Vanaf het verkeersbord tot en met het volgend kruispunt, verbod voor bestuurders van voertuigen met een M.T.M. van meer dan 3,5 ton te rijden met een grotere snelheid dan 50 km/uur. Andere bestuurders mogen maximaal 70 km/uur rijden.",
+"Bellen met GSM is trouwens een overtreding van de derde graad."
+]
+},
+"terms": [],
+"n": 33
+},
+{
+"id": "les13",
+"icon": "book",
+"title": {
+"ar": "الدرس 13",
+"en": "Les 13",
+"nl": "Les 13"
+},
+"body": {
+"ar": [
+"يمكن أن يصل ارتفاع السيارة مع حمولتها إلى 4 أمتار كحد أقصى.",
+"ولا يجوز أيضًا أن يزيد عرض السيارة مع حمولتها عن 2.55 مترًا. (إذا كان أوسع = \"النقل الاستثنائي\")",
+"يُسمح بذلك بحد أقصى متر واحد في الخلف.",
+"إذا كنت بحاجة إلى نقل جسم طويل وغير قابل للتجزئة ولا يمكن طيه أو سحبه، فيمكن أن يمتد لمسافة 3 أمتار كحد أقصى خلف الطرف الخلفي للمركبة، بشرط إرفاق هذه العلامة التحذيرية به.",
+"اللوح: 50/50 سم و5 خطوط حمراء",
+"(يبلغ طول السيارة مع القافلة 12 مترًا، ولا يُسمح للسائق بالمرور عبر الإشارة)",
+"من أجل راحة السائق، وخاصة لكي يتمكن من توجيه السيارة بشكل صحيح، يجب أن يكون هناك مساحة لا تقل عن 55 سم على الجانب.",
+"يجب أن تكون مساحة الراكب الأمامي 40 سم على الأقل.",
+"إذا كانت السيارة تحتوي على مقعد طويل في المقدمة يمكن أن يجلس عليه ثلاثة أشخاص، فيجب ألا يقل عرضه عن 135 سم:",
+"2 × 40 سم للركاب.",
+"إذا كان لديك سيارة صغيرة بها العديد من الأطفال ولم يكن من الممكن وضع 3 أنظمة AKBS في الخلف، فيمكن لطفل واحد يبلغ من العمر 3 سنوات أو أكبر وأقصر من 1.35 متر ارتداء حزام الأمان، ولكن في الخلف فقط.",
+"تعليق لافتة في الجزء الخلفي من الحمولة غير القابلة للتجزئة والتي تبرز من مسافة 1 إلى 3 أمتار من مؤخرة المركبة."
+],
+"nl": [
+"Een auto samen met zijn lading, mag maximaal 4 meter hoog zijn.",
+"Een voertuig samen met zijn lading mag ook niet breder zijn dan 2,55 meter. (indien breder = \"uitzonderlijk vervoer\")",
+"Achteraan mag dat maximaal 1 meter.",
+"Als je een lang en ondeelbaar voorwerp moet vervoeren dat niet gevouwen of ingeschoven kan worden, mag het maximaal 3 meter voorbij het achterste uiteinde van het voertuig uitsteken, op voorwaarde dat je er dit waarschuwingsbord aan bevestigt.",
+"Bord: 50/50 cm en 5 rode lijnen",
+"(De auto samen met de caravan is 12 m lang. De bestuurder mag niet voorbij het bord rijden)",
+"Voor het comfort van de bestuurder, maar vooral om het voertuig goed te kunnen besturen, moet hij aan de zijkant minstens 55 cm ruimte hebben.",
+"De passagier die vooraan zit moet minstens 40 cm ruimte hebben.",
+"Als in een auto vooraan een zitbank is waarop drie personen kunnen plaatsnemen dan moet die dus minimaal 135 cm breed zijn:",
+"2 x 40 cm voor de passagiers.",
+"Als je een kleine auto hebt met meerdere kinderen en het is niet mogelijk om 3 AKBSsystemen achterin te plaatsen, dan mag één kind van 3 jaar of ouder en kleiner dan 1,35 meter gewoon de gordel dragen, maar enkel achteraan.",
+"Bord hangen achteraan een ondeelbare lading die tussen 1 en 3 meter achteraan een voertuig uitsteekt."
+]
+},
+"terms": [],
+"n": 0
+},
+{
+"id": "les14",
+"icon": "book",
+"title": {
+"ar": "الدرس 14",
+"en": "Les 14",
+"nl": "Les 14"
+},
+"body": {
+"ar": [
+"وفي المطر، عندما لا تتمكن من الرؤية لمسافة أبعد من 200 متر؛",
+"وفي الضباب، عندما لا تتمكن من الرؤية لمسافة أبعد من 200 متر؛",
+"أثناء تساقط الثلوج، عندما لا تتمكن من الرؤية لمسافة أبعد من 200 متر؛",
+"أو ظروف أخرى (مثل الدخان أثناء الحريق) عندما لا تتمكن من الرؤية لمسافة أبعد من 200 متر.",
+"عندما يكون الطريق غير متقطع ومضاء بشكل كافٍ بحيث يمكنك الرؤية لمسافة 100 متر؛",
+"عندما تكون هناك سيارة على مسافة أقل من 50 مترًا أمامك ولن تتمكن من تجاوزك على الفور؛",
+"في الضباب، عندما تكون الرؤية أقل من 100 متر تقريبًا؛",
+"وفي حالة تساقط الثلوج، عندما تكون الرؤية أقل من 100 متر تقريبًا؛",
+"وفي جميع الظروف التي لم يعد من الممكن فيها الرؤية بوضوح لمسافة 200 متر تقريباً،",
+"وأخيرًا، أود أن أذكر أنه عند القيادة في النفق، يجب تشغيل المصابيح الأمامية المنخفضة (ما لم تكن الرؤية أكثر من 200 متر) ومن الأفضل خلع النظارات الشمسية.",
+"إذا رأيت إشارة المرور الزرقاء فهذا يعني أن طول النفق 500 متر."
+],
+"nl": [
+"bij regen, wanneer je niet verder kunt zien dan 200 meter;",
+"bij mist, wanneer je niet verder kunt zien dan 200 meter;",
+"bij sneeuwval, wanneer je niet verder kunt zien dan 200 meter;",
+"of andere omstandigheden, (vb rook bij brand) wanneer je niet verder kunt zien dan 200 meter.",
+"wanneer de weg onafgebroken en voldoende verlicht is, zodat je 100 meter kunt zien;",
+"wanneer er dichter dan 50 meter voor jou een auto rijdt die je niet onmiddellijk gaat inhalen;",
+"bij mist, als de zichtbaarheid minder dan ongeveer 100 meter bedraagt;",
+"bij sneeuwval, als de zichtbaarheid minder dan ongeveer 100 meter bedraagt;",
+"en in alle omstandigheden wanneer het niet meer mogelijk is duidelijk te zien tot op een afstand van ongeveer 200 meter,",
+"Tot slot vermeld ik nog dat, als je in een tunnel rijdt, de dimlichten moeten branden (behalve als de zichtbaarheid meer dan 200 meter ver is) en je best je zonnebril afzet.",
+"Zie je het blauwe verkeersbord, dan wil dat zeggen dat de tunnel 500 meter lang is."
+]
+},
+"terms": [],
+"n": 0
+},
+{
+"id": "les15",
+"icon": "book",
+"title": {
+"ar": "الدرس 15",
+"en": "Les 15",
+"nl": "Les 15"
+},
+"body": {
+"ar": [
+"على الطريق السريع (أيضًا عند المدخل والمخرج) الحد الأقصى للسرعة المسموح بها هو 120 كم/ساعة، ما لم تفرض إشارات المرور سرعة قصوى مختلفة.",
+"ويجب عليك أيضًا القيادة بسرعة لا تقل عن 70 كم/ساعة في الظروف العادية.",
+"نصيحة للامتحان على الطرق السريعة (وكذلك الطرق العادية) خارج المناطق المبنية، يُسمح لك بالقيادة بسرعة 120 كم/ساعة في الظروف العادية:",
+"نصيحة للامتحان إذا كان الطريق السريع يسير \"داخل المنطقة المبنية\"، فإن السرعة القصوى هي 50 كم/ساعة.",
+"في فلاندرز ومنطقة بروكسل: 70 كم/ساعة.",
+"نصيحة للاختبار إذا كان الطريق السريع يسير \"ضمن منطقة مبنية\"، فإن السرعة القصوى هي 50 كم/ساعة.",
+"في منطقة بروكسل: 70 كم/ساعة وداخل المناطق المبنية 30 كم/ساعة)، ما لم يُذكر خلاف ذلك.",
+"باستثناء مسارات 2 × 2 يفصل بينها كتف: 120 كم/ساعة.",
+"ولهذا السبب يُسمح لك بالقيادة بسرعة أقصاها 20 كم/ساعة فقط.",
+"داخل المنطقة المبنية، الحد الأقصى للسرعة المسموح بها في فلاندرز ووالونيا هو 50 كم / ساعة. في منطقة بروكسل: 30 كم/ساعة (منذ 1/1/2021)",
+"في هذا المثال، يُسمح للسائقين بالقيادة بسرعة 90 كم/ساعة حتى التقاطع التالي.",
+"نصيحة للاختبار ولكن كن حذرًا، إذا تم وضع لافتة على مسافة 30 كم/ساعة كحد أقصى فوق لافتة المنطقة المبنية، فإن هذه السرعة 30 كم/ساعة تنطبق على جميع أنحاء المنطقة المبنية!",
+"لا يجوز للسائقين المسموح لهم بالسير على طريق مخصص للمركبات الزراعية والمشاة وراكبي الدراجات الهوائية وراكبي الخيل وسائقي البدالات السريعة القيادة إلا بسرعة 30 كم/ساعة.",
+"إذا تم الإعلان عن هذا الجهاز بواسطة إشارة الخطر (الأولى) وكانت إشارة التحذير (الثانية) موجودة بجوار الجهاز نفسه، فإن السرعة القصوى على الجهاز المرتفع هي 30 كم/ساعة.",
+"لا تقم ببساطة بالقيادة بسرعة 30 كم/ساعة في المناطق المبنية أو 50 كم/ساعة على طريق عادي دون سبب وجيه.",
+"ومع ذلك، إذا كنت تقود السيارة في منطقة مبنية، أو منطقة 30، أو منطقة سكنية، فسوف تتلقى إلغاء الحق في قيادة السيارة بمجرد القيادة بسرعة تزيد عن 30 كم / ساعة.",
+"بداية أو مدخل الطريق السريع. السرعة القصوى 120 كم/ساعة والحد الأدنى 70 كم/ساعة.",
+"بداية المنطقة المبنية. الحد الأقصى 50 كم / ساعة.",
+"بداية منطقة سكنية. السرعة القصوى 20 كم/ساعة.",
+"بداية المنطقة 30. السرعة القصوى 30 كم/ساعة.",
+"وبعد 200 متر، السرعة القصوى المسموح بها هي 60 كم/ساعة.",
+"التجاوز ممنوع من هنا وبعد 200 متر، السرعة القصوى المسموح بها هي 60 كم/ساعة. (ملاحظة. سوف تتعلم المعنى الصحيح للعلامة العلوية في الدرس القادم)",
+"وبعد 200 متر، السرعة القصوى المسموح بها هي 60 كم/ساعة. التجاوز ممنوع من هنا (ملاحظة. سوف تتعلم المعنى الصحيح لهذه العلامة في الدرس القادم)",
+"في هذا المثال، من مسافة 200 متر إلى التقاطع التالي.",
+"تشير علامة الخطر هذه إلى وجود مبنى مرتفع على مسافة 150 مترًا.",
+"تشير هذه العلامة إلى أن الهيكل المرتفع يبعد مسافة 200 متر.",
+"تشير هذه اللافتة السفلية إلى أنه على بعد 150 مترًا توجد بعض الهياكل المرتفعة على مسافة 500 متر.",
+"مفروشات مرتفعة. تقع على بعد 150 متر أمام الهيكل المرتفع.",
+"200 متر أخرى هي منشأة مرتفعة.",
+"وعلى بعد 150 مترًا، تجد العديد من المباني المرتفعة على مسافة 500 متر.",
+"السباق السريع على الطرق العامة والتحريض أو التحريض على القيادة بسرعة كبيرة يعتبر من الجنح الخطيرة من الدرجة الرابعة."
+],
+"nl": [
+"Op een autosnelweg (ook op de op- en afrit) is de maximaal toegelaten snelheid: 120 km/uur, behalve wanneer verkeersborden een andere maximumsnelheid opleggen.",
+"Je moet er onder normale omstandigheden ook minstens 70 km/uur rijden.",
+"Tip examen Op autowegen (en ook gewone wegen) buiten de bebouwde kom, mag je onder normale omstandigheden, 120 km/uur rijden:",
+"Tip examen Loopt de autoweg \"binnen de bebouwde kom\", dan is de maximumsnelheid 50 km/uur.",
+"In Vlaanderen en het Brusselse gewest : 70 km/uur.",
+"Tip examen Loopt de autoweg \"binnen een bebouwde kom\", dan is de maximumsnelheid 50 km/uur.",
+"In het Brusselse gewest: 70 km/uur en binnen bebouwde kom 30 km/uur), behalve als het anders is aangegeven.",
+"Behalve 2 x 2 rijstroken gescheiden door een berm: 120 km/uur.",
+"Daarom mag je er maximaal maar 20 km/uur rijden.",
+"Binnen een bebouwde kom is in Vlaanderen en Wallonie de maximaal toegelaten snelheid: 50 km/uur. In het Brusselse Gewest: 30 km/uur (sinds 1/1/2021)",
+"In dit voorbeeld mogen bestuurders 90 km/uur rijden tot aan het eerstvolgende kruispunt.",
+"Tip examen Maar opgelet, als er een bord maximaal 30 km/u boven het bord bebouwde kom is geplaatst, geldt deze 30 km/u in de hele bebouwde kom!",
+"Bestuurders die op een weg voorbehouden voor landbouwvoertuigen, voetgangers, fietsers, ruiters en bestuurders van speed pedelecs toegelaten zijn, mogen er slechts 30 km/uur rijden.",
+"Als deze inrichting wordt aangekondigd door het (eerste) gevaarsbord en bij de inrichting zelf staat het (tweede) aanwijzingsbord, dan is maximumsnelheid op een verhoogde inrichting 30 km/uur.",
+"Rij niet zomaar 30 km/u in de bebouwde kom of 50 km/u op een gewone weg zonder geldige reden.",
+"Rij je echter in de bebouwde kom, een zone 30, een woonerf, dan KRIJG je reeds een vervallenverklaring uit het recht tot het besturen van een motorvoertuig van zodra je méér dan 30 km/u te snel rijdt.",
+"Begin of oprit van een autosnelweg. Maximaal 120 km/uur en minimaal 70 km/uur.",
+"Begin van een bebouwde kom. Maximaal 50 km/u.",
+"Begin van een woonerf. Maximaal 20 km/u.",
+"Begin van een Zone 30. Maximaal 30 km/u.",
+"200 meter verder is de maximaal toegelaten snelheid 60 km/uur.",
+"Vanaf hier is inhalen verboden. 200 meter verder is de maximaal toegelaten snelheid 60 km/uur. (Opm. De juiste betekenis van het bovenste bord leer je in een volgende les)",
+"200 meter verder is de maximaal toegelaten snelheid 60 km/uur. Vanaf hier is inhalen verboden. (Opm. De juiste betekenis van dit bord leer je in een volgende les)",
+"In dit voorbeeld vanaf 200 meter verder tot aan het eerstvolgende kruispunt.",
+"Dit gevaarsbord zegt dat 150 meter verder een verhoogde inrichting is.",
+"Dit onderbord zegt dat de verhoogde inrichting 200 meter verder is.",
+"Dit onderbord zegt dat 150 meter verder enkele verhoogde inrichtingen zijn over een afstand van 500 meter.",
+"Verhoogde inrichting. Staat 150 meter voor de verhoogde inrichting.",
+"200 meter verder is een verhoogde inrichting.",
+"150 meter verder heb je over een afstand van 500 meter verschillende verhoogde inrichtingen.",
+"Snelheidswedstrijden op de openbare weg en het aanzetten of uitdagen tot te snel rijden zijn zware overtredingen van de vierde graad."
+]
+},
+"terms": [],
+"n": 0
+},
+{
+"id": "les16",
+"icon": "book",
+"title": {
+"ar": "الدرس 16",
+"en": "Les 16",
+"nl": "Les 16"
+},
+"body": {
+"ar": [
+"لنفترض أنه في هذا المثال تسير السيارات بسرعة 120 كم/ساعة، فإن المسافة الآمنة التالية هي: 60 مترًا.",
+"وإذا قادوا بسرعة 100 كم/ساعة، تصبح المسافة 50 مترًا.",
+"على سبيل المثال، عند سرعة 50 كم/ساعة تكون مسافة رد الفعل 15 مترًا؛",
+"بسرعة 120 كم/ساعة 36 مترًا، حتى قبل أن تضغط على دواسة الفرامل.",
+"في اختبار الصور أدناه، تم تضمين سرعة 70 ميلاً (112 كم/ساعة).",
+"أنت تقود بسرعة 40 كم/ساعة. مسافة التوقف هي...",
+"إذًا تعلم أن الرقم 1 هو الإجابة الصحيحة، لأن 30 مترًا هي بالفعل مسافة التوقف بسرعة 50 كم/ساعة.",
+"أنت تقود بسرعة 100 كم/ساعة. مسافة التوقف هي...",
+"إذن تعلم أن 2 هي الإجابة الصحيحة، لأنها بالفعل 70 مترًا عندما تقود بسرعة 90 كم/ساعة."
+],
+"nl": [
+"Stel dat in dit voorbeeld de wagens 120 km/uur rijden, dan is de veilige volgafstand: 60 meter.",
+"En rijden ze 100 km/uur, dan wordt het 50 meter.",
+"Bij 50 km/uur is de reactieafstand bijvoorbeeld 15 meter;",
+"Bij 120 km/uur 36 meter, nog voor je het rempedaal hebt ingedrukt.",
+"In de test van de afbeeldingen hieronder ging het over een snelheid van 70 mijlen (112 km/uur)",
+"Je rijdt 40 km/uur. De stopafstand is...",
+"Dan weet je dat 1 het juiste antwoord is, want 30 meter is al de stopafstand bij 50 km/uur.",
+"Je rijdt 100 km/uur. De stopafstand is...",
+"Dan weet je dat 2 het juiste antwoord is, want het is al 70 meter als je 90 km/uur rijdt."
+]
+},
+"terms": [],
+"n": 0
+},
+{
+"id": "les17",
+"icon": "book",
+"title": {
+"ar": "الدرس 17",
+"en": "Les 17",
+"nl": "Les 17"
+},
+"body": {
+"ar": [
+"ومع ذلك، يجب عليك الحفاظ على مسافة 1 متر داخل المناطق المبنية و1.5 متر خارج المناطق المبنية عند عبور راكب دراجة.",
+"في المسار ذي الاتجاه الواحد، يمكنك الوقوف على اليمين أو اليسار، بشرط وجود مساحة خالية لا تقل عن 3 أمتار بين المركبات، بحيث لا يزال بإمكان مستخدمي الطريق الآخرين المرور."
+],
+"nl": [
+"Toch moet je 1 meter afstand houden binnen de bebouwde kom en 1,5 meter buiten de bebouwde kom als je een fietser kruist.",
+"Op een rijbaan met eenrichtingsverkeer mag je zowel rechts als links parkeren, op voorwaarde dat er minstens 3 meter vrije ruimte overblijft tussen de voertuigen, zodat andere weggebruikers nog kunnen passeren."
+]
+},
+"terms": [],
+"n": 0
+},
+{
+"id": "les18",
+"icon": "book",
+"title": {
+"ar": "الدرس 18",
+"en": "Les 18",
+"nl": "Les 18"
+},
+"body": {
+"ar": [
+"ولا يجوز لهم القيادة بسرعة تزيد عن 50 كم/ساعة؛",
+"وأيضًا القيادة بسرعة أقصاها 20 كم/ساعة فقط أسرع من المركبات التي تتجاوزها.",
+"لنفترض أن سيارة تسير أمامك وسيارة أخرى تسير مسافة 50 مترًا أمام تلك السيارة. إذا قمت بتجاوز السيارة التي أمامك، عليك أولاً العودة إلى المسار الأيمن قبل تجاوز السيارة الثانية.",
+"لنفترض أنك تقود على طريق سريع (2x2) وأن سيارة تسير أمامك وسيارة أخرى تسير مسافة 50 مترًا أمام تلك السيارة. إذا تجاوزت السيارة التي أمامك، فلا يتوجب عليك العودة فوراً إلى المسار الأيمن قبل تجاوز السيارة الثانية.",
+"عند تجاوز أحد المشاة الذي يسير على الطريق أو راكب دراجة أو دراجة نارية يسير على الطريق، يجب عليك الحفاظ على مسافة جانبية لا تقل عن 1.5 متر.",
+"إذا كان راكب الدراجة أو الدراجة البخارية يركب على مسار للدراجات، فيجب عليك أيضًا احترام مسافة 1.5 متر.",
+"يجب أن تكون المسافة الجانبية على الأقل متر واحد داخل المنطقة المبنية."
+],
+"nl": [
+"Ze mogen daarbij niet sneller rijden dan 50 km/uur;",
+"en ook maar maximaal 20 km/uur sneller rijden dan de voertuigen die ze inhalen.",
+"Stel: voor jou rijdt een auto en 50 meter voor die auto rijdt een andere auto. Als je de auto voor jou hebt ingehaald, dan moet je eerst terug naar de rechter rijstrook, voor je de tweede auto inhaalt.",
+"Stel: je rijdt op een autoweg (2x2) en voor jou rijdt een auto en 50 meter voor die auto rijdt een andere auto. Als je de auto voor jou inhaalt, dan moet je daarna niet onmiddellijk terug naar de rechter rijstrook, voor je de tweede auto inhaalt.",
+"Wanneer je een voetganger die op de rijbaan stapt of, een fietser of bromfietser die op de rijbaan rijdt, inhaalt dan moet je minstens 1,5 meter zijdelingse afstand bewaren.",
+"Als de fietser of bromfietser op een fietspad rijdt, dan moet je ook deze 1,5 meter afstand ook respecteren.",
+"De zijdelingse tussenafstand moet binnen een bebouwde kom minstens 1 meter zijn."
+]
+},
+"terms": [],
+"n": 0
+},
+{
+"id": "les19",
+"icon": "book",
+"title": {
+"ar": "الدرس 19",
+"en": "Les 19",
+"nl": "Les 19"
+},
+"body": {
+"ar": [
+"السرعة القصوى على الهياكل المرتفعة هي 30 كم/ساعة في 3 حالات.",
+"منع التجاوز من (...) يبدأ مسافة 200 متر إضافية. ومن هنا السرعة القصوى 90 كم/ساعة.",
+"200 متر أخرى، السرعة القصوى 90 كم / ساعة. ومن الآن فصاعدا يمنع التجاوز (...).",
+"لا يسمح لك بالتوقف أو الوقوف على معبر سواء على الطريق أو على حافة الطريق، كما لا يسمح لك بالتوقف أو الوقوف على الطريق بمسافة تصل إلى 5 أمتار أمام المعبر.",
+"وبعد 500 متر، تبدأ المنطقة التي يُمنع فيها تجاوز فريق أو مركبة بها أكثر من عجلتين على اليسار."
+],
+"nl": [
+"De maximumsnelheid op verhoogde inrichtingen bedraagt 30 km/u in 3 gevallen.",
+"Inhaalverbod van (...) begint 200 meter verder. Vanaf hier maximaal 90 km/uur.",
+"200 meter verder maxmaal 90 km/uur. Vanaf hier inhaalverbod van (...).",
+"Je mag niet stilstaan of parkeren op een oversteekplaats, zowel daar op de rijbaan als de berm, en je mag ook niet stilstaan of parkeren op de rijbaan tot 5 meter voor de oversteekplaats.",
+"500 meter verder begint een zone waar het verboden is een gespan of een voertuig met meer dan twee wielen links in te halen."
+]
+},
+"terms": [],
+"n": 0
+},
+{
+"id": "les20",
+"icon": "book",
+"title": {
+"ar": "الدرس 20",
+"en": "Les 20",
+"nl": "Les 20"
+},
+"body": {
+"ar": [
+"أنت تعرف بالفعل بعض قواعد المرور. على سبيل المثال، يمكنك القيادة بسرعة تصل إلى 70 كم/ساعة كحد أقصى على طريق عادي.",
+"لكن إشارات المرور لها الأسبقية على القواعد. على سبيل المثال، قد تشير إشارة الحظر إلى أن الحد الأقصى للسرعة المسموح بها هو 50 كم/ساعة فقط."
+],
+"nl": [
+"Jullie kennen al een aantal verkeersregels. Bijvoorbeeld dat je op een gewone rijbaan maximaal 70 km/uur mag rijden.",
+"Maar verkeersborden gaan boven de regels. Zo kan een verbodsbord zeggen dat de maximaal toegelaten snelheid slechts 50 km/uur mag zijn."
+]
+},
+"terms": [],
+"n": 0
+},
+{
+"id": "les21",
+"icon": "book",
+"title": {
+"ar": "الدرس 21",
+"en": "Les 21",
+"nl": "Les 21"
+},
+"body": {
+"ar": [
+"نصيحة للاختبار: إن تجاوز هذه الأضواء الحمراء يعد جنحة من الدرجة الرابعة، وكما هو الحال مع أي مخالفة خطيرة، يمكن سحب رخصة قيادتك على الفور. وأيضًا عندما تكون الإشارة الصوتية مسموعة وأنت تقود سيارتك على تقاطع المستوى."
+],
+"nl": [
+"Tip examen Voorbij deze rode lichten rijden, is een overtreding van de vierde graad en zoals bij elke ernstige overtreding kan je rijbewijs meteen ingetrokken worden. Trouwens ook wanneer het geluidsignaal hoorbaar is en je rijdt de overweg op."
+]
+},
+"terms": [],
+"n": 0
+},
+{
+"id": "les22",
+"icon": "book",
+"title": {
+"ar": "الدرس 22",
+"en": "Les 22",
+"nl": "Les 22"
+},
+"body": {
+"ar": [
+"تشير مجموعة العلامات (في الصورة) إلى أن الطريق الرئيسي ينتهي بعد 100 متر وأنه سيتعين عليك إفساح المجال.",
+"تقول المجموعة الأولى أنه على بعد 125 مترًا هناك تقاطع مع مثلث مقلوب، حيث يجب عليك إفساح المجال والتوقف إذا لزم الأمر.",
+"في المجموعة الثانية، توجد كلمة STOP على اللوحة السفلية. يُقال أنه على بعد 150 مترًا يوجد تقاطع به إشارة توقف وحيث يتعين عليك التوقف والاستسلام.",
+"وعلى مسافة 200 متر أخرى، يجب عليك إفساح المجال والتوقف إذا لزم الأمر.",
+"وعلى مسافة 150 مترًا أخرى توجد علامة STOP.",
+"على مسافة 250 مترًا تقريبًا من نهاية الطريق الرئيسي."
+],
+"nl": [
+"De combinatie van borden (op de foto) zegt dat 100 meter verder de voorrangsweg eindigt en dat je zult moeten voorrang verlenen.",
+"De eerste combinatie zegt dat er 125 meter verder een kruispunt is met een omgekeerde driehoek, waar je dus voorrang moet verlenen en stoppen als dat nodig is.",
+"In de tweede combinatie staat het woord STOP op het onderbord. Het zegt dat er 150 meter verder een kruispunt is met een stopbord en waar je zult moet stoppen en voorrang moet verlenen.",
+"200 meter verder moet je voorrang verlenen en indien nodig stoppen.",
+"150 meter verder staat een STOP bord.",
+"Binnen ongeveer 250 meter einde voorrangsweg."
+]
+},
+"terms": [],
+"n": 0
+},
+{
+"id": "les25",
+"icon": "book",
+"title": {
+"ar": "الدرس 25 – Parkeren 1",
+"en": "Les 25 – Parkeren 1",
+"nl": "Les 25 – Parkeren 1"
+},
+"body": {
+"ar": [
+"In dit voorbeeld mogen de voertuigen die op de bijzondere overrijdbare bedding mogen rijden, maximaal slechts 50 km/uur rijden.",
+"Auto's die op de rijstroken rijden, mogen in dit voorbeeld maximaal 120 km/uur rijden.",
+"توجد إشارة الخطر هذه على بعد 150 مترًا قبل تقاطع المستوى.",
+"Dit bord verwittigt bestuurders dat (150 meter verder) er een kruising is van één openbare weg door een of meerdere in de rijbaan aangelegde sporen.",
+"إذا لم تكن هناك علامات طريق، فلا يُسمح لك بالوقوف على مسافة 15 مترًا أمام أو خلف اللافتة التي تشير إلى محطة الحافلات."
+],
+"nl": [
+"In dit voorbeeld mogen de voertuigen die op de bijzondere overrijdbare bedding mogen rijden, maximaal slechts 50 km/uur rijden.",
+"Auto's die op de rijstroken rijden, mogen in dit voorbeeld maximaal 120 km/uur rijden.",
+"Dit gevaarsbord staat 150 meter voor een overweg.",
+"Dit bord verwittigt bestuurders dat (150 meter verder) er een kruising is van één openbare weg door een of meerdere in de rijbaan aangelegde sporen.",
+"Is er geen wegmarkering, dan mag je niet parkeren tot op 15 meter voor of voorbij het bord dat de bushalte aanduidt."
+]
+},
+"terms": [],
+"n": 45
+},
+{
+"id": "les26",
+"icon": "book",
+"title": {
+"ar": "الدرس 26 – Parkeren 2",
+"en": "Les 26 – Parkeren 2",
+"nl": "Les 26 – Parkeren 2"
+},
+"body": {
+"ar": [],
+"nl": []
+},
+"terms": [],
+"n": 41
+},
+{
+"id": "les27",
+"icon": "book",
+"title": {
+"ar": "الدرس 27 – Parkeren 3",
+"en": "Les 27 – Parkeren 3",
+"nl": "Les 27 – Parkeren 3"
+},
+"body": {
+"ar": [],
+"nl": []
+},
+"terms": [],
+"n": 42
+},
+{
+"id": "les28",
+"icon": "book",
+"title": {
+"ar": "الدرس 28 – Alcohol - drugs",
+"en": "Les 28 – Alcohol - drugs",
+"nl": "Les 28 – Alcohol - drugs"
+},
+"body": {
+"ar": [],
+"nl": []
+},
+"terms": [],
+"n": 40
+},
+{
+"id": "les29",
+"icon": "book",
+"title": {
+"ar": "الدرس 29 – Ongeval - EHBO",
+"en": "Les 29 – Ongeval - EHBO",
+"nl": "Les 29 – Ongeval - EHBO"
+},
+"body": {
+"ar": [
+"بداية المنطقة المبنية. (ملاحظة: الحد الأقصى 50 كم/ساعة)",
+"بداية الطريق السريع. (ملاحظة: السرعة القصوى 120 كم/ساعة والحد الأدنى 70 كم/ساعة)",
+"ولكن: يجب عليك التأكد من وجود ما لا يقل عن 1.5 متر من الممر الحر للمشاة الذين يستخدمون الحافة، وهذا ليس هو الحال هنا.",
+"اترك مسافة لا تقل عن متر واحد بين سيارتين متوقفتين.",
+"عند التقاطعات التي تبعد أقل من 5 أمتار عن امتداد أقرب حافة للطريق المستعرض.",
+"عند التقاطعات ذات الإشارات الضوئية، بما يصل إلى 20 مترًا قبل الإشارة الضوئية.",
+"ما يصل إلى 20 مترًا قبل إشارات المرور خارج التقاطع؛",
+"ما يصل إلى 20 مترا لإشارات المرور.",
+"ألا يقل ارتفاع الجزء السفلي من إشارة المرور أو الإشارة الضوئية عن 2 متر؛",
+"ولا يزيد ارتفاع الجزء العلوي من السيارة مع الحمولة عن 1 متر 65؛",
+"ثم لا تنطبق 20 مترا.",
+"أقل من 5 أمتار قبل معبر المشاة؛"
+],
+"nl": [
+"Begin van een bebouwde kom. (Opm. Max 50 km/uur)",
+"Begin van een autosnelweg. (Opm. Maximaal 120 km/uur en minimaal 70 km/uur)",
+"Maar: je moet er wel voor zorgen dat er nog minstens 1,5 meter vrije doorgang blijft voor voetgangers die de berm gebruiken, wat hier niet het geval is.",
+"minstens 1 meter vrije ruimte laten tussen twee geparkeerde wagens.",
+"op kruispunten op minder dan 5 meter van de verlenging van de naastbijgelegen rand van de dwarsrijbaan.",
+"op kruispunten met verkeerslichten, tot 20 meter voor het verkeerslicht.",
+"tot op 20 meter voor verkeerslichten buiten een kruispunt;",
+"tot op 20 meter voor verkeersborden.",
+"de onderkant van het verkeersbord of licht minstens 2 meter hoog is;",
+"en de bovenkant van de auto met lading niet hoger is dan 1 meter 65;",
+"dan geldt de 20 meter niet.",
+"op minder dan 5 meter voor een oversteekplaats voor voetgangers;"
+]
+},
+"terms": [],
+"n": 55
+},
+{
+"id": "les30",
+"icon": "book",
+"title": {
+"ar": "الدرس 30 – Milieu",
+"en": "Les 30 – Milieu",
+"nl": "Les 30 – Milieu"
+},
+"body": {
+"ar": [
+"إذا لم تتمكن من ترك مساحة خالية قدرها متر واحد على طول الجزء الأمامي والخلفي من سيارتك.",
+"15 مترًا قبل وبعد الإشارة التي تشير إلى محطة الحافلات أو عربة الترولي أو الترام.",
+"عندما ينتهي مسار الدراجة الهوائية، كما وضحنا في الدرس السابق، لا يسمح لك بالوقوف ساكناً وعدم الوقوف على الطريق وعلى حافة الطريق حتى مسافة 5 أمتار قبل وبعد المكان الذي ينتهي فيه مسار الدراجة ويجب عليك أيضاً إعطاء الأولوية.",
+"إذا كان الطريق ضيقًا جدًا. يجب أن يكون هناك ما لا يقل عن 3 أمتار من المرور الحر.",
+"يبدأ الحظر خلف اللافتة وينطبق على مسافة 20 مترًا."
+],
+"nl": [
+"als je langs de voor- en achterkant van je auto niet 1 meter vrije tussenruimte kunt laten.",
+"15 meter voor en voorbij een bord dat een bus- een trolley- of een tramhalte aangeeft.",
+"Eindigt het fietspad, dan mag je, zoals in een vorige les al uitgelegd, niet stilstaan en niet parkeren op de rijbaan en op de berm tot op 5 meter voor en voorbij de plaats waar het fietspad eindigt en moet je ook voorrang verlenen.",
+"als de rijbaan te smal is. Er moet nog minstens 3 meter vrije doorgang overblijven.",
+"Verbod begint voorbij het bord en geldt over een afstand van 20 meter."
+]
+},
+"terms": [],
+"n": 30
+},
+{
+"id": "les31",
+"icon": "book",
+"title": {
+"ar": "الدرس 31 – Techniek",
+"en": "Les 31 – Techniek",
+"nl": "Les 31 – Techniek"
+},
+"body": {
+"ar": [],
+"nl": []
+},
+"terms": [],
+"n": 64
+},
+{
+"id": "les32",
+"icon": "book",
+"title": {
+"ar": "الدرس 32",
+"en": "Les 32",
+"nl": "Les 32"
+},
+"body": {
+"ar": [
+"مخالفات السرعة التي تزيد عن 40 كم/ساعة (30 كم/ساعة داخل المناطق المبنية، أو أكثر من 30 كم/ساعة في منطقة سكنية أو ساحة أو منطقة 30 أو منطقة مدرسة)؛",
+"منذ فبراير 2026: 0.35 ملغم/لتر (0.8 في الألف) أو أكثر: إصدار رخصة القيادة لمدة 15 يومًا.",
+"اعتبارًا من 1 يوليو 2026: 0.5 لكل ميل: حظر القيادة لمدة 12 ساعة لجميع أنواع المركبات (بما في ذلك الدراجات).",
+"الكحول والقيادة لا يجتمعان حقًا.",
+"الكحول يقلل من الاهتمام والحكم ووقت رد الفعل.",
+"نظرًا لأن السائق المخمور لا يشكل خطراً على نفسه فحسب، بل على مستخدمي الطريق الآخرين أيضًا، فغالبًا ما تنظم الشرطة عمليات فحص للكحول.",
+"يمكن فرض اختبار الكحول على أي شخص يستعد للقيادة أو التحكم في مركبة أو ركوب حيوان في مكان عام، بما في ذلك راكبي الدراجات وراكبي الخيل.",
+"Alcoholcontroles zullen NIET gevraagd worden aan passagiers, of iemand die in de auto ligt te slapen of aan voetgangers.",
+"Bij een ademtest worden door middel van een draagbaar apparaat sporen van alcohol opgespoord in de uitgeademde lucht.",
+"يُطلب من السائق النفخ بقوة وباستمرار في لسان جهاز اختبار التنفس لعدد من الثواني (+/- 7 ثوانٍ) حتى ينطفئ ضوء التحذير (الأخضر). تشير الصافرة المستمرة إلى أن المنفاخ ينفخ بشكل صحيح.",
+"لم يعد يحق للشخص الذي يُطلب منه إجراء اختبار التنفس أن يطلب فترة انتظار مدتها 15 دقيقة لمرة واحدة. (كان هذا ممكنًا حتى 1 مايو 2024)",
+"محتوى الكحول أقل من الحد الأقصى المسموح به قانونًا.",
+"يكون مستوى الكحول على الأقل 0.22 ملغم/لتر من هواء الزفير السنخي (0.5 درجة/°°) ولكن أقل من 0.35 ملغم/لتر (0.8 درجة/°°).",
+"مستوى الكحول هو الحد الأدنى 0.35 ملغم/لتر (0.8 درجة/°°) أو أكثر.",
+"نصيحة للامتحان إذا رفضت إجراء اختبار التنفس، فسيتم اعتبارك (P) إيجابيًا، وستتلقى على الفور حظرًا من القيادة لمدة 12 ساعة لجميع أنواع المركبات (بما في ذلك الدراجات) ويجب عليك تسليم رخصة القيادة الخاصة بك لمدة 15 يومًا.",
+"أثناء تحليل التنفس، عليك النفخ في جهاز يقيس تركيز الكحول في هواء الزفير السنخي (المعنى السنخي من الحويصلات الهوائية).",
+"يتم عرض النتيجة الدقيقة لتحليل التنفس على شاشة الجهاز (على سبيل المثال 0.28 ملغم / لتر).",
+"هل لديك أقل من 0.22 ملغ من الكحول لكل لتر من هواء الزفير:",
+"هل لديك 0.35 ملغم/لتر (0.8 في الألف) أو أكثر:",
+"يتم إجراء فحص الدم عندما لا يكون من الممكن إجراء اختبار التنفس أو تحليل التنفس، على سبيل المثال بسبب نقل السائق إلى المستشفى.",
+"ولكن يمكن أيضًا إجراء فحص الدم على الفور، على سبيل المثال، إذا كان السائق يعاني من الربو أو كان في حالة سكر شديد بحيث لا يستطيع نفخ أنفاسه.",
+"ليست الشرطة، بل الطبيب هو الذي سيجري فحص الدم.",
+"مزيج من القيادة تحت تأثير الكحول.",
+"يمكن استبدال فقدان الحق في القيادة بفرض تعشيق الكحول.",
+"يمكن للقاضي أن يفرض حظرًا على الكحول لمدة تتراوح من سنة إلى ثلاث سنوات أو حتى مدى الحياة على السائقين الذين يرتكبون مخالفة للكحول.",
+"قبل أن تتمكن من تشغيل السيارة، عليك أن تنفخ في قفل الكحول. يقيس الجهاز كمية الكحول الموجودة في أنفاسك. إذا كان محتوى الكحول 0.2 في الألف أو أكثر، فلن يبدأ المحرك.",
+"يمكن فرض قفل الكحول على:",
+"السائقون الذين لديهم أكثر من 0.8 في الألف من الكحول، والسائقون في حالة سكر،",
+"يجب فرض حظر الكحول على:",
+"السائقون الذين لديهم ما لا يقل عن 1.8 في الألف من الكحول، ما لم يقرر القاضي صراحة عدم فرض حظر على الكحول ويوضح أسباب ذلك،",
+"المخالفون الخطيرون المتكررون الذين لديهم ما لا يقل عن 1.2 في الألف مرتين خلال 3 سنوات.",
+"إن الجمع بين المخدرات والكحول هو بالطبع أسوأ من تناول الكحول وحده.",
+"بعض الأدوية لها بالفعل تأثير سلبي على سلوك القيادة. الكحول يمكن أن يزيد من تعزيز هذا.",
+"الجنح من الدرجة الرابعة؛",
+"إعلان الحرمان الإلزامي من الحق في قيادة السيارة لمدة لا تقل عن 3 أشهر؛"
+],
+"nl": [
+"snelheidsovertredingen van meer dan 40 km/u (30 km/u binnen bebouwde kom, of meer dan 30 km/u in een woonerf, een erf, zone 30 of schoolomgeving);",
+"Sinds februari 2026: 0,35 mg/l (0,8 promille) of meer: rijbewijs voor 15 dagen afgeven.",
+"Vanaf 1 juli 2026: 0,5 promille: 12 uur rijverbodvoor alle soorten voertuigen (ook fiets).",
+"Alcohol en autorijden gaan echt niet samen.",
+"Door de alcohol vermindert de aandacht, het beoordelings- en het reactievermogen.",
+"Omdat een dronken bestuurder niet alleen een gevaar is voor zichzelf, maar ook voor de andere weggebruikers, organiseert de politie vaak alcoholcontroles.",
+"Een alcoholcontrole kan opgelegd worden aan iedereen die op een openbare plaats aanstalten maakt om een voertuig of rijdier te gaan besturen of het bestuurt, dus ook aan fietsers en ruiters.",
+"Alcoholcontroles zullen NIET gevraagd worden aan passagiers, of iemand die in de auto ligt te slapen of aan voetgangers.",
+"Bij een ademtest worden door middel van een draagbaar apparaat sporen van alcohol opgespoord in de uitgeademde lucht.",
+"Aan een bestuurder wordt gevraagd om gedurende een aantal seconden (+/- 7 sec.) hard en aanhoudend in het mondstuk van de ademtester te blazen, tot het (groen) verklikkerlicht uitgaat. Een continue fluittoon geeft aan dat er correct geblazen wordt.",
+"Een persoon aan wie gevraagd wordt een ademtest te doen, heeft geen recht meer om 1 keer 15 minuten wachttijd te vragen. (tot 1 mei 2024 kon dat)",
+"Het alcoholgehalte is onder het wettelijk toegelaten maximum.",
+"Het alcoholniveau is ten minste 0,22 mg/liter uitgeademde alveolaire lucht (0,5 °/°°) maar onder 0,35 mg/l (0,8 °/°°).",
+"Het alcoholniveau is minimum 0,35 mg/l (0,8 °/°°) of meer.",
+"Tip examen Weiger je een ademtest te doen, dan wordt je als (P)ositief beschouwd krijg je meteen een rijverbod van 12 uur voor alle soorten voertuigen (ook fiets) en moet je je rijbewijs voor 15 dagen afgeven.",
+"Bij een ademanalyse moet je in een toestel blazen dat de alcoholconcentratie in de uitgeademde alveolaire lucht meet (alveolair wil zeggen uit de longblaasjes).",
+"Het precieze resultaat van de ademanalyse wordt weergegeven op het scherm van het toestel (bijv. 0,28 mg/l.)",
+"Heb je minder dan 0,22 mg alcohol per liter uitgeademde lucht:",
+"Heb je 0,35 mg/l (0,8 promille) of meer:",
+"Een bloedproef wordt afgenomen wanneer een ademtest of ademanalyse niet kan, bijvoorbeeld omdat de bestuurder naar het hospitaal is gevoerd.",
+"Maar een bloedproef kan ook meteen gebeuren, als een bestuurder bijvoorbeeld astma heeft of bijvoorbeeld te dronken is om te blazen.",
+"Het is niet de politie, maar een dokter die de bloedproef zal afnemen.",
+"de combinatie rijden onder invloed van alcohol;",
+"Het verval van het recht tot het sturen kan vervangen worden door het opleggen van een alcoholslot.",
+"De rechter kan een alcoholslot opleggen voor 1 tot 3 jaar of zelfs levenslang aan bestuurders die een alcoholovertreding begaan.",
+"Voor je de auto kan starten, moet je in het alcoholslot blazen. Het toestel meet hoeveel alcohol er in je adem zit. Is het alcoholgehalte 0,2 promille of meer, dan start de motor niet.",
+"Een alcoholslot kan worden opgelegd aan:",
+"bestuurders met meer dan 0,8 promille alcohol, bestuurders in staat van dronkenschap,",
+"Een alcoholslot moet verplicht worden opgelegd aan:",
+"bestuurders met minstens 1,8 promille alcohol, tenzij de rechter uitdrukkelijk beslist om geen alcoholslot op te leggen en dat motiveert,",
+"zware recidivisten die binnen 3 jaar tweemaal minstens 1,2 promille hadden.",
+"Een combinatie van drugs en alcohol is uiteraard nog erger dan alcohol alleen.",
+"Bepaalde medicijnen hebben sowieso al een nadelig effect op het rijgedrag. Alcohol kan dat nog extra versterken.",
+"overtredingen van de vierde graad;",
+"een verplicht verval van het recht tot het besturen van een motorvoertuig uitspreken voor een periode van minimaal 3 maanden;"
+]
+},
+"terms": [],
+"n": 0
+},
+{
+"id": "les33",
+"icon": "book",
+"title": {
+"ar": "الدرس 33",
+"en": "Les 33",
+"nl": "Les 33"
+},
+"body": {
+"ar": [
+"op gewone wegen op minstens 30 meter voor de plaats van het ongeval,",
+"op autosnelwegen op minstens 100 meter.",
+"hij moet voor naderende voertuigen zichtbaar zijn vanaf 50 meter.",
+"إذا كان طول النفق أكثر من 500 متر يتم الإشارة إلى ذلك بالعلامة الأولى.",
+"Bij een ongeval zonder gewonden moet je de politie niet laten komen, maar moet het Europees aanrijdingsformulier worden ingevuld en door de betrokkenen ondertekend. Met je handtekening bevestig je dat je akkoord gaat met wat op het document is ingevuld.",
+"Tip Bekijk hier zeer aandachtig onderstaand filmjes en het Europees aanrijdingsformulier en zorg dat je voor het examen goed weet wat waar moet ingevuld worden.",
+"(إذا لم تكن هناك إصابات، فلا ينبغي للشرطة أن تأتي، ولكن يجب على المتورطين ملء استمارة الحادث الأوروبية)."
+],
+"nl": [
+"op gewone wegen op minstens 30 meter voor de plaats van het ongeval,",
+"op autosnelwegen op minstens 100 meter.",
+"hij moet voor naderende voertuigen zichtbaar zijn vanaf 50 meter.",
+"Als een tunnel langer is dan 500 meter, wordt hij aangeduid door het eerste bord.",
+"Bij een ongeval zonder gewonden moet je de politie niet laten komen, maar moet het Europees aanrijdingsformulier worden ingevuld en door de betrokkenen ondertekend. Met je handtekening bevestig je dat je akkoord gaat met wat op het document is ingevuld.",
+"Tip Bekijk hier zeer aandachtig onderstaand filmjes en het Europees aanrijdingsformulier en zorg dat je voor het examen goed weet wat waar moet ingevuld worden.",
+"(Zijn er geen gewonden dan moet de politie niet komen, maar vullen de betrokkenen het Europees aanrijdingsformulier in.)"
+]
+},
+"terms": [],
+"n": 0
+},
+{
+"id": "les35",
+"icon": "book",
+"title": {
+"ar": "الدرس 35 – De borden",
+"en": "Les 35 – De borden",
+"nl": "Les 35 – De borden"
+},
+"body": {
+"ar": [
+"الطرق السريعة والطرق ذات الحارات 2x2: الحد الأقصى 90 كم/ساعة."
+],
+"nl": [
+"Autosnelwegen en wegen met 2x2 rijstroken: maximaal 90 km/uur."
+]
+},
+"terms": [],
+"n": 97
+},
+{
+"id": "voorrang",
+"icon": "book",
+"title": {
+"ar": "أولوية المرور",
+"en": "Voorrang",
+"nl": "Voorrang"
+},
+"body": {
+"ar": [],
+"nl": []
+},
+"terms": [],
+"n": 50
+},
+{
+"id": "deel01",
+"icon": "book",
+"title": {
+"ar": "امتحان تجريبي – الجزء 1 (vraag 1–100)",
+"en": "Deel 1 · vraag 1–100",
+"nl": "Deel 1 · vraag 1–100"
+},
+"body": {
+"ar": [],
+"nl": []
+},
+"terms": [],
+"n": 93
+},
+{
+"id": "deel02",
+"icon": "book",
+"title": {
+"ar": "امتحان تجريبي – الجزء 2 (vraag 101–200)",
+"en": "Deel 2 · vraag 101–200",
+"nl": "Deel 2 · vraag 101–200"
+},
+"body": {
+"ar": [],
+"nl": []
+},
+"terms": [],
+"n": 96
+},
+{
+"id": "deel03",
+"icon": "book",
+"title": {
+"ar": "امتحان تجريبي – الجزء 3 (vraag 201–300)",
+"en": "Deel 3 · vraag 201–300",
+"nl": "Deel 3 · vraag 201–300"
+},
+"body": {
+"ar": [],
+"nl": []
+},
+"terms": [],
+"n": 92
+},
+{
+"id": "deel04",
+"icon": "book",
+"title": {
+"ar": "امتحان تجريبي – الجزء 4 (vraag 301–400)",
+"en": "Deel 4 · vraag 301–400",
+"nl": "Deel 4 · vraag 301–400"
+},
+"body": {
+"ar": [],
+"nl": []
+},
+"terms": [],
+"n": 95
+},
+{
+"id": "deel05",
+"icon": "book",
+"title": {
+"ar": "امتحان تجريبي – الجزء 5 (vraag 401–500)",
+"en": "Deel 5 · vraag 401–500",
+"nl": "Deel 5 · vraag 401–500"
+},
+"body": {
+"ar": [],
+"nl": []
+},
+"terms": [],
+"n": 95
+},
+{
+"id": "deel06",
+"icon": "book",
+"title": {
+"ar": "امتحان تجريبي – الجزء 6 (vraag 501–600)",
+"en": "Deel 6 · vraag 501–600",
+"nl": "Deel 6 · vraag 501–600"
+},
+"body": {
+"ar": [],
+"nl": []
+},
+"terms": [],
+"n": 96
+},
+{
+"id": "deel07",
+"icon": "book",
+"title": {
+"ar": "امتحان تجريبي – الجزء 7 (vraag 601–700)",
+"en": "Deel 7 · vraag 601–700",
+"nl": "Deel 7 · vraag 601–700"
+},
+"body": {
+"ar": [],
+"nl": []
+},
+"terms": [],
+"n": 94
+},
+{
+"id": "deel08",
+"icon": "book",
+"title": {
+"ar": "امتحان تجريبي – الجزء 8 (vraag 701–800)",
+"en": "Deel 8 · vraag 701–800",
+"nl": "Deel 8 · vraag 701–800"
+},
+"body": {
+"ar": [],
+"nl": []
+},
+"terms": [],
+"n": 91
+},
+{
+"id": "deel09",
+"icon": "book",
+"title": {
+"ar": "امتحان تجريبي – الجزء 9 (vraag 801–900)",
+"en": "Deel 9 · vraag 801–900",
+"nl": "Deel 9 · vraag 801–900"
+},
+"body": {
+"ar": [],
+"nl": []
+},
+"terms": [],
+"n": 96
+},
+{
+"id": "deel10",
+"icon": "book",
+"title": {
+"ar": "امتحان تجريبي – الجزء 10 (vraag 901–1000)",
+"en": "Deel 10 · vraag 901–1000",
+"nl": "Deel 10 · vraag 901–1000"
+},
+"body": {
+"ar": [],
+"nl": []
+},
+"terms": [],
+"n": 93
+},
+{
+"id": "deel11",
+"icon": "book",
+"title": {
+"ar": "امتحان تجريبي – الجزء 11 (vraag 1001–1100)",
+"en": "Deel 11 · vraag 1001–1100",
+"nl": "Deel 11 · vraag 1001–1100"
+},
+"body": {
+"ar": [],
+"nl": []
+},
+"terms": [],
+"n": 98
+},
+{
+"id": "deel12",
+"icon": "book",
+"title": {
+"ar": "امتحان تجريبي – الجزء 12 (vraag 1101–1200)",
+"en": "Deel 12 · vraag 1101–1200",
+"nl": "Deel 12 · vraag 1101–1200"
+},
+"body": {
+"ar": [],
+"nl": []
+},
+"terms": [],
+"n": 92
+},
+{
+"id": "deel13",
+"icon": "book",
+"title": {
+"ar": "امتحان تجريبي – الجزء 13 (vraag 1201–1300)",
+"en": "Deel 13 · vraag 1201–1300",
+"nl": "Deel 13 · vraag 1201–1300"
+},
+"body": {
+"ar": [],
+"nl": []
+},
+"terms": [],
+"n": 94
+},
+{
+"id": "deel14",
+"icon": "book",
+"title": {
+"ar": "امتحان تجريبي – الجزء 14 (vraag 1301–1400)",
+"en": "Deel 14 · vraag 1301–1400",
+"nl": "Deel 14 · vraag 1301–1400"
+},
+"body": {
+"ar": [],
+"nl": []
+},
+"terms": [],
+"n": 93
+},
+{
+"id": "deel15",
+"icon": "book",
+"title": {
+"ar": "امتحان تجريبي – الجزء 15 (vraag 1401–1500)",
+"en": "Deel 15 · vraag 1401–1500",
+"nl": "Deel 15 · vraag 1401–1500"
+},
+"body": {
+"ar": [],
+"nl": []
+},
+"terms": [],
+"n": 98
+},
+{
+"id": "deel16",
+"icon": "book",
+"title": {
+"ar": "امتحان تجريبي – الجزء 16 (vraag 1501–1600)",
+"en": "Deel 16 · vraag 1501–1600",
+"nl": "Deel 16 · vraag 1501–1600"
+},
+"body": {
+"ar": [],
+"nl": []
+},
+"terms": [],
+"n": 94
+},
+{
+"id": "deel17",
+"icon": "book",
+"title": {
+"ar": "امتحان تجريبي – الجزء 17 (vraag 1601–1700)",
+"en": "Deel 17 · vraag 1601–1700",
+"nl": "Deel 17 · vraag 1601–1700"
+},
+"body": {
+"ar": [],
+"nl": []
+},
+"terms": [],
+"n": 92
+},
+{
+"id": "deel18",
+"icon": "book",
+"title": {
+"ar": "امتحان تجريبي – الجزء 18 (vraag 1701–1800)",
+"en": "Deel 18 · vraag 1701–1800",
+"nl": "Deel 18 · vraag 1701–1800"
+},
+"body": {
+"ar": [],
+"nl": []
+},
+"terms": [],
+"n": 96
+},
+{
+"id": "deel19",
+"icon": "book",
+"title": {
+"ar": "امتحان تجريبي – الجزء 19 (vraag 1801–1873)",
+"en": "Deel 19 · vraag 1801–1873",
+"nl": "Deel 19 · vraag 1801–1873"
+},
+"body": {
+"ar": [],
+"nl": []
+},
+"terms": [],
+"n": 69
+}
 ]

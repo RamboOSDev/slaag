@@ -121,3 +121,16 @@ main,section,.card,.list,.row,.terms,.opts{max-width:100%;min-width:0}
 #backdrop{position:fixed;inset:0;background:#0b1b3a66;z-index:8;-webkit-tap-highlight-color:transparent}#backdrop[hidden]{display:none}body.noscroll{overflow:hidden}:focus-visible{outline:3px solid #F28C28;outline-offset:2px}
 .stage .qimg{height:28vh;width:auto;max-width:none;aspect-ratio:600/340;flex:none;margin:0 auto}.stage.v .qimg{height:auto;width:100%}.icon-btn{min-width:44px;min-height:44px;display:inline-flex;align-items:center;justify-content:center}.brand{min-height:44px;display:inline-flex;align-items:center}
 .stage.h .qimg{height:22vh}.stage.h{padding-bottom:13vh}
+/* v8: learning section, numeric answers */
+.ex p{white-space:pre-line}.ex details{margin-top:6px;color:var(--mut);font-size:.92rem}
+.lesson li small.nl,.facts small.nl{display:block;color:var(--mut);font-size:.85rem;margin-top:2px}
+.row small.mut{color:var(--mut);font-weight:400}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 14px}.chip{padding:8px 14px;border-radius:999px;background:var(--card);box-shadow:0 1px 4px #0001;font-weight:600}.chip.on{background:var(--y);color:#fff}
+.sgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:10px;margin-bottom:16px}
+.sg{display:flex;flex-direction:column;align-items:center;gap:6px;background:var(--card);border:0;border-radius:14px;padding:12px 8px;box-shadow:0 1px 6px #0001;font:inherit;color:inherit;cursor:pointer;text-align:center}
+.sg img{width:90px;height:90px;object-fit:contain}.sg small{color:var(--mut);font-size:.78rem}
+.pair{display:flex;align-items:center;gap:8px;margin-bottom:12px}.pair .sg{flex:1}.vs{font-size:1.4rem;color:var(--mut)}
+.facts{list-style:none;padding:0}.facts li{background:var(--card);border-radius:12px;padding:10px 12px;margin:8px 0;box-shadow:0 1px 4px #0001}.facts .term{float:inline-end;padding:4px;margin:0 6px}
+.numf{display:flex;gap:8px;margin:10px 0}.numf input{flex:1;font-size:1.3rem;padding:12px;border-radius:12px;border:2px solid #ccd;text-align:center}
+.numf input.right{border-color:var(--g,#16a34a)}.numf input.wrong{border-color:var(--r,#dc2626)}
+.stage .opt.num span{visibility:hidden}.stage .opt.num.right span{visibility:visible}

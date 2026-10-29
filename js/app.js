@@ -8,7 +8,13 @@ const SESSION=sessionStorage.getItem('slaag.s')||String(Date.now()); sessionStor
 const t=k=>T[k]||k, esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const ib=(ic,label,attrs='')=>`<button ${attrs}>${ICON[ic]}<span>${esc(label)}</span></button>`;
 const shuffle=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.random()*(i+1)|0;[a[i],a[j]]=[a[j],a[i]]}return a};
-const byId=id=>Q.find(q=>q.id===id);
+const QI=new Map();const byId=id=>QI.get(id);
+/* text helpers: content has nl + ar; other languages fall back */
+const tx=(o,l)=>o?(o[l]??o.nl??o.ar??''):'';const ux=o=>tx(o,st.ui==='en'?'nl':st.ui);
+const nrm=v=>String(v??'').trim().replace(',','.').replace(/\s+/g,'').toLowerCase();
+const isOk=(q,k)=>q.num!=null?k!=null&&nrm(k)===nrm(q.num):k===q.answer;
+const ansTxt=(q,k,ex)=>q.num!=null?String(k):tx(q.opts,ex)[k];
+let LR=null;
 
 /* ---------- Shared mistakes memory (all modes) ---------- */
 const NEED=3;
@@ -29,7 +35,7 @@ function updCount(){const n=M.list().length,el=$('#mcount');if(!el)return;el.hid
 /* ---------- Boot ---------- */
 async function boot(){
  const j=u=>fetch(u).then(r=>r.json());
- [Q,L,LANGS]=await Promise.all([j('data/questions.json'),j('data/lessons.json'),j('i18n/index.json').then(x=>x.languages)]);
+ [Q,L,LANGS,LR]=await Promise.all([j('data/questions.json'),j('data/lessons.json'),j('i18n/index.json').then(x=>x.languages),j('data/learn.json')]);Q.forEach(q=>QI.set(q.id,q));st.ex='nl';
  if(!st.ui){await loadLang(navigator.language.startsWith('ar')?'ar':'en');return firstRun()}
  await loadLang(st.ui);start();
 }
@@ -38,7 +44,7 @@ async function firstRun(){
  const names=await Promise.all(LANGS.map(c=>fetch(`i18n/${c}.json`).then(r=>r.json()).then(x=>[c,x._name])));
  app.innerHTML=`<section class="pick"><img src="img/logo-full.svg" width="130" alt="Slaag"><p class="big">${ICON.globe}</p>
   <div class="grid2">${names.map(([c,n])=>`<button class="lang" data-c="${c}">${esc(n)}</button>`).join('')}</div>
-  <p class="big">📝 ${ICON.exam}</p><div class="grid2"><button class="lang ex" data-e="nl">🇧🇪 Nederlands</button><button class="lang ex" data-e="fr">🇧🇪 Français</button></div>
+  <p class="big">📝 ${ICON.exam}</p><div class="grid2"><button class="lang ex" data-e="nl">🇧🇪 Nederlands</button></div>
   <button id="go" class="primary">${ICON.play}</button></section>`;
  let pc=st.ui;const mark=()=>app.querySelectorAll('.lang').forEach(b=>b.classList.toggle('sel',b.dataset.c===pc||b.dataset.e===st.ex));mark();
  app.onclick=e=>{const b=e.target.closest('button');if(!b)return;if(b.dataset.c)pc=b.dataset.c;if(b.dataset.e)st.ex=b.dataset.e;mark();
@@ -52,7 +58,7 @@ function start(){
 }
 function go(h){location.hash=h}
 function route(){menuHist=false;closeMenu(true);clearTimers();const [v,a]=(location.hash.slice(1)||'home').split('/');
- ({home,lessons,lesson:()=>lesson(a),practice:()=>quiz('practice',a),mistakes:()=>quiz('mistakes'),exam:examIntro}[v]||home)()}
+ ({home,lessons,signs:()=>signs(a),lesson:()=>lesson(a),practice:()=>quiz('practice',a),mistakes:()=>quiz('mistakes'),exam:examIntro}[v]||home)()}
 
 /* ---------- Menu (everything non-essential lives here) ---------- */
 function toggleMenu(){const m=$('#menu');m.hidden?openMenu():closeMenu()}
@@ -65,10 +71,10 @@ function openMenu(){const m=$('#menu');m.hidden=false;$('#backdrop').hidden=fals
  $('#backdrop').onclick=()=>closeMenu();if(!menuHist){history.pushState({menu:1},'');menuHist=true}$('#menuBtn').setAttribute('aria-expanded','true');
  let x0=null;m.ontouchstart=e=>{x0=e.touches[0].clientX};m.ontouchend=e=>{if(x0==null)return;const dx=e.changedTouches[0].clientX-x0;x0=null;if(Math.abs(dx)>60&&((dx>0)===(document.dir!=='rtl')))closeMenu()};
  m.innerHTML=`<button class="icon-btn close" id="mx">${ICON.x}</button>
- <a href="#home">${ICON.home}${t('home')}</a><a href="#lessons">${ICON.book}${t('lessons')}</a><a href="#practice">${ICON.play}${t('practice')}</a>
+ <a href="#home">${ICON.home}${t('home')}</a><a href="#lessons">${ICON.book}${t('lessons')}</a><a href="#signs">${ICON.danger||ICON.eye}${t('signs')}</a><a href="#practice">${ICON.play}${t('practice')}</a>
  <a href="#mistakes">${ICON.repeat}${t('mistakes')}</a><a href="#exam">${ICON.exam}${t('exam')}</a><a href="?stream=1" target="_blank">${ICON.tv}${t('stream')}</a>
  <label>${ICON.globe}${t('uiLang')}<select id="sUi">${LANGS.map(c=>`<option value="${c}" ${c===st.ui?'selected':''}>${c.toUpperCase()}</option>`).join('')}</select></label>
- <label>${ICON.exam}${t('examLang')}<select id="sEx"><option value="nl">Nederlands</option><option value="fr" ${st.ex==='fr'?'selected':''}>Français</option></select></label>
+ <label>${ICON.exam}${t('examLang')}<select id="sEx"><option value="nl">Nederlands</option></select></label>
  <label>${ICON.next}${t('autoDelay')}<select id="sDl">${[0,1,1.5,2,3].map(v=>`<option value="${v}" ${v==st.delay?'selected':''}>${v||t('off')}</option>`).join('')}</select></label>
  <button id="rst" class="ghost">${ICON.x}${t('reset')}</button><p class="note">⚠ ${t('sample')}</p>`;
  $('#mx').onclick=()=>closeMenu();m.querySelectorAll('a').forEach(a=>a.onclick=()=>{if(a.target)closeMenu();else{menuHist=false;}});setTimeout(()=>$('#mx').focus(),0);
@@ -83,33 +89,46 @@ function home(){const n=M.list().length,pos=LS.get('pos',{}).practice;
  app.innerHTML=`<section class="home"><img class="home-logo" src="img/logo-full.svg" alt="Slaag"><h1 class="tag">${esc(t('tagline'))}</h1><p class="lic">${esc(t('licence'))}</p>
  <div class="tiles">
   <a class="tile" href="#lessons">${ICON.book}<span>${t('lessons')}</span></a>
+  <a class="tile" href="#signs">${ICON.danger||ICON.eye}<span>${t('signs')}</span><small>${LR.signs.length}</small></a>
   <a class="tile" href="#practice">${ICON.play}<span>${t('practice')}</span>${pos?`<small>${ICON.next}${pos+1}/${Q.length}</small>`:''}</a>
   <a class="tile ${n?'warn':''}" href="#mistakes">${ICON.repeat}<span>${t('mistakes')}</span><small>${n?`${n} ${t('left')}`:'✔'}</small></a>
   <a class="tile dark" href="#exam">${ICON.exam}<span>${t('exam')}</span><small>${ICON.timer}15s</small></a>
  </div><p class="note">⚠ ${t('sample')}</p></section>`}
-function lessons(){app.innerHTML=`<section><h2>${ICON.book}${t('lessons')}</h2><div class="list">${L.map((l,i)=>`<a class="row" href="#lesson/${l.id}"><b>${i+1}</b>${esc(l.title[st.ui]||l.title.en)}${ICON.next}</a>`).join('')}</div></section>`}
-function lesson(id){const l=L.find(x=>x.id===id);if(!l)return lessons();const ui=st.ui in l.body?st.ui:'en';
+function lessons(){app.innerHTML=`<section><h2>${ICON.book}${t('lessons')}</h2><div class="list">${L.map((l,i)=>`<a class="row" href="#lesson/${l.id}"><b>${i+1}</b><span>${esc(l.title[st.ui]||l.title.en)}${l.n?` <small class="mut">(${l.n})</small>`:''}</span>${ICON.next}</a>`).join('')}</div></section>`}
+function lesson(id){const l=L.find(x=>x.id===id);if(!l)return lessons();const ui=st.ui in l.body?st.ui:'nl';
  const li=(Q.find(q=>q.lesson===l.id&&q.img)||{}).img;
- app.innerHTML=`<section class="lesson"><h2>${ICON.book}${esc(l.title[ui])}</h2>${li?`<div class="qimg sm"><img src="${li}" alt=""></div>`:''}<ul>${l.body[ui].map(x=>`<li>${esc(x)}</li>`).join('')}</ul>
- <h3>${ICON.tr}${t('terms')}</h3><div class="terms">${l.terms.map(w=>`<button class="term" data-w="${esc(w[st.ex])}">${ICON.audio}<b>${esc(w[st.ex])}</b><span>${esc(w[ui]||w.en)}</span></button>`).join('')}</div>
- <a class="primary" href="#practice/${l.id}">${ICON.play}${t('quiz')}</a></section>`;
+ app.innerHTML=`<section class="lesson"><h2>${ICON.book}${esc(l.title[st.ui]||l.title.en)}</h2>${li?`<div class="qimg sm"><img src="${li}" alt=""></div>`:''}<ul>${l.body[ui].map((x,k)=>`<li>${esc(x)}${ui!=='nl'&&l.body.nl[k]!==x?`<small class="nl" dir="ltr">${esc(l.body.nl[k])}</small>`:''}</li>`).join('')}</ul>
+ ${l.terms.length?`<h3>${ICON.tr}${t('terms')}</h3><div class="terms">${l.terms.map(w=>`<button class="term" data-w="${esc(w[st.ex])}">${ICON.audio}<b>${esc(w[st.ex])}</b><span>${esc(w[ui]||w.en)}</span></button>`).join('')}</div>`:''}
+ ${l.n?`<a class="primary" href="#practice/${l.id}">${ICON.play}${t('quiz')} (${l.n})</a>`:''}</section>`;
  app.querySelectorAll('.term').forEach(b=>b.onclick=()=>say(b.dataset.w))}
+
+/* ---------- Signs & key facts (learning) ---------- */
+function signs(tab){tab=tab||'all';const cats=[...new Set(LR.signs.map(s=>s.cat))];
+ const tabs=[['all',t('signs')],['pairs',t('traps')],['facts',t('facts')]];
+ let body='';
+ if(tab==='pairs')body=LR.pairs.map(([a,b])=>`<div class="pair">${[a,b].map(i=>{const s=LR.signs[i];return `<button class="sg" data-w="${esc(s.nl)}"><img src="${s.img}" alt="${esc(s.c)}" loading="lazy"><b>${esc(s.ar)}</b><small dir="ltr">${esc(s.c)} · ${esc(s.nl)}</small></button>`}).join('<span class="vs">⇄</span>')}</div>`).join('');
+ else if(tab==='facts')body=Object.entries(LR.factCats).map(([k,v])=>`<h3>${esc(v)}</h3><ul class="facts">${LR.facts.filter(x=>x.k===k).map(x=>`<li><button class="term" data-w="${esc(x.nl)}">${ICON.audio}</button>${esc(st.ui==='ar'?x.ar:x.nl)}<small class="nl" dir="ltr">${st.ui==='ar'?esc(x.nl)+' · ':''}Les ${x.l}</small></li>`).join('')}</ul>`).join('');
+ else body=cats.map(c=>`<h3>${esc(c)}</h3><div class="sgrid">${LR.signs.filter(s=>s.cat===c).map(s=>`<button class="sg" data-w="${esc(s.nl)}"><img src="${s.img}" alt="${esc(s.c)}" loading="lazy"><b>${esc(st.ui==='ar'?s.ar:s.nl)}</b><small dir="ltr">${esc(s.c)}${st.ui==='ar'?' · '+esc(s.nl):''}</small></button>`).join('')}</div>`).join('');
+ app.innerHTML=`<section class="learn"><h2>${ICON.danger||ICON.eye}${t('signs')}</h2><div class="chips">${tabs.map(([k,v])=>`<a class="chip ${k===tab?'on':''}" href="#signs/${k}">${esc(v)}</a>`).join('')}</div>${body}</section>`;
+ app.querySelectorAll('[data-w]').forEach(b=>b.onclick=()=>say(b.dataset.w))}
 
 /* ---------- Speech ---------- */
 function say(txt){if(!('speechSynthesis' in window))return;speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(txt);u.lang=st.ex==='fr'?'fr-BE':'nl-BE';speechSynthesis.speak(u)}
+let AU=null;function play(q,fb){try{speechSynthesis.cancel()}catch(e){}if(AU){AU.pause();AU=null}if(q.aud){AU=new Audio(q.aud);AU.play().catch(()=>say(fb))}else say(fb)}
 
 /* ---------- Question card ---------- */
-function card(q,i,n,opt={}){const ex=st.ex,ui=st.ui in q.q?st.ui:'en';
+function card(q,i,n,opt={}){const ex=st.ex,ui=st.ui in q.q?st.ui:'nl';
  return `<div class="card">
   <div class="qtop"><span class="pill">${i+1}/${n}</span>${q.weight>1?`<span class="pill red" title="${t('serious')}">⚠ ×5</span>`:''}
    ${opt.timer?`<span class="pill timer">${ICON.timer}<b id="tm">15</b></span>`:''}<span class="sp"></span>
    ${opt.tools===false?'':`<button class="icon-btn ${st.tr?'on':''}" id="bTr" title="${t('translate')}">${ICON.tr}</button><button class="icon-btn" id="bAu" title="${t('listen')}">${ICON.audio}</button>`}</div>
   ${q.img?`<div class="qimg"><img src="${q.img}" alt="" width="600" height="340" decoding="async"></div>`:q.sign?`<div class="signbox">${SIGN[q.sign]||''}</div>`:''}
-  <p class="qt" dir="ltr" lang="${ex}">${esc(q.q[ex])}</p>${st.tr&&ui!==ex?`<p class="qtr">${esc(q.q[ui])}</p>`:''}
-  <div class="opts">${q.opts[ex].map((o,k)=>`<button class="opt" dir="ltr" data-k="${k}"><i>${'ABC'[k]}</i><span dir="ltr" lang="${ex}">${esc(o)}</span>${st.tr&&ui!==ex?`<small>${esc(q.opts[ui][k])}</small>`:''}<em class="mk"></em></button>`).join('')}</div>
+  <p class="qt" dir="ltr" lang="${ex}">${esc(tx(q.q,ex))}</p>${st.tr&&ui!==ex?`<p class="qtr">${esc(tx(q.q,ui))}</p>`:''}
+  ${q.num!=null?`<form class="numf" id="nf"><input id="ni" inputmode="decimal" autocomplete="off" dir="ltr" placeholder="…"><button class="primary" type="submit">${ICON.okc}</button></form>`:
+  `<div class="opts">${tx(q.opts,ex).map((o,k)=>`<button class="opt" dir="ltr" data-k="${k}"><i>${'ABC'[k]}</i><span dir="ltr" lang="${ex}">${esc(o)}</span>${st.tr&&ui!==ex?`<small>${esc(tx(q.opts,ui)[k])}</small>`:''}<em class="mk"></em></button>`).join('')}</div>`}
   <div id="fb"></div></div>`}
 function bindTools(q,rerender){const a=$('#bAu'),b=$('#bTr');
- if(a)a.onclick=()=>say(q.q[st.ex]+'. '+q.opts[st.ex].map((o,k)=>'ABC'[k]+': '+o).join('. '));
+ if(a)a.onclick=()=>play(q,tx(q.q,st.ex)+'. '+tx(q.opts,st.ex).map((o,k)=>'ABC'[k]+': '+o).join('. '));
  if(b)b.onclick=()=>{st.tr=!st.tr;LS.set('tr',st.tr);rerender()}}
 
 /* ---------- Practice / lesson quiz / mistakes ---------- */
@@ -129,24 +148,27 @@ function quiz(mode,lessonId){
    <div class="navbar">${ib('back',t('back'),`id="bB" ${i?'':'disabled'}`)}${ib('bulb',t('explain'),'id="bE" class="ghost" hidden')}${ib('next',t('next'),'id="bN" class="primary"')}</div>`;
   bindTools(q,render);
   app.querySelectorAll('.opt').forEach(b=>b.onclick=()=>pick(+b.dataset.k));
+  const nf=$('#nf');if(nf)nf.onsubmit=e=>{e.preventDefault();const v=$('#ni').value.trim();if(v)pick(v)};
   $('#bB').onclick=prev;$('#bN').onclick=next;$('#bE').onclick=()=>explain(q);
   if(answered[i]!=null)show(answered[i],false);
-  document.onkeydown=e=>{if(e.target.tagName==='SELECT')return;const rtl=document.dir==='rtl';
+  document.onkeydown=e=>{if(e.target.tagName==='SELECT'||e.target.tagName==='INPUT')return;const rtl=document.dir==='rtl';
    if(e.key>='1'&&e.key<='3')pick(+e.key-1);else if(e.key==='Enter')next();
    else if(e.key==='ArrowRight')rtl?prev():next();else if(e.key==='ArrowLeft')rtl?next():prev()};
   swipe(app,dir=>{const rtl=document.dir==='rtl';(dir>0)!==rtl?prev():next()});
  }
- function pick(k){if(answered[i]!=null)return;const q=pool[i];answered[i]=k;const ok=k===q.answer;M.record(q.id,ok);show(k,true)}
- function show(k,fresh){const q=pool[i],ok=k===q.answer;
+ function pick(k){if(answered[i]!=null)return;const q=pool[i];answered[i]=k;const ok=isOk(q,k);M.record(q.id,ok);show(k,true)}
+ function show(k,fresh){const q=pool[i],ok=isOk(q,k);
+  if(q.num!=null){const ni=$('#ni');if(ni){ni.value=k;ni.disabled=true;ni.classList.add(ok?'right':'wrong')}const nb=app.querySelector('#nf button');if(nb)nb.disabled=true}
   app.querySelectorAll('.opt').forEach((b,j)=>{b.disabled=true;if(j===q.answer){b.classList.add('right');b.querySelector('.mk').innerHTML=ICON.ok}else if(j===k){b.classList.add('wrong');b.querySelector('.mk').innerHTML=ICON.no}});
-  $('#fb').innerHTML=`<p class="fb ${ok?'ok':'bad'}">${ok?ICON.ok+t('correct'):ICON.no+t('wrong')}</p>`;$('#bE').hidden=false;
+  $('#fb').innerHTML=`<p class="fb ${ok?'ok':'bad'}">${ok?ICON.ok+t('correct'):ICON.no+t('wrong')+(q.num!=null?` — <b dir="ltr">${esc(q.num)}</b>`:'')}</p>`;$('#bE').hidden=false;
   if(ok&&fresh&&st.delay>0&&i<pool.length-1)timers.push(setTimeout(next,st.delay*1000));}
  function next(){if(i<pool.length-1){i++;savePos();render()}else{const p=LS.get('pos',{});delete p[key];LS.set('pos',p);go('home')}}
  function prev(){if(i>0){i--;savePos();render()}}
  render();
 }
-function explain(q){const ui=st.ui in q.explain?st.ui:'en';const fb=$('#fb');if(fb.querySelector('.ex'))return;
- fb.insertAdjacentHTML('beforeend',`<div class="ex">${ICON.bulb}<p>${esc(q.explain[ui])}</p></div>`)}
+function exHTML(q){const ui=st.ui==='ar'?'ar':'nl',a=q.explain[ui]||q.explain.nl||q.explain.ar||'';
+ return `<div class="ex">${ICON.bulb}<div><p>${esc(a)}</p>${ui!=='nl'&&q.explain.nl?`<details><summary>NL</summary><p dir="ltr">${esc(q.explain.nl)}</p></details>`:''}</div></div>`}
+function explain(q){const fb=$('#fb');if(fb.querySelector('.ex'))return;fb.insertAdjacentHTML('beforeend',exHTML(q))}
 function swipe(el,cb){let x0=null;el.ontouchstart=e=>{x0=e.touches[0].clientX};el.ontouchend=e=>{if(x0==null)return;const dx=e.changedTouches[0].clientX-x0;x0=null;if(Math.abs(dx)>60)cb(dx)}}
 
 /* ---------- Mock exam ---------- */
@@ -162,26 +184,27 @@ function exam(){const qs=shuffle(Q).slice(0,50),n=qs.length,ans=[];let i=0,left,
   $('#bA').onclick=()=>{st.auto=!st.auto;LS.set('auto',st.auto);const b=$('#bA');b.classList.toggle('on',st.auto);b.setAttribute('aria-pressed',st.auto)};
   bindTools(q,()=>{const c=cur,l=left;render();left=l;$('#tm').textContent=l;if(c!=null)sel(c)});
   app.querySelectorAll('.opt').forEach(b=>b.onclick=()=>sel(+b.dataset.k));
+  const nf=$('#nf');if(nf){nf.onsubmit=e=>{e.preventDefault();const v=$('#ni').value.trim();if(v){cur=v;commit(v)}};$('#ni').oninput=e=>{cur=e.target.value.trim()||null;$('#bC').disabled=!cur};setTimeout(()=>$('#ni').focus(),0)}
   $('#bC').onclick=confirmA;
-  document.onkeydown=e=>{if(e.target.tagName==='SELECT')return;if(e.key>='1'&&e.key<='3')sel(+e.key-1);else if(e.key==='Enter'){e.preventDefault();confirmA()}};
+  document.onkeydown=e=>{if(e.target.tagName==='SELECT'||e.target.tagName==='INPUT')return;if(e.key>='1'&&e.key<='3')sel(+e.key-1);else if(e.key==='Enter'){e.preventDefault();confirmA()}};
   timers.push(setInterval(()=>{left--;const el=$('#tm');if(el){el.textContent=Math.max(0,left);if(left<=5)el.parentNode.classList.add('red')}if(left<=0)commit(null)},1000));}
  function sel(k){if(done)return;cur=k;app.querySelectorAll('.opt').forEach((b,j)=>b.classList.toggle('sel',j===k));const bn=$('#bC');if(bn)bn.disabled=false;if(st.auto)commit(k)}
  function confirmA(){if(cur!=null)commit(cur)}
- function commit(k){if(done)return;done=true;ans[i]=k;M.record(qs[i].id,k===qs[i].answer);if(i<n-1){i++;render()}else finish()}
+ function commit(k){if(done)return;done=true;ans[i]=k;M.record(qs[i].id,isOk(qs[i],k));if(i<n-1){i++;render()}else finish()}
  function finish(){clearTimers();let score=n;const wrong=[];
-  qs.forEach((q,j)=>{if(ans[j]!==q.answer){score-=q.weight>1?5:1;wrong.push(j)}});
+  qs.forEach((q,j)=>{if(!isOk(q,ans[j])){score-=q.weight>1?5:1;wrong.push(j)}});
   score=Math.max(0,score);const need=Math.ceil(41*n/50),pass=score>=need,ex=st.ex;
   app.innerHTML=`<section class="result ${pass?'ok':'bad'}"><div class="big">${pass?ICON.ok:ICON.no}</div><h2>${pass?t('pass'):t('fail')}</h2>
    <p class="score">${score}/${n} <small>(${ICON.ok}${need})</small></p>
    <p class="hint">${ICON.no}<b>${wrong.length}</b> · ${ICON.repeat}${t('mistakes')}</p>
    <div class="list review">${wrong.map(j=>{const q=qs[j],a=ans[j];return `<div class="rv card">
      <div class="qtop"><span class="pill">${j+1}</span>${q.weight>1?'<span class="pill red">⚠ ×5</span>':''}</div>
-     ${q.img?`<div class="qimg sm"><img src="${q.img}" alt="" loading="lazy"></div>`:''}<p class="qt" dir="ltr">${esc(q.q[ex])}</p>
-     <p class="fb bad" dir="ltr">${ICON.no}${a==null?'⏱ '+esc(t('noAns')):esc(q.opts[ex][a])}</p>
-     <p class="fb ok" dir="ltr">${ICON.ok}${esc(q.opts[ex][q.answer])}</p>
+     ${q.img?`<div class="qimg sm"><img src="${q.img}" alt="" loading="lazy"></div>`:''}<p class="qt" dir="ltr">${esc(tx(q.q,ex))}</p>
+     <p class="fb bad" dir="ltr">${ICON.no}${a==null?'⏱ '+esc(t('noAns')):esc(ansTxt(q,a,ex))}</p>
+     <p class="fb ok" dir="ltr">${ICON.ok}${esc(q.num!=null?q.num:tx(q.opts,ex)[q.answer])}</p>
      <button class="ghost bE" data-j="${j}">${ICON.bulb}<span>${t('explain')}</span></button><div class="exw"></div></div>`}).join('')}</div>
    <div class="navbar static">${ib('repeat',t('mistakes'),'id="bM" class="primary"')}${ib('home',t('home'),'id="bH"')}</div></section>`;
-  app.querySelectorAll('.bE').forEach(b=>b.onclick=()=>{const q=qs[+b.dataset.j],ui=st.ui in q.explain?st.ui:'en',w=b.nextElementSibling;if(!w.innerHTML)w.innerHTML=`<div class="ex">${ICON.bulb}<p>${esc(q.explain[ui])}</p></div>`});
+  app.querySelectorAll('.bE').forEach(b=>b.onclick=()=>{const q=qs[+b.dataset.j],w=b.nextElementSibling;if(!w.innerHTML)w.innerHTML=exHTML(q)});
   $('#bM').onclick=()=>go('mistakes');$('#bH').onclick=()=>go('home');}
  render();
 }
@@ -190,16 +213,16 @@ function exam(){const qs=shuffle(Q).slice(0,50),n=qs.length,ans=[];let i=0,left,
 function stream(){let layout=P.get('layout')||(innerWidth<innerHeight?'v':'h'),qs=shuffle(Q),i=0,left,shown=false;$('#top').hidden=true;
  function render(){clearTimers();shown=false;left=15;const q=qs[i];document.body.dataset.layout=layout;
   app.innerHTML=`<section class="stage ${layout}"><div class="sbar"><img src="img/logo.svg" alt=""><b>Slaag</b><span class="pill timer">${ICON.timer}<b id="tm">15</b></span></div>
-   ${q.img?`<div class="qimg"><img src="${q.img}" alt=""></div>`:q.sign?`<div class="signbox">${SIGN[q.sign]}</div>`:''}<p class="qt" dir="ltr">${esc(q.q[st.ex])}</p>
-   <div class="opts">${q.opts[st.ex].map((o,k)=>`<div class="opt" dir="ltr"><i>${'ABC'[k]}</i><span dir="ltr">${esc(o)}</span><em class="mk"></em></div>`).join('')}</div>
+   ${q.img?`<div class="qimg"><img src="${q.img}" alt=""></div>`:q.sign?`<div class="signbox">${SIGN[q.sign]}</div>`:''}<p class="qt" dir="ltr">${esc(tx(q.q,st.ex))}</p>
+   ${q.num!=null?`<div class="opts"><div class="opt num" dir="ltr"><i>#</i><span>${esc(q.num)}</span><em class="mk"></em></div></div>`:''}<div class="opts">${(q.num!=null?[]:tx(q.opts,st.ex)).map((o,k)=>`<div class="opt" dir="ltr"><i>${'ABC'[k]}</i><span dir="ltr">${esc(o)}</span><em class="mk"></em></div>`).join('')}</div>
    <div id="fb"></div><div class="wm"><img class="wl" src="img/logo.svg" alt="Slaag"><img src="img/qr.svg" alt="QR"><span>ramboosdev.github.io/slaag<br>${esc(t('tagline'))}</span></div></section>
    <div class="ctrl">${ib('eye',t('reveal'),'id="bR" class="primary"')}${ib('bulb',t('explain'),'id="bE"')}${ib('next',t('next'),'id="bN"')}
     <button id="bL" class="icon-btn">${layout==='h'?ICON.portrait:ICON.landscape}</button><button id="bX" class="icon-btn">${ICON.globe}</button></div>`;
   $('#bR').onclick=reveal;$('#bN').onclick=()=>{i=(i+1)%qs.length;render()};$('#bE').onclick=()=>{reveal();explain(q)};
-  $('#bL').onclick=()=>{layout=layout==='h'?'v':'h';render()};$('#bX').onclick=()=>{st.ex=st.ex==='nl'?'fr':'nl';render()};
+  $('#bL').onclick=()=>{layout=layout==='h'?'v':'h';render()};$('#bX').onclick=()=>{st.tr=!st.tr;render()};
   document.onkeydown=e=>{if(e.key===' '||e.key==='r')reveal();if(e.key==='Enter'||e.key==='ArrowRight')$('#bN').click()};
   timers.push(setInterval(()=>{if(shown)return;left=Math.max(0,left-1);$('#tm').textContent=left},1000));}
- function reveal(){if(shown)return;shown=true;const q=qs[i];app.querySelectorAll('.stage .opt').forEach((b,j)=>{b.classList.add(j===q.answer?'right':'dim');if(j===q.answer)b.querySelector('.mk').innerHTML=ICON.ok})}
+ function reveal(){if(shown)return;shown=true;const q=qs[i];app.querySelectorAll('.stage .opt').forEach((b,j)=>{const r=q.num!=null||j===q.answer;b.classList.add(r?'right':'dim');if(r)b.querySelector('.mk').innerHTML=ICON.ok})}
  render();
 }
 boot().catch(e=>{app.innerHTML='<p class="note">Error loading. '+esc(e.message)+'</p>';console.error(e)});
