@@ -1,20 +1,946 @@
 [
-{"id":"speed","icon":"speed","title":{"ar":"السرعة","en":"Speed"},
- "body":{"ar":["داخل المنطقة السكنية: 50 كم/س (بروكسل غالباً 30).","خارج المدن: 70 بفلاندرن وبروكسل، 90 بوالونيا.","الأوتوستراد: 120.","الرقم هو الحد الأقصى. خفف بالمطر والضباب."],"en":["Built-up area: 50 km/h (Brussels mostly 30).","Outside built-up areas: 70 in Flanders & Brussels, 90 in Wallonia.","Motorway: 120.","The limit is a maximum — slow down in rain or fog."]},
- "terms":[{"nl":"bebouwde kom","fr":"agglomération","ar":"منطقة سكنية","en":"built-up area"},{"nl":"autosnelweg","fr":"autoroute","ar":"أوتوستراد","en":"motorway"},{"nl":"snelheid","fr":"vitesse","ar":"سرعة","en":"speed"}]},
-{"id":"alcohol","icon":"alcohol","title":{"ar":"الكحول والمخدرات","en":"Alcohol & drugs"},
- "body":{"ar":["الحد العام: 0.5 بالألف.","السائق المحترف: 0.2 بالألف.","المخدرات: ممنوعة تماماً.","القهوة ما بتنزّل الكحول."],"en":["General limit: 0.5‰.","Professional drivers: 0.2‰.","Drugs: never.","Coffee does not lower alcohol."]},
- "terms":[{"nl":"promille","fr":"pour mille","ar":"بالألف","en":"per mille"},{"nl":"bestuurder","fr":"conducteur","ar":"سائق","en":"driver"}]},
-{"id":"priority","icon":"priority","title":{"ar":"الأولوية","en":"Priority"},
- "body":{"ar":["بلا إشارات: الأولوية لليمين.","STOP: وقوف كامل وأعطِ الأولوية.","المثلث المقلوب: أعطِ الأولوية.","المعين الأصفر: طريقك إلو أولوية.","المشاة عالممر والإسعاف: إلهم الأولوية."],"en":["No signs: priority to the right.","STOP: full stop and give way.","Inverted triangle: give way.","Yellow diamond: you have priority.","Pedestrians on crossings and emergency vehicles have priority."]},
- "terms":[{"nl":"voorrang van rechts","fr":"priorité de droite","ar":"الأولوية لليمين","en":"priority to the right"},{"nl":"voorrang verlenen","fr":"céder le passage","ar":"أعطِ الأولوية","en":"give way"},{"nl":"kruispunt","fr":"carrefour","ar":"تقاطع","en":"junction"},{"nl":"voetganger","fr":"piéton","ar":"شخص ماشي","en":"pedestrian"}]},
-{"id":"signs","icon":"signs","title":{"ar":"الإشارات والأضواء","en":"Signs & lights"},
- "body":{"ar":["مثلث أحمر = خطر.","دائرة حمرا = ممنوع.","دائرة زرقا = إجباري.","أحمر = وقوف. برتقالي = وقّف إذا فيك بأمان."],"en":["Red triangle = danger.","Red circle = prohibition.","Blue circle = obligation.","Red = stop. Amber = stop if safe."]},
- "terms":[{"nl":"verkeersbord","fr":"panneau","ar":"إشارة سير","en":"road sign"},{"nl":"verboden","fr":"interdit","ar":"ممنوع","en":"forbidden"},{"nl":"verkeerslicht","fr":"feu","ar":"ضو السير","en":"traffic light"}]},
-{"id":"safety","icon":"safety","title":{"ar":"الأمان","en":"Safety"},
- "body":{"ar":["الحزام لكل الركاب.","ممنوع تمسك الموبايل وانت عم تسوق.","الأولاد أقصر من 1.35 م: كرسي أطفال.","تعبان؟ وقّف وارتاح. حادث: 112."],"en":["Seatbelt for everyone.","No phone in hand while driving.","Children under 1.35 m: child seat.","Tired? Stop and rest. Accident: call 112."]},
- "terms":[{"nl":"gordel","fr":"ceinture","ar":"حزام","en":"seatbelt"},{"nl":"gsm","fr":"GSM / téléphone","ar":"موبايل","en":"mobile phone"},{"nl":"ongeval","fr":"accident","ar":"حادث","en":"accident"}]},
-{"id":"road","icon":"road","title":{"ar":"المسارب والتجاوز","en":"Lanes & overtaking"},
- "body":{"ar":["تجاوز من الشمال.","عالأوتوستراد خليك يمين.","اترك ثانيتين عالأقل بينك وبين اللي قدامك."],"en":["Overtake on the left.","Keep right on the motorway.","Keep at least 2 seconds' gap."]},
- "terms":[{"nl":"inhalen","fr":"dépasser","ar":"تجاوز","en":"overtake"},{"nl":"rijstrook","fr":"bande de circulation","ar":"مسرب","en":"lane"}]}
+ {
+  "id": "speed",
+  "icon": "speed",
+  "title": {
+   "ar": "السرعة",
+   "en": "Speed"
+  },
+  "body": {
+   "ar": [
+    "داخل المنطقة السكنية: 50 كم/س (بروكسل غالباً 30).",
+    "خارج المدن: 70 بفلاندرن وبروكسل، 90 بوالونيا.",
+    "الأوتوستراد: 120.",
+    "الرقم هو الحد الأقصى. خفف بالمطر والضباب."
+   ],
+   "en": [
+    "Built-up area: 50 km/h (Brussels mostly 30).",
+    "Outside built-up areas: 70 in Flanders & Brussels, 90 in Wallonia.",
+    "Motorway: 120.",
+    "The limit is a maximum — slow down in rain or fog."
+   ]
+  },
+  "terms": [
+   {
+    "nl": "bebouwde kom",
+    "fr": "agglomération",
+    "ar": "منطقة سكنية",
+    "en": "built-up area"
+   },
+   {
+    "nl": "autosnelweg",
+    "fr": "autoroute",
+    "ar": "أوتوستراد",
+    "en": "motorway"
+   },
+   {
+    "nl": "snelheid",
+    "fr": "vitesse",
+    "ar": "سرعة",
+    "en": "speed"
+   }
+  ]
+ },
+ {
+  "id": "alcohol",
+  "icon": "alcohol",
+  "title": {
+   "ar": "الكحول والمخدرات",
+   "en": "Alcohol & drugs"
+  },
+  "body": {
+   "ar": [
+    "الحد العام: 0.5 بالألف.",
+    "السائق المحترف: 0.2 بالألف.",
+    "المخدرات: ممنوعة تماماً.",
+    "القهوة ما بتنزّل الكحول."
+   ],
+   "en": [
+    "General limit: 0.5‰.",
+    "Professional drivers: 0.2‰.",
+    "Drugs: never.",
+    "Coffee does not lower alcohol."
+   ]
+  },
+  "terms": [
+   {
+    "nl": "promille",
+    "fr": "pour mille",
+    "ar": "بالألف",
+    "en": "per mille"
+   },
+   {
+    "nl": "bestuurder",
+    "fr": "conducteur",
+    "ar": "سائق",
+    "en": "driver"
+   }
+  ]
+ },
+ {
+  "id": "priority",
+  "icon": "priority",
+  "title": {
+   "ar": "الأولوية",
+   "en": "Priority"
+  },
+  "body": {
+   "ar": [
+    "بلا إشارات: الأولوية لليمين.",
+    "STOP: وقوف كامل وأعطِ الأولوية.",
+    "المثلث المقلوب: أعطِ الأولوية.",
+    "المعين الأصفر: طريقك إلو أولوية.",
+    "المشاة عالممر والإسعاف: إلهم الأولوية."
+   ],
+   "en": [
+    "No signs: priority to the right.",
+    "STOP: full stop and give way.",
+    "Inverted triangle: give way.",
+    "Yellow diamond: you have priority.",
+    "Pedestrians on crossings and emergency vehicles have priority."
+   ]
+  },
+  "terms": [
+   {
+    "nl": "voorrang van rechts",
+    "fr": "priorité de droite",
+    "ar": "الأولوية لليمين",
+    "en": "priority to the right"
+   },
+   {
+    "nl": "voorrang verlenen",
+    "fr": "céder le passage",
+    "ar": "أعطِ الأولوية",
+    "en": "give way"
+   },
+   {
+    "nl": "kruispunt",
+    "fr": "carrefour",
+    "ar": "تقاطع",
+    "en": "junction"
+   },
+   {
+    "nl": "voetganger",
+    "fr": "piéton",
+    "ar": "شخص ماشي",
+    "en": "pedestrian"
+   }
+  ]
+ },
+ {
+  "id": "signs",
+  "icon": "signs",
+  "title": {
+   "ar": "الإشارات والأضواء",
+   "en": "Signs & lights"
+  },
+  "body": {
+   "ar": [
+    "مثلث أحمر = خطر.",
+    "دائرة حمرا = ممنوع.",
+    "دائرة زرقا = إجباري.",
+    "أحمر = وقوف. برتقالي = وقّف إذا فيك بأمان."
+   ],
+   "en": [
+    "Red triangle = danger.",
+    "Red circle = prohibition.",
+    "Blue circle = obligation.",
+    "Red = stop. Amber = stop if safe."
+   ]
+  },
+  "terms": [
+   {
+    "nl": "verkeersbord",
+    "fr": "panneau",
+    "ar": "إشارة سير",
+    "en": "road sign"
+   },
+   {
+    "nl": "verboden",
+    "fr": "interdit",
+    "ar": "ممنوع",
+    "en": "forbidden"
+   },
+   {
+    "nl": "verkeerslicht",
+    "fr": "feu",
+    "ar": "ضو السير",
+    "en": "traffic light"
+   }
+  ]
+ },
+ {
+  "id": "safety",
+  "icon": "safety",
+  "title": {
+   "ar": "الأمان",
+   "en": "Safety"
+  },
+  "body": {
+   "ar": [
+    "الحزام لكل الركاب.",
+    "ممنوع تمسك الموبايل وانت عم تسوق.",
+    "الأولاد أقصر من 1.35 م: كرسي أطفال.",
+    "تعبان؟ وقّف وارتاح. حادث: 112."
+   ],
+   "en": [
+    "Seatbelt for everyone.",
+    "No phone in hand while driving.",
+    "Children under 1.35 m: child seat.",
+    "Tired? Stop and rest. Accident: call 112."
+   ]
+  },
+  "terms": [
+   {
+    "nl": "gordel",
+    "fr": "ceinture",
+    "ar": "حزام",
+    "en": "seatbelt"
+   },
+   {
+    "nl": "gsm",
+    "fr": "GSM / téléphone",
+    "ar": "موبايل",
+    "en": "mobile phone"
+   },
+   {
+    "nl": "ongeval",
+    "fr": "accident",
+    "ar": "حادث",
+    "en": "accident"
+   }
+  ]
+ },
+ {
+  "id": "road",
+  "icon": "road",
+  "title": {
+   "ar": "الطريق ومستعملينه",
+   "en": "Road & road users"
+  },
+  "body": {
+   "ar": [
+    "الطريق (rijbaan) للسيارات، الرصيف للمشاة، وطريق الدراجات للدراجات.",
+    "بتمشي عاليمين قد ما فيك.",
+    "الولاد تحت 10 سنين مسموحلهم يسوقوا دراجة عالرصيف.",
+    "بالـwoonerf الشارع للكل والسرعة 20.",
+    "انتبه للمستعملين الضعاف: مشاة، دراجات، ولاد، كبار السن، خيّالة."
+   ],
+   "en": [
+    "The carriageway is for vehicles, the pavement for pedestrians, cycle tracks for cyclists.",
+    "Keep as far right as possible.",
+    "Children under 10 may cycle on the pavement.",
+    "In a residential zone (woonerf) the street is shared, max 20 km/h.",
+    "Watch out for vulnerable users: pedestrians, cyclists, children, elderly, riders."
+   ]
+  },
+  "terms": [
+   {
+    "nl": "rijbaan",
+    "fr": "chaussée",
+    "ar": "الطريق",
+    "en": "carriageway"
+   },
+   {
+    "nl": "rijstrook",
+    "fr": "bande de circulation",
+    "ar": "مسرب",
+    "en": "lane"
+   },
+   {
+    "nl": "trottoir",
+    "fr": "trottoir",
+    "ar": "رصيف",
+    "en": "pavement"
+   },
+   {
+    "nl": "fietspad",
+    "fr": "piste cyclable",
+    "ar": "طريق دراجات",
+    "en": "cycle track"
+   },
+   {
+    "nl": "berm",
+    "fr": "accotement",
+    "ar": "حافة الطريق",
+    "en": "verge"
+   }
+  ]
+ },
+ {
+  "id": "sign_dan",
+  "icon": "danger",
+  "title": {
+   "ar": "إشارات الخطر",
+   "en": "Danger signs"
+  },
+  "body": {
+   "ar": [
+    "مثلث أبيض بإطار أحمر = خطر قدامك.",
+    "بتنحط تقريباً 150 متر قبل الخطر برا المدن، وأقرب جوا المدن.",
+    "لما تشوفها: خفف وتوقّع."
+   ],
+   "en": [
+    "White triangle with red border = danger ahead.",
+    "Placed about 150 m before the danger outside built-up areas, closer inside.",
+    "When you see one: slow down and anticipate."
+   ]
+  },
+  "terms": [
+   {
+    "nl": "gevaar",
+    "fr": "danger",
+    "ar": "خطر",
+    "en": "danger"
+   },
+   {
+    "nl": "bocht",
+    "fr": "virage",
+    "ar": "منعطف",
+    "en": "bend"
+   },
+   {
+    "nl": "overweg",
+    "fr": "passage à niveau",
+    "ar": "سكة قطار",
+    "en": "level crossing"
+   },
+   {
+    "nl": "glibberig",
+    "fr": "glissant",
+    "ar": "زلق",
+    "en": "slippery"
+   }
+  ]
+ },
+ {
+  "id": "sign_pri",
+  "icon": "priority",
+  "title": {
+   "ar": "إشارات الأولوية",
+   "en": "Priority signs"
+  },
+  "body": {
+   "ar": [
+    "المثلث المقلوب = اعطِ الأولوية.",
+    "STOP = وقوف كامل واعطِ الأولوية.",
+    "المعين الأصفر = طريق إلو أولوية.",
+    "السهم الأحمر بجهتك = الجاي من قدام إلو الأولوية."
+   ],
+   "en": [
+    "Inverted triangle = give way.",
+    "STOP = full stop and give way.",
+    "Yellow diamond = priority road.",
+    "Red arrow on your side = oncoming traffic has priority."
+   ]
+  },
+  "terms": [
+   {
+    "nl": "voorrang",
+    "fr": "priorité",
+    "ar": "أولوية",
+    "en": "priority"
+   },
+   {
+    "nl": "voorrangsweg",
+    "fr": "route prioritaire",
+    "ar": "طريق أولوية",
+    "en": "priority road"
+   },
+   {
+    "nl": "stoppen",
+    "fr": "s'arrêter",
+    "ar": "يوقف",
+    "en": "to stop"
+   }
+  ]
+ },
+ {
+  "id": "sign_pro",
+  "icon": "no_entry",
+  "title": {
+   "ar": "إشارات المنع",
+   "en": "Prohibition signs"
+  },
+  "body": {
+   "ar": [
+    "دائرة بإطار أحمر = ممنوع.",
+    "الرقم جوا الدائرة = أقصى سرعة.",
+    "الإشارة الرمادية المشطوبة = نهاية المنع.",
+    "ممنوع الوقوف: أزرق بخط أحمر. ممنوع الوقوف والتوقف: أزرق بإكس أحمر."
+   ],
+   "en": [
+    "Circle with red border = prohibition.",
+    "A number inside = speed limit.",
+    "Grey crossed sign = end of the restriction.",
+    "No parking: blue with one red bar; no stopping: blue with red X."
+   ]
+  },
+  "terms": [
+   {
+    "nl": "verboden",
+    "fr": "interdit",
+    "ar": "ممنوع",
+    "en": "forbidden"
+   },
+   {
+    "nl": "inhalen",
+    "fr": "dépasser",
+    "ar": "تجاوز",
+    "en": "overtake"
+   },
+   {
+    "nl": "parkeren",
+    "fr": "stationner",
+    "ar": "يصف",
+    "en": "to park"
+   },
+   {
+    "nl": "stilstaan",
+    "fr": "s'arrêter",
+    "ar": "توقف قصير",
+    "en": "to stop briefly"
+   }
+  ]
+ },
+ {
+  "id": "sign_man",
+  "icon": "roundabout",
+  "title": {
+   "ar": "الإشارات الإجبارية",
+   "en": "Mandatory signs"
+  },
+  "body": {
+   "ar": [
+    "دائرة زرقا بشكل أبيض = إجباري.",
+    "طريق دراجات إجباري، دوار، اتجاه إجباري.",
+    "مسرب الباص للباصات."
+   ],
+   "en": [
+    "Blue circle with white symbol = mandatory.",
+    "Compulsory cycle track, roundabout, compulsory direction.",
+    "Bus lanes are for buses."
+   ]
+  },
+  "terms": [
+   {
+    "nl": "verplicht",
+    "fr": "obligatoire",
+    "ar": "إجباري",
+    "en": "compulsory"
+   },
+   {
+    "nl": "rotonde",
+    "fr": "giratoire",
+    "ar": "دوار",
+    "en": "roundabout"
+   },
+   {
+    "nl": "busstrook",
+    "fr": "bande bus",
+    "ar": "مسرب باص",
+    "en": "bus lane"
+   }
+  ]
+ },
+ {
+  "id": "sign_inf",
+  "icon": "motorway",
+  "title": {
+   "ar": "إشارات المعلومات",
+   "en": "Information signs"
+  },
+  "body": {
+   "ar": [
+    "مربع أو مستطيل = معلومة.",
+    "لوحة اسم البلدة = بداية المنطقة السكنية (50).",
+    "zone 30، مدرسة، woonerf (20)، شارع دراجات (30).",
+    "الأوتوستراد والـautoweg إلهم قواعد خاصة."
+   ],
+   "en": [
+    "Square or rectangle = information.",
+    "Town-name sign = start of built-up area (50).",
+    "Zone 30, school zone, woonerf (20), cycle street (30).",
+    "Motorways and expressways have special rules."
+   ]
+  },
+  "terms": [
+   {
+    "nl": "bebouwde kom",
+    "fr": "agglomération",
+    "ar": "منطقة سكنية",
+    "en": "built-up area"
+   },
+   {
+    "nl": "autosnelweg",
+    "fr": "autoroute",
+    "ar": "أوتوستراد",
+    "en": "motorway"
+   },
+   {
+    "nl": "eenrichtingsweg",
+    "fr": "sens unique",
+    "ar": "اتجاه واحد",
+    "en": "one-way"
+   },
+   {
+    "nl": "doodlopende weg",
+    "fr": "voie sans issue",
+    "ar": "طريق مسدود",
+    "en": "dead end"
+   }
+  ]
+ },
+ {
+  "id": "signals",
+  "icon": "danger",
+  "title": {
+   "ar": "الضو والخطوط والشرطي",
+   "en": "Lights, markings & officers"
+  },
+  "body": {
+   "ar": [
+    "الترتيب: الشرطي ← الضو ← الإشارات ← القواعد.",
+    "أحمر وقوف. أصفر ثابت وقوف إلا إذا ما بتقدر. أصفر بيغمز: انتبه وطبق الإشارات.",
+    "خط متواصل ممنوع تقطعه، متقطع مسموح.",
+    "أسنان القرش = اعطِ الأولوية."
+   ],
+   "en": [
+    "Order: officer → lights → signs → rules.",
+    "Red = stop. Steady amber = stop unless unsafe. Flashing amber = caution, apply signs.",
+    "Solid line: do not cross; broken line: may cross.",
+    "Shark teeth = give way."
+   ]
+  },
+  "terms": [
+   {
+    "nl": "verkeerslicht",
+    "fr": "feu",
+    "ar": "إشارة ضوئية",
+    "en": "traffic light"
+   },
+   {
+    "nl": "doorlopende streep",
+    "fr": "ligne continue",
+    "ar": "خط متواصل",
+    "en": "solid line"
+   },
+   {
+    "nl": "haaientanden",
+    "fr": "dents de requin",
+    "ar": "أسنان القرش",
+    "en": "shark teeth"
+   },
+   {
+    "nl": "agent",
+    "fr": "agent",
+    "ar": "شرطي",
+    "en": "officer"
+   }
+  ]
+ },
+ {
+  "id": "overtaking",
+  "icon": "no_overtaking",
+  "title": {
+   "ar": "التجاوز",
+   "en": "Overtaking"
+  },
+  "body": {
+   "ar": [
+    "التجاوز من الشمال. الترام من اليمين. واللي لافف شمال من يمينه.",
+    "قبل: مرايات، نقطة عميا، غماز، محل كافي.",
+    "ممنوع: قرب تقاطع (إلا عطريق الأولوية)، ممر مشاة، طلعة أو منعطف بدون رؤية، خط متواصل.",
+    "الدراجة: متر بالمدينة، متر ونص برا."
+   ],
+   "en": [
+    "Overtake on the left; trams and left-turning vehicles on the right.",
+    "Before: mirrors, blind spot, indicator, enough room.",
+    "Forbidden: near junctions (unless priority road), at crossings, blind hilltops/bends, solid lines.",
+    "Cyclists: 1 m in town, 1.5 m outside."
+   ]
+  },
+  "terms": [
+   {
+    "nl": "inhalen",
+    "fr": "dépasser",
+    "ar": "تجاوز",
+    "en": "overtake"
+   },
+   {
+    "nl": "dode hoek",
+    "fr": "angle mort",
+    "ar": "نقطة عميا",
+    "en": "blind spot"
+   },
+   {
+    "nl": "richtingaanwijzer",
+    "fr": "clignotant",
+    "ar": "غماز",
+    "en": "indicator"
+   }
+  ]
+ },
+ {
+  "id": "parking",
+  "icon": "no_parking",
+  "title": {
+   "ar": "التوقف والباركينغ",
+   "en": "Stopping & parking"
+  },
+  "body": {
+   "ar": [
+    "التوقف قصير لتنزيل ركاب أو أغراض، الباركينغ أطول.",
+    "ممنوع: عالرصيف وطريق الدراجات، عالتقاطع وأقل من 5 م منه، أقل من 5 م قبل ممر المشاة.",
+    "ممنوع الباركينغ 15 م قبل وبعد موقف الباص، وقدام الكراجات، وإذا ضل أقل من 3 م.",
+    "الزون الزرقا: القرص عالنص ساعة الجاية، عادة ساعتين."
+   ],
+   "en": [
+    "Stopping is brief; parking is longer.",
+    "Forbidden: on pavements and cycle tracks, on junctions and within 5 m, within 5 m before crossings.",
+    "No parking within 15 m of bus stops, before garages, or if under 3 m remains.",
+    "Blue zone: set the disc to the next half hour, usually 2 h."
+   ]
+  },
+  "terms": [
+   {
+    "nl": "parkeerschijf",
+    "fr": "disque de stationnement",
+    "ar": "قرص الباركينغ",
+    "en": "parking disc"
+   },
+   {
+    "nl": "blauwe zone",
+    "fr": "zone bleue",
+    "ar": "زون زرقا",
+    "en": "blue zone"
+   },
+   {
+    "nl": "bushalte",
+    "fr": "arrêt de bus",
+    "ar": "موقف باص",
+    "en": "bus stop"
+   }
+  ]
+ },
+ {
+  "id": "lights",
+  "icon": "tv",
+  "title": {
+   "ar": "الضو والزمور",
+   "en": "Lights & horn"
+  },
+  "body": {
+   "ar": [
+    "الضو الواطي بالليل ولما الرؤية أقل من 200 م وبالأنفاق.",
+    "الضو العالي بتنزله لما في حدا قدامك.",
+    "ضو الضباب الخلفي بس إذا الرؤية أقل من 100 م.",
+    "ضو الخطر للعطل والحوادث والزحمة المفاجئة.",
+    "الزمور بس للخطر."
+   ],
+   "en": [
+    "Dipped lights at night, visibility < 200 m and in tunnels.",
+    "Dip high beams when meeting or following traffic.",
+    "Rear fog light only if visibility < 100 m.",
+    "Hazard lights for breakdowns, accidents, sudden queues.",
+    "Horn only to warn of danger."
+   ]
+  },
+  "terms": [
+   {
+    "nl": "dimlicht",
+    "fr": "feux de croisement",
+    "ar": "ضو واطي",
+    "en": "dipped beam"
+   },
+   {
+    "nl": "grootlicht",
+    "fr": "feux de route",
+    "ar": "ضو عالي",
+    "en": "high beam"
+   },
+   {
+    "nl": "mistlicht",
+    "fr": "antibrouillard",
+    "ar": "ضو ضباب",
+    "en": "fog light"
+   }
+  ]
+ },
+ {
+  "id": "motorway",
+  "icon": "motorway",
+  "title": {
+   "ar": "الأوتوستراد",
+   "en": "Motorway"
+  },
+  "body": {
+   "ar": [
+    "أقصى 120، أقل 70.",
+    "ممنوع: رجوع لورا، لف، قطع الوسط، وقوف إلا للطوارئ.",
+    "بتدخل بمسرب الدخول وبتعطي الأولوية.",
+    "بالزحمة: ضو الخطر وممر الطوارئ.",
+    "المثلث 100 م لورا."
+   ],
+   "en": [
+    "Max 120, min 70.",
+    "Forbidden: reversing, U-turns, crossing the median, stopping except emergencies.",
+    "Join via the acceleration lane and yield.",
+    "In jams: hazard lights and an emergency corridor.",
+    "Triangle 100 m behind."
+   ]
+  },
+  "terms": [
+   {
+    "nl": "pechstrook",
+    "fr": "bande d'arrêt d'urgence",
+    "ar": "مسرب طوارئ",
+    "en": "hard shoulder"
+   },
+   {
+    "nl": "invoegstrook",
+    "fr": "bande d'accélération",
+    "ar": "مسرب دخول",
+    "en": "slip lane"
+   },
+   {
+    "nl": "afrit",
+    "fr": "sortie",
+    "ar": "مخرج",
+    "en": "exit"
+   },
+   {
+    "nl": "reddingsstrook",
+    "fr": "couloir de secours",
+    "ar": "ممر طوارئ",
+    "en": "emergency corridor"
+   }
+  ]
+ },
+ {
+  "id": "documents",
+  "icon": "exam",
+  "title": {
+   "ar": "الأوراق والمعدات والامتحان",
+   "en": "Documents, equipment & exam"
+  },
+  "body": {
+   "ar": [
+    "معك: رخصة، ورقة تسجيل، تأمين، فحص فني إذا لازم.",
+    "بالسيارة: مثلث، طفاية، علبة إسعاف، سترة فسفورية.",
+    "الرخصة B: لحد 3.5 طن و8 ركاب، من عمر 18.",
+    "النظري: 50 سؤال، بتنجح بـ41، الغلطة الخطيرة -5، صالح 3 سنين."
+   ],
+   "en": [
+    "Carry: licence, registration, insurance, inspection certificate if needed.",
+    "In the car: triangle, extinguisher, first-aid kit, hi-vis vest.",
+    "Licence B: up to 3.5 t and 8 passengers, from 18.",
+    "Theory: 50 questions, pass 41, serious fault −5, valid 3 years."
+   ]
+  },
+  "terms": [
+   {
+    "nl": "rijbewijs",
+    "fr": "permis de conduire",
+    "ar": "رخصة سواقة",
+    "en": "driving licence"
+   },
+   {
+    "nl": "inschrijvingsbewijs",
+    "fr": "certificat d'immatriculation",
+    "ar": "ورقة تسجيل",
+    "en": "registration certificate"
+   },
+   {
+    "nl": "verzekering",
+    "fr": "assurance",
+    "ar": "تأمين",
+    "en": "insurance"
+   },
+   {
+    "nl": "technische keuring",
+    "fr": "contrôle technique",
+    "ar": "فحص فني",
+    "en": "technical inspection"
+   }
+  ]
+ },
+ {
+  "id": "accident",
+  "icon": "danger",
+  "title": {
+   "ar": "الحوادث والعطل",
+   "en": "Accidents & breakdowns"
+  },
+  "body": {
+   "ar": [
+    "أمّن، اتصل، ساعد.",
+    "المثلث: 30 م عالطريق العادي، 100 م عالأوتوستراد.",
+    "112 إسعاف ومطافي، 101 شرطة.",
+    "حادث صغير: ورقة الحادث الأوروبية.",
+    "ممنوع تهرب من الحادث."
+   ],
+   "en": [
+    "Secure, alert, help.",
+    "Triangle: 30 m on normal roads, 100 m on motorways.",
+    "112 ambulance/fire, 101 police.",
+    "Minor accident: European accident report.",
+    "Never leave the scene."
+   ]
+  },
+  "terms": [
+   {
+    "nl": "ongeval",
+    "fr": "accident",
+    "ar": "حادث",
+    "en": "accident"
+   },
+   {
+    "nl": "gevarendriehoek",
+    "fr": "triangle de danger",
+    "ar": "مثلث تحذير",
+    "en": "warning triangle"
+   },
+   {
+    "nl": "aanrijdingsformulier",
+    "fr": "constat",
+    "ar": "ورقة الحادث",
+    "en": "accident report"
+   },
+   {
+    "nl": "fluohesje",
+    "fr": "gilet fluo",
+    "ar": "سترة فسفورية",
+    "en": "hi-vis vest"
+   }
+  ]
+ },
+ {
+  "id": "eco",
+  "icon": "bulb",
+  "title": {
+   "ar": "السواقة الاقتصادية",
+   "en": "Eco-driving"
+  },
+  "body": {
+   "ar": [
+    "طلّع الغيار بكير وتوقّع قدامك.",
+    "العجلات بالهوا الصح.",
+    "طفي المحرك إذا واقف أكتر من دقيقة.",
+    "السرعة العالية وصندوق السقف بيزيدوا الصرف.",
+    "مناطق LEZ: انتبه للسيارات القديمة."
+   ],
+   "en": [
+    "Shift up early and anticipate.",
+    "Keep correct tyre pressure.",
+    "Switch off when stationary over a minute.",
+    "High speed and roof boxes raise consumption.",
+    "LEZ zones restrict polluting cars."
+   ]
+  },
+  "terms": [
+   {
+    "nl": "verbruik",
+    "fr": "consommation",
+    "ar": "صرف",
+    "en": "consumption"
+   },
+   {
+    "nl": "bandenspanning",
+    "fr": "pression des pneus",
+    "ar": "ضغط العجل",
+    "en": "tyre pressure"
+   },
+   {
+    "nl": "lage-emissiezone",
+    "fr": "zone de basses émissions",
+    "ar": "منطقة انبعاثات منخفضة",
+    "en": "low-emission zone"
+   }
+  ]
+ },
+ {
+  "id": "technique",
+  "icon": "cog",
+  "title": {
+   "ar": "السيارة وتقنياتها",
+   "en": "Vehicle technique"
+  },
+  "body": {
+   "ar": [
+    "عمق خطوط العجل 1.6 ملم عالأقل.",
+    "ABS بيخليك تلف وإنت عم تفرمل.",
+    "الضو الأحمر بلوحة السيارة = وقف بأمان.",
+    "بالشتي انتبه للأكوابلانينغ.",
+    "نضّف التلج عن كل الزجاج والضو والسقف."
+   ],
+   "en": [
+    "Tread depth at least 1.6 mm.",
+    "ABS lets you steer while braking.",
+    "Red warning light = stop safely.",
+    "Beware of aquaplaning in rain.",
+    "Clear snow from all windows, lights and roof."
+   ]
+  },
+  "terms": [
+   {
+    "nl": "band",
+    "fr": "pneu",
+    "ar": "عجل",
+    "en": "tyre"
+   },
+   {
+    "nl": "rem",
+    "fr": "frein",
+    "ar": "فرام",
+    "en": "brake"
+   },
+   {
+    "nl": "profiel",
+    "fr": "sculpture",
+    "ar": "خطوط العجل",
+    "en": "tread"
+   },
+   {
+    "nl": "controlelampje",
+    "fr": "témoin",
+    "ar": "ضو تحذير",
+    "en": "warning light"
+   }
+  ]
+ },
+ {
+  "id": "serious",
+  "icon": "stop",
+  "title": {
+   "ar": "الأغلاط الخطيرة (−5)",
+   "en": "Serious faults (−5)"
+  },
+  "body": {
+   "ar": [
+    "الغلطة الخطيرة بتنقص 5 علامات بالامتحان.",
+    "أمثلة: قطع الأحمر، ما توقف عالـSTOP، أولوية المشاة، تجاوز ممنوع، عكس السير، سكر ومخدرات، التلفون بالإيد، سرعة كبيرة قرب مدرسة.",
+    "هالأسئلة عليها شارة ⚠ ×5."
+   ],
+   "en": [
+    "A serious fault costs 5 points on the exam.",
+    "Examples: red light, rolling a STOP, pedestrian priority, illegal overtaking, wrong way, alcohol/drugs, handheld phone, big speeding near schools.",
+    "These questions show a ⚠ ×5 badge."
+   ]
+  },
+  "terms": [
+   {
+    "nl": "zware fout",
+    "fr": "faute grave",
+    "ar": "غلطة خطيرة",
+    "en": "serious fault"
+   },
+   {
+    "nl": "overtreding",
+    "fr": "infraction",
+    "ar": "مخالفة",
+    "en": "offence"
+   }
+  ]
+ }
 ]
