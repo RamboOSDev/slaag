@@ -1,0 +1,1328 @@
+[
+ {
+  "id": "q01",
+  "lesson": "speed",
+  "sign": "built_up",
+  "weight": 1,
+  "q": {
+   "nl": "Wat is de standaard maximumsnelheid binnen de bebouwde kom?",
+   "fr": "Quelle est la vitesse maximale standard en agglomération ?",
+   "ar": "ما السرعة القصوى العادية داخل المنطقة السكنية؟",
+   "en": "What is the standard speed limit in a built-up area?"
+  },
+  "opts": {
+   "nl": [
+    "30 km/u",
+    "50 km/u",
+    "70 km/u"
+   ],
+   "fr": [
+    "30 km/h",
+    "50 km/h",
+    "70 km/h"
+   ],
+   "ar": [
+    "30 كم/س",
+    "50 كم/س",
+    "70 كم/س"
+   ],
+   "en": [
+    "30 km/h",
+    "50 km/h",
+    "70 km/h"
+   ]
+  },
+  "answer": 1,
+  "explain": {
+   "ar": "داخل المنطقة السكنية (بعد لوحة اسم البلدة) السرعة العادية 50، إلا إذا في إشارة غير.",
+   "en": "Inside a built-up area (after the town-name sign) the default is 50 unless signs say otherwise."
+  }
+ },
+ {
+  "id": "q02",
+  "lesson": "speed",
+  "sign": null,
+  "weight": 1,
+  "q": {
+   "nl": "Wat is de maximumsnelheid op de autosnelweg?",
+   "fr": "Quelle est la vitesse maximale sur l'autoroute ?",
+   "ar": "ما السرعة القصوى على الأوتوستراد؟",
+   "en": "What is the speed limit on the motorway?"
+  },
+  "opts": {
+   "nl": [
+    "100 km/u",
+    "120 km/u",
+    "130 km/u"
+   ],
+   "fr": [
+    "100 km/h",
+    "120 km/h",
+    "130 km/h"
+   ],
+   "ar": [
+    "100",
+    "120",
+    "130"
+   ],
+   "en": [
+    "100 km/h",
+    "120 km/h",
+    "130 km/h"
+   ]
+  },
+  "answer": 1,
+  "explain": {
+   "ar": "على الأوتوستراد ببلجيكا الحد الأقصى 120.",
+   "en": "The Belgian motorway limit is 120 km/h."
+  }
+ },
+ {
+  "id": "q03",
+  "lesson": "speed",
+  "sign": null,
+  "weight": 1,
+  "q": {
+   "nl": "Wat is de maximumsnelheid buiten de bebouwde kom in Vlaanderen?",
+   "fr": "Quelle est la vitesse maximale hors agglomération en Flandre ?",
+   "ar": "ما السرعة القصوى خارج المنطقة السكنية في فلاندرن؟",
+   "en": "Speed limit outside built-up areas in Flanders?"
+  },
+  "opts": {
+   "nl": [
+    "70 km/u",
+    "90 km/u",
+    "120 km/u"
+   ],
+   "fr": [
+    "70 km/h",
+    "90 km/h",
+    "120 km/h"
+   ],
+   "ar": [
+    "70",
+    "90",
+    "120"
+   ],
+   "en": [
+    "70 km/h",
+    "90 km/h",
+    "120 km/h"
+   ]
+  },
+  "answer": 0,
+  "explain": {
+   "ar": "بفلاندرن وبروكسل خارج المدن 70، أما بوالونيا 90.",
+   "en": "In Flanders and Brussels it is 70; in Wallonia 90."
+  }
+ },
+ {
+  "id": "q04",
+  "lesson": "speed",
+  "sign": null,
+  "weight": 1,
+  "q": {
+   "nl": "Wat is de maximumsnelheid buiten de bebouwde kom in Wallonië?",
+   "fr": "Quelle est la vitesse maximale hors agglomération en Wallonie ?",
+   "ar": "ما السرعة القصوى خارج المنطقة السكنية في والونيا؟",
+   "en": "Speed limit outside built-up areas in Wallonia?"
+  },
+  "opts": {
+   "nl": [
+    "70 km/u",
+    "90 km/u",
+    "100 km/u"
+   ],
+   "fr": [
+    "70 km/h",
+    "90 km/h",
+    "100 km/h"
+   ],
+   "ar": [
+    "70",
+    "90",
+    "100"
+   ],
+   "en": [
+    "70 km/h",
+    "90 km/h",
+    "100 km/h"
+   ]
+  },
+  "answer": 1,
+  "explain": {
+   "ar": "بوالونيا الحد خارج المدن 90.",
+   "en": "In Wallonia it is 90 km/h."
+  }
+ },
+ {
+  "id": "q05",
+  "lesson": "speed",
+  "sign": "speed30",
+  "weight": 1,
+  "q": {
+   "nl": "Je ziet dit bord. Hoe snel mag je maximaal rijden?",
+   "fr": "Vous voyez ce panneau. Quelle est votre vitesse maximale ?",
+   "ar": "شفت هالإشارة. قديش أقصى سرعة؟",
+   "en": "You see this sign. What is your maximum speed?"
+  },
+  "opts": {
+   "nl": [
+    "30 km/u",
+    "50 km/u",
+    "Zo snel als je wilt"
+   ],
+   "fr": [
+    "30 km/h",
+    "50 km/h",
+    "Aussi vite que vous voulez"
+   ],
+   "ar": [
+    "30",
+    "50",
+    "قد ما بدك"
+   ],
+   "en": [
+    "30 km/h",
+    "50 km/h",
+    "As fast as you like"
+   ]
+  },
+  "answer": 0,
+  "explain": {
+   "ar": "الدائرة الحمرا مع رقم = سرعة قصوى إجبارية.",
+   "en": "Red circle with a number = mandatory maximum speed."
+  }
+ },
+ {
+  "id": "q06",
+  "lesson": "speed",
+  "sign": null,
+  "weight": 1,
+  "q": {
+   "nl": "In het Brussels Gewest is de standaardsnelheid in de bebouwde kom meestal…",
+   "fr": "En Région bruxelloise, la vitesse standard en agglomération est généralement…",
+   "ar": "بمنطقة بروكسل، السرعة العادية داخل المدينة غالباً…",
+   "en": "In the Brussels Region the default speed in built-up areas is usually…"
+  },
+  "opts": {
+   "nl": [
+    "30 km/u",
+    "50 km/u",
+    "70 km/u"
+   ],
+   "fr": [
+    "30 km/h",
+    "50 km/h",
+    "70 km/h"
+   ],
+   "ar": [
+    "30",
+    "50",
+    "70"
+   ],
+   "en": [
+    "30 km/h",
+    "50 km/h",
+    "70 km/h"
+   ]
+  },
+  "answer": 0,
+  "explain": {
+   "ar": "بروكسل صارت مدينة 30 بأغلب الشوارع (إلا إذا في إشارة غير).",
+   "en": "Brussels is mostly a 30 km/h city unless signs say otherwise."
+  }
+ },
+ {
+  "id": "q07",
+  "lesson": "speed",
+  "sign": "speed50",
+  "weight": 1,
+  "q": {
+   "nl": "Het wegdek is nat en er is mist. Wat doe je?",
+   "fr": "La route est mouillée et il y a du brouillard. Que faites-vous ?",
+   "ar": "الطريق مبلول وفي ضباب. شو بتعمل؟",
+   "en": "The road is wet and foggy. What do you do?"
+  },
+  "opts": {
+   "nl": [
+    "Ik pas mijn snelheid aan en rij trager",
+    "Ik rij gewoon 50",
+    "Ik rij sneller om er vlug door te zijn"
+   ],
+   "fr": [
+    "J'adapte ma vitesse et je roule plus lentement",
+    "Je roule simplement à 50",
+    "Je roule plus vite pour passer vite"
+   ],
+   "ar": [
+    "بخفف السرعة حسب الطقس",
+    "بسوق 50 عادي",
+    "بسرّع لأخلص بسرعة"
+   ],
+   "en": [
+    "Adapt and slow down",
+    "Just drive 50",
+    "Drive faster to get through"
+   ]
+  },
+  "answer": 0,
+  "explain": {
+   "ar": "الرقم هو الحد الأقصى، مش السرعة المطلوبة. لازم تخفف حسب الظروف.",
+   "en": "The limit is a maximum; you must adapt to conditions."
+  }
+ },
+ {
+  "id": "q08",
+  "lesson": "alcohol",
+  "sign": null,
+  "weight": 1,
+  "q": {
+   "nl": "Wat is de algemene alcohollimiet voor bestuurders?",
+   "fr": "Quelle est la limite d'alcool générale pour les conducteurs ?",
+   "ar": "ما حد الكحول العام للسائقين؟",
+   "en": "What is the general blood alcohol limit for drivers?"
+  },
+  "opts": {
+   "nl": [
+    "0,2 promille",
+    "0,5 promille",
+    "0,8 promille"
+   ],
+   "fr": [
+    "0,2 pour mille",
+    "0,5 pour mille",
+    "0,8 pour mille"
+   ],
+   "ar": [
+    "0.2 بالألف",
+    "0.5 بالألف",
+    "0.8 بالألف"
+   ],
+   "en": [
+    "0.2‰",
+    "0.5‰",
+    "0.8‰"
+   ]
+  },
+  "answer": 1,
+  "explain": {
+   "ar": "الحد العام 0.5 بالألف بالدم.",
+   "en": "The general limit is 0.5‰."
+  }
+ },
+ {
+  "id": "q09",
+  "lesson": "alcohol",
+  "sign": null,
+  "weight": 1,
+  "q": {
+   "nl": "Wat is de alcohollimiet voor professionele bestuurders (bv. bus, taxi)?",
+   "fr": "Quelle est la limite pour les conducteurs professionnels (bus, taxi) ?",
+   "ar": "ما حد الكحول للسائق المحترف (باص، تاكسي)؟",
+   "en": "Alcohol limit for professional drivers (bus, taxi)?"
+  },
+  "opts": {
+   "nl": [
+    "0,2 promille",
+    "0,5 promille",
+    "0 promille"
+   ],
+   "fr": [
+    "0,2 pour mille",
+    "0,5 pour mille",
+    "0 pour mille"
+   ],
+   "ar": [
+    "0.2",
+    "0.5",
+    "0"
+   ],
+   "en": [
+    "0.2‰",
+    "0.5‰",
+    "0‰"
+   ]
+  },
+  "answer": 0,
+  "explain": {
+   "ar": "السائق المحترف حدّه أقل: 0.2 بالألف.",
+   "en": "Professional drivers: 0.2‰."
+  }
+ },
+ {
+  "id": "q10",
+  "lesson": "alcohol",
+  "sign": null,
+  "weight": 5,
+  "q": {
+   "nl": "Je hebt veel gedronken op een feest. Wat doe je?",
+   "fr": "Vous avez beaucoup bu à une fête. Que faites-vous ?",
+   "ar": "شربت كتير بحفلة. شو بتعمل؟",
+   "en": "You drank a lot at a party. What do you do?"
+  },
+  "opts": {
+   "nl": [
+    "Ik rij niet en neem een taxi of laat iemand anders rijden",
+    "Ik rij heel voorzichtig naar huis",
+    "Ik drink eerst koffie en rij dan"
+   ],
+   "fr": [
+    "Je ne conduis pas, je prends un taxi ou quelqu'un d'autre conduit",
+    "Je rentre très prudemment",
+    "Je bois un café puis je conduis"
+   ],
+   "ar": [
+    "ما بسوق، باخد تاكسي أو حدا تاني بيسوق",
+    "بسوق عالبيت بشويش",
+    "بشرب قهوة وبسوق"
+   ],
+   "en": [
+    "Don't drive; take a taxi or let someone else drive",
+    "Drive home very carefully",
+    "Drink coffee, then drive"
+   ]
+  },
+  "answer": 0,
+  "explain": {
+   "ar": "القهوة ما بتنزّل الكحول. بس الوقت. لا تسوق أبداً.",
+   "en": "Coffee doesn't remove alcohol; only time does. Never drive."
+  }
+ },
+ {
+  "id": "q11",
+  "lesson": "alcohol",
+  "sign": null,
+  "weight": 1,
+  "q": {
+   "nl": "Mag je rijden na het gebruik van drugs?",
+   "fr": "Pouvez-vous conduire après avoir consommé de la drogue ?",
+   "ar": "بيصير تسوق بعد ما تاخد مخدرات؟",
+   "en": "May you drive after using drugs?"
+  },
+  "opts": {
+   "nl": [
+    "Nee, nooit",
+    "Ja, als je je goed voelt",
+    "Ja, enkel overdag"
+   ],
+   "fr": [
+    "Non, jamais",
+    "Oui, si vous vous sentez bien",
+    "Oui, seulement le jour"
+   ],
+   "ar": [
+    "لا، أبداً",
+    "إيه إذا حاسس حالك منيح",
+    "إيه بس بالنهار"
+   ],
+   "en": [
+    "No, never",
+    "Yes, if you feel fine",
+    "Yes, only by day"
+   ]
+  },
+  "answer": 0,
+  "explain": {
+   "ar": "ممنوع تماماً.",
+   "en": "Strictly forbidden."
+  }
+ },
+ {
+  "id": "q12",
+  "lesson": "priority",
+  "sign": "priority_right",
+  "weight": 1,
+  "q": {
+   "nl": "Op een kruispunt zonder borden of lichten heeft voorrang…",
+   "fr": "À un carrefour sans signalisation, la priorité est à…",
+   "ar": "بتقاطع بلا إشارات ولا ضو، الأولوية لـ…",
+   "en": "At a junction without signs or lights, priority goes to…"
+  },
+  "opts": {
+   "nl": [
+    "het verkeer van rechts",
+    "het verkeer van links",
+    "de snelste bestuurder"
+   ],
+   "fr": [
+    "la circulation venant de droite",
+    "la circulation venant de gauche",
+    "le conducteur le plus rapide"
+   ],
+   "ar": [
+    "اللي جاي من اليمين",
+    "اللي جاي من الشمال",
+    "الأسرع"
+   ],
+   "en": [
+    "traffic from the right",
+    "traffic from the left",
+    "the fastest driver"
+   ]
+  },
+  "answer": 0,
+  "explain": {
+   "ar": "القاعدة الأساسية ببلجيكا: الأولوية لليمين.",
+   "en": "Basic Belgian rule: priority to the right."
+  }
+ },
+ {
+  "id": "q13",
+  "lesson": "priority",
+  "sign": "stop",
+  "weight": 5,
+  "q": {
+   "nl": "Je ziet dit bord. Wat moet je doen?",
+   "fr": "Vous voyez ce panneau. Que devez-vous faire ?",
+   "ar": "شفت هالإشارة. شو لازم تعمل؟",
+   "en": "You see this sign. What must you do?"
+  },
+  "opts": {
+   "nl": [
+    "Volledig stoppen en voorrang geven",
+    "Vertragen en doorrijden",
+    "Toeteren en doorrijden"
+   ],
+   "fr": [
+    "M'arrêter complètement et céder le passage",
+    "Ralentir et continuer",
+    "Klaxonner et continuer"
+   ],
+   "ar": [
+    "توقف كامل وتعطي الأولوية",
+    "تخفف وتكمل",
+    "تزمّر وتكمل"
+   ],
+   "en": [
+    "Stop completely and give way",
+    "Slow down and continue",
+    "Honk and continue"
+   ]
+  },
+  "answer": 0,
+  "explain": {
+   "ar": "STOP يعني وقوف كامل عالخط، حتى لو الطريق فاضي.",
+   "en": "STOP means a full stop at the line, even if the road is empty."
+  }
+ },
+ {
+  "id": "q14",
+  "lesson": "priority",
+  "sign": "yield",
+  "weight": 1,
+  "q": {
+   "nl": "Wat betekent dit bord?",
+   "fr": "Que signifie ce panneau ?",
+   "ar": "شو معنى هالإشارة؟",
+   "en": "What does this sign mean?"
+  },
+  "opts": {
+   "nl": [
+    "Voorrang verlenen",
+    "Je hebt voorrang",
+    "Verboden in te rijden"
+   ],
+   "fr": [
+    "Céder le passage",
+    "Vous avez la priorité",
+    "Accès interdit"
+   ],
+   "ar": [
+    "أعطِ الأولوية",
+    "إلك الأولوية",
+    "ممنوع الدخول"
+   ],
+   "en": [
+    "Give way",
+    "You have priority",
+    "No entry"
+   ]
+  },
+  "answer": 0,
+  "explain": {
+   "ar": "المثلث المقلوب = أعطِ الأولوية للطريق اللي بتقطعه.",
+   "en": "Inverted triangle = give way to the road you are entering."
+  }
+ },
+ {
+  "id": "q15",
+  "lesson": "priority",
+  "sign": "priority_road",
+  "weight": 1,
+  "q": {
+   "nl": "Wat betekent dit bord?",
+   "fr": "Que signifie ce panneau ?",
+   "ar": "شو معنى هالإشارة؟",
+   "en": "What does this sign mean?"
+  },
+  "opts": {
+   "nl": [
+    "Je rijdt op een voorrangsweg",
+    "Einde van de voorrangsweg",
+    "Gevaarlijke bocht"
+   ],
+   "fr": [
+    "Vous êtes sur une route prioritaire",
+    "Fin de la route prioritaire",
+    "Virage dangereux"
+   ],
+   "ar": [
+    "انت على طريق إلو أولوية",
+    "نهاية طريق الأولوية",
+    "كوع خطير"
+   ],
+   "en": [
+    "You are on a priority road",
+    "End of priority road",
+    "Dangerous bend"
+   ]
+  },
+  "answer": 0,
+  "explain": {
+   "ar": "المعين الأصفر = طريقك إلو أولوية بالتقاطعات الجاية.",
+   "en": "Yellow diamond = your road has priority at upcoming junctions."
+  }
+ },
+ {
+  "id": "q16",
+  "lesson": "priority",
+  "sign": "pedestrian",
+  "weight": 5,
+  "q": {
+   "nl": "Een voetganger staat klaar om over te steken op het zebrapad. Wat doe je?",
+   "fr": "Un piéton attend pour traverser au passage piéton. Que faites-vous ?",
+   "ar": "في شخص ماشي ناطر يقطع عالخطوط البيضا. شو بتعمل؟",
+   "en": "A pedestrian is waiting at a zebra crossing. What do you do?"
+  },
+  "opts": {
+   "nl": [
+    "Ik stop en laat hem oversteken",
+    "Ik toeter",
+    "Ik rij snel door"
+   ],
+   "fr": [
+    "Je m'arrête et le laisse traverser",
+    "Je klaxonne",
+    "Je passe vite"
+   ],
+   "ar": [
+    "بوقف وبخليه يقطع",
+    "بزمّر",
+    "بمرق بسرعة"
+   ],
+   "en": [
+    "Stop and let them cross",
+    "Honk",
+    "Drive through quickly"
+   ]
+  },
+  "answer": 0,
+  "explain": {
+   "ar": "المشاة على ممر المشاة إلهم الأولوية دايماً.",
+   "en": "Pedestrians at a zebra crossing have priority."
+  }
+ },
+ {
+  "id": "q17",
+  "lesson": "priority",
+  "sign": null,
+  "weight": 1,
+  "q": {
+   "nl": "Een ambulance met sirene en blauw licht komt achter je. Wat doe je?",
+   "fr": "Une ambulance avec sirène et feu bleu arrive derrière vous. Que faites-vous ?",
+   "ar": "إسعاف بصفارة وضو أزرق وراك. شو بتعمل؟",
+   "en": "An ambulance with siren and blue light is behind you. What do you do?"
+  },
+  "opts": {
+   "nl": [
+    "Ik maak de weg vrij",
+    "Ik rij gewoon verder",
+    "Ik rem plots midden op de weg"
+   ],
+   "fr": [
+    "Je libère le passage",
+    "Je continue normalement",
+    "Je freine brusquement au milieu"
+   ],
+   "ar": [
+    "بفتحله الطريق",
+    "بكمل عادي",
+    "بفرمل فجأة بنص الطريق"
+   ],
+   "en": [
+    "Make way",
+    "Carry on",
+    "Brake suddenly in the middle"
+   ]
+  },
+  "answer": 0,
+  "explain": {
+   "ar": "سيارات الطوارئ بالصفارة والضو الأزرق إلها الأولوية. افتحلها بأمان.",
+   "en": "Emergency vehicles with siren and blue light have priority; make way safely."
+  }
+ },
+ {
+  "id": "q18",
+  "lesson": "priority",
+  "sign": "roundabout",
+  "weight": 1,
+  "q": {
+   "nl": "Wat betekent dit blauwe bord?",
+   "fr": "Que signifie ce panneau bleu ?",
+   "ar": "شو معنى هالإشارة الزرقا؟",
+   "en": "What does this blue sign mean?"
+  },
+  "opts": {
+   "nl": [
+    "Rotonde: rijd in de richting van de pijlen",
+    "Keer om",
+    "Parking"
+   ],
+   "fr": [
+    "Giratoire : suivez le sens des flèches",
+    "Faites demi-tour",
+    "Parking"
+   ],
+   "ar": [
+    "دوّار: لف باتجاه الأسهم",
+    "ارجع",
+    "موقف سيارات"
+   ],
+   "en": [
+    "Roundabout: follow the arrows",
+    "U-turn",
+    "Parking"
+   ]
+  },
+  "answer": 0,
+  "explain": {
+   "ar": "الإشارة الزرقا الدائرية = إجباري. هون دوّار.",
+   "en": "Round blue sign = mandatory; here a roundabout."
+  }
+ },
+ {
+  "id": "q19",
+  "lesson": "signs",
+  "sign": "no_entry",
+  "weight": 5,
+  "q": {
+   "nl": "Wat betekent dit bord?",
+   "fr": "Que signifie ce panneau ?",
+   "ar": "شو معنى هالإشارة؟",
+   "en": "What does this sign mean?"
+  },
+  "opts": {
+   "nl": [
+    "Verboden in te rijden",
+    "Parkeren verboden",
+    "Einde van de weg"
+   ],
+   "fr": [
+    "Sens interdit",
+    "Stationnement interdit",
+    "Fin de route"
+   ],
+   "ar": [
+    "ممنوع الدخول",
+    "ممنوع الوقوف",
+    "نهاية الطريق"
+   ],
+   "en": [
+    "No entry",
+    "No parking",
+    "End of road"
+   ]
+  },
+  "answer": 0,
+  "explain": {
+   "ar": "دائرة حمرا مع خط أبيض = ممنوع تفوت بهالاتجاه.",
+   "en": "Red disc with white bar = no entry in this direction."
+  }
+ },
+ {
+  "id": "q20",
+  "lesson": "signs",
+  "sign": "no_overtaking",
+  "weight": 1,
+  "q": {
+   "nl": "Wat betekent dit bord?",
+   "fr": "Que signifie ce panneau ?",
+   "ar": "شو معنى هالإشارة؟",
+   "en": "What does this sign mean?"
+  },
+  "opts": {
+   "nl": [
+    "Inhalen verboden",
+    "Twee auto's mogen parkeren",
+    "Tweerichtingsverkeer"
+   ],
+   "fr": [
+    "Dépassement interdit",
+    "Deux voitures peuvent stationner",
+    "Circulation dans les deux sens"
+   ],
+   "ar": [
+    "ممنوع التجاوز",
+    "مسموح توقف سيارتين",
+    "سير بالاتجاهين"
+   ],
+   "en": [
+    "No overtaking",
+    "Two cars may park",
+    "Two-way traffic"
+   ]
+  },
+  "answer": 0,
+  "explain": {
+   "ar": "السيارة الحمرا جنب السودا = ممنوع تتجاوز السيارات.",
+   "en": "Red car beside black car = no overtaking."
+  }
+ },
+ {
+  "id": "q21",
+  "lesson": "signs",
+  "sign": "no_parking",
+  "weight": 1,
+  "q": {
+   "nl": "Wat betekent dit bord?",
+   "fr": "Que signifie ce panneau ?",
+   "ar": "شو معنى هالإشارة؟",
+   "en": "What does this sign mean?"
+  },
+  "opts": {
+   "nl": [
+    "Parkeren verboden",
+    "Stilstaan en parkeren toegelaten",
+    "Bushalte"
+   ],
+   "fr": [
+    "Stationnement interdit",
+    "Arrêt et stationnement autorisés",
+    "Arrêt de bus"
+   ],
+   "ar": [
+    "ممنوع الوقوف (الركن)",
+    "مسموح الوقوف",
+    "موقف باص"
+   ],
+   "en": [
+    "No parking",
+    "Parking allowed",
+    "Bus stop"
+   ]
+  },
+  "answer": 0,
+  "explain": {
+   "ar": "دائرة زرقا بخط أحمر واحد = ممنوع تركن.",
+   "en": "Blue disc with one red bar = no parking."
+  }
+ },
+ {
+  "id": "q22",
+  "lesson": "signs",
+  "sign": "danger",
+  "weight": 1,
+  "q": {
+   "nl": "Welke vorm hebben gevaarsborden meestal?",
+   "fr": "Quelle forme ont généralement les panneaux de danger ?",
+   "ar": "شو شكل إشارات الخطر عادة؟",
+   "en": "What shape do danger signs usually have?"
+  },
+  "opts": {
+   "nl": [
+    "Driehoek met rode rand",
+    "Blauwe cirkel",
+    "Achthoek"
+   ],
+   "fr": [
+    "Triangle à bord rouge",
+    "Cercle bleu",
+    "Octogone"
+   ],
+   "ar": [
+    "مثلث بحافة حمرا",
+    "دائرة زرقا",
+    "مثمن"
+   ],
+   "en": [
+    "Triangle with red border",
+    "Blue circle",
+    "Octagon"
+   ]
+  },
+  "answer": 0,
+  "explain": {
+   "ar": "المثلث بحافة حمرا = انتبه، في خطر قدامك.",
+   "en": "Red-bordered triangle = warning of danger ahead."
+  }
+ },
+ {
+  "id": "q23",
+  "lesson": "signs",
+  "sign": "built_up",
+  "weight": 1,
+  "q": {
+   "nl": "Wat betekent dit bord met de naam van een gemeente?",
+   "fr": "Que signifie ce panneau avec le nom d'une commune ?",
+   "ar": "شو معنى لوحة اسم البلدة هي؟",
+   "en": "What does this town-name sign mean?"
+  },
+  "opts": {
+   "nl": [
+    "Begin van de bebouwde kom",
+    "Einde van de autosnelweg",
+    "Toeristische route"
+   ],
+   "fr": [
+    "Début d'agglomération",
+    "Fin d'autoroute",
+    "Route touristique"
+   ],
+   "ar": [
+    "بداية المنطقة السكنية",
+    "نهاية الأوتوستراد",
+    "طريق سياحي"
+   ],
+   "en": [
+    "Start of built-up area",
+    "End of motorway",
+    "Tourist route"
+   ]
+  },
+  "answer": 0,
+  "explain": {
+   "ar": "من هون بتبلّش قواعد المنطقة السكنية (عادة 50).",
+   "en": "Built-up area rules start here (usually 50)."
+  }
+ },
+ {
+  "id": "q24",
+  "lesson": "signs",
+  "sign": "motorway",
+  "weight": 1,
+  "q": {
+   "nl": "Wat betekent dit bord?",
+   "fr": "Que signifie ce panneau ?",
+   "ar": "شو معنى هالإشارة؟",
+   "en": "What does this sign mean?"
+  },
+  "opts": {
+   "nl": [
+    "Begin van de autosnelweg",
+    "Spoorweg",
+    "Ziekenhuis"
+   ],
+   "fr": [
+    "Début d'autoroute",
+    "Chemin de fer",
+    "Hôpital"
+   ],
+   "ar": [
+    "بداية الأوتوستراد",
+    "سكة قطار",
+    "مستشفى"
+   ],
+   "en": [
+    "Start of motorway",
+    "Railway",
+    "Hospital"
+   ]
+  },
+  "answer": 0,
+  "explain": {
+   "ar": "الإشارة الخضرا/الزرقا مع جسر = أوتوستراد، والحد 120.",
+   "en": "Motorway sign; limit 120."
+  }
+ },
+ {
+  "id": "q25",
+  "lesson": "signs",
+  "sign": null,
+  "weight": 5,
+  "q": {
+   "nl": "Het verkeerslicht staat op rood. Wat doe je?",
+   "fr": "Le feu est rouge. Que faites-vous ?",
+   "ar": "الضو أحمر. شو بتعمل؟",
+   "en": "The traffic light is red. What do you do?"
+  },
+  "opts": {
+   "nl": [
+    "Ik stop voor de stopstreep",
+    "Ik rij door als er niemand is",
+    "Ik versnel"
+   ],
+   "fr": [
+    "Je m'arrête avant la ligne",
+    "Je passe s'il n'y a personne",
+    "J'accélère"
+   ],
+   "ar": [
+    "بوقف قبل الخط",
+    "بمرق إذا ما في حدا",
+    "بسرّع"
+   ],
+   "en": [
+    "Stop before the line",
+    "Go if nobody is there",
+    "Speed up"
+   ]
+  },
+  "answer": 0,
+  "explain": {
+   "ar": "الأحمر يعني وقوف، دايماً.",
+   "en": "Red means stop, always."
+  }
+ },
+ {
+  "id": "q26",
+  "lesson": "signs",
+  "sign": null,
+  "weight": 1,
+  "q": {
+   "nl": "Het verkeerslicht springt op oranje en je kunt nog veilig stoppen. Wat doe je?",
+   "fr": "Le feu passe à l'orange et vous pouvez encore vous arrêter en sécurité. Que faites-vous ?",
+   "ar": "الضو صار برتقالي وفيك توقف بأمان. شو بتعمل؟",
+   "en": "The light turns amber and you can still stop safely. What do you do?"
+  },
+  "opts": {
+   "nl": [
+    "Ik stop",
+    "Ik versnel",
+    "Ik toeter"
+   ],
+   "fr": [
+    "Je m'arrête",
+    "J'accélère",
+    "Je klaxonne"
+   ],
+   "ar": [
+    "بوقف",
+    "بسرّع",
+    "بزمّر"
+   ],
+   "en": [
+    "Stop",
+    "Speed up",
+    "Honk"
+   ]
+  },
+  "answer": 0,
+  "explain": {
+   "ar": "البرتقالي = وقّف، إلا إذا ما فيك توقف بأمان.",
+   "en": "Amber = stop unless you cannot do so safely."
+  }
+ },
+ {
+  "id": "q27",
+  "lesson": "safety",
+  "sign": null,
+  "weight": 1,
+  "q": {
+   "nl": "Wie moet de gordel dragen?",
+   "fr": "Qui doit porter la ceinture ?",
+   "ar": "مين لازم يحط حزام الأمان؟",
+   "en": "Who must wear a seatbelt?"
+  },
+  "opts": {
+   "nl": [
+    "Alle inzittenden",
+    "Alleen de bestuurder",
+    "Alleen op de autosnelweg"
+   ],
+   "fr": [
+    "Tous les occupants",
+    "Seulement le conducteur",
+    "Seulement sur l'autoroute"
+   ],
+   "ar": [
+    "كل اللي بالسيارة",
+    "بس السائق",
+    "بس عالأوتوستراد"
+   ],
+   "en": [
+    "All occupants",
+    "Only the driver",
+    "Only on the motorway"
+   ]
+  },
+  "answer": 0,
+  "explain": {
+   "ar": "الحزام إجباري لكل الركاب، قدام وورا.",
+   "en": "Seatbelts are mandatory for everyone, front and back."
+  }
+ },
+ {
+  "id": "q28",
+  "lesson": "safety",
+  "sign": null,
+  "weight": 5,
+  "q": {
+   "nl": "Mag je tijdens het rijden een gsm in de hand houden?",
+   "fr": "Pouvez-vous tenir un téléphone en main en conduisant ?",
+   "ar": "بيصير تمسك الموبايل بإيدك وانت عم تسوق؟",
+   "en": "May you hold a phone while driving?"
+  },
+  "opts": {
+   "nl": [
+    "Nee, dat is verboden",
+    "Ja, voor een kort bericht",
+    "Ja, aan het rode licht"
+   ],
+   "fr": [
+    "Non, c'est interdit",
+    "Oui, pour un court message",
+    "Oui, au feu rouge"
+   ],
+   "ar": [
+    "لا، ممنوع",
+    "إيه لرسالة قصيرة",
+    "إيه عالضو الأحمر"
+   ],
+   "en": [
+    "No, it's forbidden",
+    "Yes, for a short message",
+    "Yes, at a red light"
+   ]
+  },
+  "answer": 0,
+  "explain": {
+   "ar": "ممنوع تمسك الموبايل وقت السواقة، حتى عالضو الأحمر.",
+   "en": "Holding a phone while driving is banned, even at a red light."
+  }
+ },
+ {
+  "id": "q29",
+  "lesson": "safety",
+  "sign": null,
+  "weight": 1,
+  "q": {
+   "nl": "Kinderen kleiner dan 1,35 m moeten vervoerd worden…",
+   "fr": "Les enfants de moins de 1,35 m doivent être transportés…",
+   "ar": "الأولاد أقصر من 1.35 م لازم ينقلوا…",
+   "en": "Children shorter than 1.35 m must travel…"
+  },
+  "opts": {
+   "nl": [
+    "in een aangepast kinderzitje",
+    "op de schoot",
+    "zonder gordel"
+   ],
+   "fr": [
+    "dans un siège enfant adapté",
+    "sur les genoux",
+    "sans ceinture"
+   ],
+   "ar": [
+    "بكرسي أطفال مناسب",
+    "بالحضن",
+    "بلا حزام"
+   ],
+   "en": [
+    "in a suitable child seat",
+    "on a lap",
+    "without a belt"
+   ]
+  },
+  "answer": 0,
+  "explain": {
+   "ar": "الأولاد الصغار لازم كرسي أطفال مناسب لطولهم ووزنهم.",
+   "en": "Small children need a suitable child seat."
+  }
+ },
+ {
+  "id": "q30",
+  "lesson": "safety",
+  "sign": null,
+  "weight": 1,
+  "q": {
+   "nl": "Je bent erg moe tijdens een lange rit. Wat doe je?",
+   "fr": "Vous êtes très fatigué pendant un long trajet. Que faites-vous ?",
+   "ar": "تعبان كتير بسفرة طويلة. شو بتعمل؟",
+   "en": "You are very tired on a long drive. What do you do?"
+  },
+  "opts": {
+   "nl": [
+    "Ik stop en rust uit",
+    "Ik zet de muziek luid",
+    "Ik rij sneller om vroeger thuis te zijn"
+   ],
+   "fr": [
+    "Je m'arrête et je me repose",
+    "Je mets la musique fort",
+    "Je roule plus vite"
+   ],
+   "ar": [
+    "بوقف وبرتاح",
+    "بعلّي الموسيقى",
+    "بسرّع لأوصل أبكر"
+   ],
+   "en": [
+    "Stop and rest",
+    "Turn up the music",
+    "Drive faster"
+   ]
+  },
+  "answer": 0,
+  "explain": {
+   "ar": "التعب خطير متل الكحول. وقّف وارتاح.",
+   "en": "Fatigue is as dangerous as alcohol; stop and rest."
+  }
+ },
+ {
+  "id": "q31",
+  "lesson": "safety",
+  "sign": null,
+  "weight": 1,
+  "q": {
+   "nl": "Wat doe je na een ongeval met gewonden?",
+   "fr": "Que faites-vous après un accident avec blessés ?",
+   "ar": "بعد حادث في مصابين، شو بتعمل؟",
+   "en": "After an accident with injured people, what do you do?"
+  },
+  "opts": {
+   "nl": [
+    "Gevaarlijke plaats beveiligen en 112 bellen",
+    "Meteen wegrijden",
+    "Foto's posten op sociale media"
+   ],
+   "fr": [
+    "Sécuriser les lieux et appeler le 112",
+    "Partir tout de suite",
+    "Poster des photos"
+   ],
+   "ar": [
+    "بأمّن المكان وبتصل بـ 112",
+    "بهرب فوراً",
+    "بنزّل صور عالسوشيال"
+   ],
+   "en": [
+    "Secure the scene and call 112",
+    "Drive away",
+    "Post photos"
+   ]
+  },
+  "answer": 0,
+  "explain": {
+   "ar": "رقم الطوارئ بأوروبا 112.",
+   "en": "The European emergency number is 112."
+  }
+ },
+ {
+  "id": "q32",
+  "lesson": "road",
+  "sign": null,
+  "weight": 1,
+  "q": {
+   "nl": "Langs welke kant haal je normaal in?",
+   "fr": "De quel côté dépassez-vous normalement ?",
+   "ar": "من أي جهة بتتجاوز عادة؟",
+   "en": "On which side do you normally overtake?"
+  },
+  "opts": {
+   "nl": [
+    "Links",
+    "Rechts",
+    "Maakt niet uit"
+   ],
+   "fr": [
+    "À gauche",
+    "À droite",
+    "Peu importe"
+   ],
+   "ar": [
+    "من الشمال",
+    "من اليمين",
+    "مش مهم"
+   ],
+   "en": [
+    "Left",
+    "Right",
+    "Doesn't matter"
+   ]
+  },
+  "answer": 0,
+  "explain": {
+   "ar": "التجاوز عادة من الشمال. ببلجيكا منسوق عاليمين.",
+   "en": "Overtake on the left; Belgium drives on the right."
+  }
+ },
+ {
+  "id": "q33",
+  "lesson": "road",
+  "sign": null,
+  "weight": 1,
+  "q": {
+   "nl": "Op de autosnelweg rij je normaal…",
+   "fr": "Sur l'autoroute, vous roulez normalement…",
+   "ar": "عالأوتوستراد بتسوق عادة…",
+   "en": "On the motorway you normally drive…"
+  },
+  "opts": {
+   "nl": [
+    "zo veel mogelijk rechts",
+    "altijd in de linkerstrook",
+    "in het midden"
+   ],
+   "fr": [
+    "le plus à droite possible",
+    "toujours à gauche",
+    "au milieu"
+   ],
+   "ar": [
+    "عاليمين قد ما فيك",
+    "دايماً بالمسرب الشمال",
+    "بالنص"
+   ],
+   "en": [
+    "as far right as possible",
+    "always in the left lane",
+    "in the middle"
+   ]
+  },
+  "answer": 0,
+  "explain": {
+   "ar": "خليك يمين، والمسرب الشمال للتجاوز.",
+   "en": "Keep right; the left lane is for overtaking."
+  }
+ },
+ {
+  "id": "q34",
+  "lesson": "road",
+  "sign": null,
+  "weight": 1,
+  "q": {
+   "nl": "Welke afstand hou je best tot je voorligger?",
+   "fr": "Quelle distance gardez-vous avec le véhicule devant ?",
+   "ar": "قديش مسافة بتترك مع السيارة اللي قدامك؟",
+   "en": "What gap should you keep to the vehicle in front?"
+  },
+  "opts": {
+   "nl": [
+    "Minstens 2 seconden",
+    "1 meter",
+    "Zo dicht mogelijk"
+   ],
+   "fr": [
+    "Au moins 2 secondes",
+    "1 mètre",
+    "Le plus près possible"
+   ],
+   "ar": [
+    "ثانيتين عالأقل",
+    "متر واحد",
+    "قريب قد ما فيك"
+   ],
+   "en": [
+    "At least 2 seconds",
+    "1 metre",
+    "As close as possible"
+   ]
+  },
+  "answer": 0,
+  "explain": {
+   "ar": "قاعدة الثانيتين: عد ثانيتين بينك وبين اللي قدامك.",
+   "en": "Use the 2-second rule."
+  }
+ }
+]

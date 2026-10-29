@@ -1,0 +1,20 @@
+[
+{"id":"speed","icon":"speed","title":{"ar":"السرعة","en":"Speed"},
+ "body":{"ar":["داخل المنطقة السكنية: 50 كم/س (بروكسل غالباً 30).","خارج المدن: 70 بفلاندرن وبروكسل، 90 بوالونيا.","الأوتوستراد: 120.","الرقم هو الحد الأقصى. خفف بالمطر والضباب."],"en":["Built-up area: 50 km/h (Brussels mostly 30).","Outside built-up areas: 70 in Flanders & Brussels, 90 in Wallonia.","Motorway: 120.","The limit is a maximum — slow down in rain or fog."]},
+ "terms":[{"nl":"bebouwde kom","fr":"agglomération","ar":"منطقة سكنية","en":"built-up area"},{"nl":"autosnelweg","fr":"autoroute","ar":"أوتوستراد","en":"motorway"},{"nl":"snelheid","fr":"vitesse","ar":"سرعة","en":"speed"}]},
+{"id":"alcohol","icon":"alcohol","title":{"ar":"الكحول والمخدرات","en":"Alcohol & drugs"},
+ "body":{"ar":["الحد العام: 0.5 بالألف.","السائق المحترف: 0.2 بالألف.","المخدرات: ممنوعة تماماً.","القهوة ما بتنزّل الكحول."],"en":["General limit: 0.5‰.","Professional drivers: 0.2‰.","Drugs: never.","Coffee does not lower alcohol."]},
+ "terms":[{"nl":"promille","fr":"pour mille","ar":"بالألف","en":"per mille"},{"nl":"bestuurder","fr":"conducteur","ar":"سائق","en":"driver"}]},
+{"id":"priority","icon":"priority","title":{"ar":"الأولوية","en":"Priority"},
+ "body":{"ar":["بلا إشارات: الأولوية لليمين.","STOP: وقوف كامل وأعطِ الأولوية.","المثلث المقلوب: أعطِ الأولوية.","المعين الأصفر: طريقك إلو أولوية.","المشاة عالممر والإسعاف: إلهم الأولوية."],"en":["No signs: priority to the right.","STOP: full stop and give way.","Inverted triangle: give way.","Yellow diamond: you have priority.","Pedestrians on crossings and emergency vehicles have priority."]},
+ "terms":[{"nl":"voorrang van rechts","fr":"priorité de droite","ar":"الأولوية لليمين","en":"priority to the right"},{"nl":"voorrang verlenen","fr":"céder le passage","ar":"أعطِ الأولوية","en":"give way"},{"nl":"kruispunt","fr":"carrefour","ar":"تقاطع","en":"junction"},{"nl":"voetganger","fr":"piéton","ar":"شخص ماشي","en":"pedestrian"}]},
+{"id":"signs","icon":"signs","title":{"ar":"الإشارات والأضواء","en":"Signs & lights"},
+ "body":{"ar":["مثلث أحمر = خطر.","دائرة حمرا = ممنوع.","دائرة زرقا = إجباري.","أحمر = وقوف. برتقالي = وقّف إذا فيك بأمان."],"en":["Red triangle = danger.","Red circle = prohibition.","Blue circle = obligation.","Red = stop. Amber = stop if safe."]},
+ "terms":[{"nl":"verkeersbord","fr":"panneau","ar":"إشارة سير","en":"road sign"},{"nl":"verboden","fr":"interdit","ar":"ممنوع","en":"forbidden"},{"nl":"verkeerslicht","fr":"feu","ar":"ضو السير","en":"traffic light"}]},
+{"id":"safety","icon":"safety","title":{"ar":"الأمان","en":"Safety"},
+ "body":{"ar":["الحزام لكل الركاب.","ممنوع تمسك الموبايل وانت عم تسوق.","الأولاد أقصر من 1.35 م: كرسي أطفال.","تعبان؟ وقّف وارتاح. حادث: 112."],"en":["Seatbelt for everyone.","No phone in hand while driving.","Children under 1.35 m: child seat.","Tired? Stop and rest. Accident: call 112."]},
+ "terms":[{"nl":"gordel","fr":"ceinture","ar":"حزام","en":"seatbelt"},{"nl":"gsm","fr":"GSM / téléphone","ar":"موبايل","en":"mobile phone"},{"nl":"ongeval","fr":"accident","ar":"حادث","en":"accident"}]},
+{"id":"road","icon":"road","title":{"ar":"المسارب والتجاوز","en":"Lanes & overtaking"},
+ "body":{"ar":["تجاوز من الشمال.","عالأوتوستراد خليك يمين.","اترك ثانيتين عالأقل بينك وبين اللي قدامك."],"en":["Overtake on the left.","Keep right on the motorway.","Keep at least 2 seconds' gap."]},
+ "terms":[{"nl":"inhalen","fr":"dépasser","ar":"تجاوز","en":"overtake"},{"nl":"rijstrook","fr":"bande de circulation","ar":"مسرب","en":"lane"}]}
+]
