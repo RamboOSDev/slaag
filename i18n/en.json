@@ -59,5 +59,8 @@
  "readOff": "Tap to turn on auto-read",
  "tapResume": "Browser blocked audio – tap to resume",
  "amrExam": "Amr's exam",
- "amr": "Amr's questions"
+ "amr": "Amr's questions",
+ "leaveExam": "Leave the exam? Your answers will be lost.",
+ "shuffle": "Shuffle order",
+ "on": "On"
 }

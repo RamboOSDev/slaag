@@ -3,7 +3,7 @@
 const $=s=>document.querySelector(s), app=$('#app');
 const LS={get:(k,d)=>{try{return JSON.parse(localStorage.getItem('slaag.'+k))??d}catch(e){return d}},set:(k,v)=>localStorage.setItem('slaag.'+k,JSON.stringify(v))};
 const P=new URLSearchParams(location.search), STREAM=P.get('stream')==='1';
-let T={}, LANGS=[], Q=[], L=[], st={ui:LS.get('ui',null),ex:LS.get('ex','nl'),delay:LS.get('delay',1.5),tr:LS.get('tr',false),auto:LS.get('auto',true),read:LS.get('read',false)};
+let T={}, LANGS=[], Q=[], L=[], st={ui:LS.get('ui',null),ex:LS.get('ex','nl'),delay:LS.get('delay',1.5),tr:LS.get('tr',true),auto:LS.get('auto',false),shuf:LS.get('shuf',false),read:LS.get('read',false)};
 const SESSION=sessionStorage.getItem('slaag.s')||String(Date.now()); sessionStorage.setItem('slaag.s',SESSION);
 const t=k=>T[k]||k, esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const ib=(ic,label,attrs='')=>`<button ${attrs}>${ICON[ic]}<span>${esc(label)}</span></button>`;
@@ -44,10 +44,10 @@ async function boot(){
 async function loadLang(c){T=await fetch(`i18n/${c}.json`).then(r=>r.json());st.ui=c;document.documentElement.lang=c;document.documentElement.dir=T._dir||'ltr'}
 async function firstRun(){
  const names=await Promise.all(LANGS.map(c=>fetch(`i18n/${c}.json`).then(r=>r.json()).then(x=>[c,x._name])));
- app.innerHTML=`<section class="pick"><img src="img/logo-full.svg" width="130" alt="Slaag"><p class="big">${ICON.globe}</p>
+ app.innerHTML=`<section class="pick"><img src="img/logo-full.svg" width="130" alt="Slaag"><p class="big">${ICON.globe}</p><p class="lbl">اللغة · Language</p>
   <div class="grid2">${names.map(([c,n])=>`<button class="lang" data-c="${c}">${esc(n)}</button>`).join('')}</div>
-  <p class="big">📝 ${ICON.exam}</p><div class="grid2"><button class="lang ex" data-e="nl">🇧🇪 Nederlands</button></div>
-  <button id="go" class="primary">${ICON.play}</button></section>`;
+  <p class="big">📝 ${ICON.exam}</p><p class="lbl">لغة الامتحان · Exam language</p><div class="grid2"><button class="lang ex" data-e="nl">🇧🇪 Nederlands</button></div>
+  <button id="go" class="primary">${ICON.play}<span>ابدأ · Start</span></button></section>`;
  let pc=st.ui;const mark=()=>app.querySelectorAll('.lang').forEach(b=>b.classList.toggle('sel',b.dataset.c===pc||b.dataset.e===st.ex));mark();
  app.onclick=e=>{const b=e.target.closest('button');if(!b)return;if(b.dataset.c)pc=b.dataset.c;if(b.dataset.e)st.ex=b.dataset.e;mark();
   if(b.id==='go'){app.onclick=null;LS.set('ui',pc);LS.set('ex',st.ex);loadLang(pc).then(start)}};
@@ -59,7 +59,10 @@ function start(){
  if('serviceWorker' in navigator)navigator.serviceWorker.register('sw.js').catch(()=>{});
 }
 function go(h){location.hash=h}
-function route(){stopSound();menuHist=false;closeMenu(true);clearTimers();const [v,a]=(location.hash.slice(1)||'home').split('/');
+let examLive=null,skipRoute=false;
+function route(){if(skipRoute){skipRoute=false;return}
+ if(examLive&&location.hash!==examLive){if(!confirm(t('leaveExam'))){skipRoute=true;location.hash=examLive;return}examLive=null}
+ stopSound();menuHist=false;closeMenu(true);clearTimers();const [v,a]=(location.hash.slice(1)||'home').split('/');
  ({home,lessons,signs:()=>signs(a),lesson:()=>lesson(a),practice:()=>quiz('practice',a),amr:()=>quiz('amr'),mistakes:()=>quiz('mistakes'),exam:()=>examIntro(),amrexam:()=>examIntro(1)}[v]||home)()}
 
 /* ---------- Menu (everything non-essential lives here) ---------- */
@@ -78,10 +81,12 @@ function openMenu(){const m=$('#menu');m.hidden=false;$('#backdrop').hidden=fals
  <label>${ICON.globe}${t('uiLang')}<select id="sUi">${LANGS.map(c=>`<option value="${c}" ${c===st.ui?'selected':''}>${c.toUpperCase()}</option>`).join('')}</select></label>
  <label>${ICON.exam}${t('examLang')}<select id="sEx"><option value="nl">Nederlands</option></select></label>
  <label>${ICON.next}${t('autoDelay')}<select id="sDl">${[0,1,1.5,2,3].map(v=>`<option value="${v}" ${v==st.delay?'selected':''}>${v||t('off')}</option>`).join('')}</select></label>
+ <label>${ICON.repeat}${t('shuffle')}<select id="sSh"><option value="0">${t('off')}</option><option value="1" ${st.shuf?'selected':''}>${t('on')}</option></select></label>
  <button id="rst" class="ghost">${ICON.x}${t('reset')}</button><p class="note">⚠ ${t('sample')}</p>`;
  $('#mx').onclick=()=>closeMenu();m.querySelectorAll('a').forEach(a=>a.onclick=()=>{if(a.target)closeMenu();else{menuHist=false;}});setTimeout(()=>$('#mx').focus(),0);
  $('#sUi').onchange=e=>{LS.set('ui',e.target.value);loadLang(e.target.value).then(()=>{route();updCount()})};
  $('#sEx').onchange=e=>{st.ex=e.target.value;LS.set('ex',st.ex);route()};
+ $('#sSh').onchange=e=>{st.shuf=e.target.value==='1';LS.set('shuf',st.shuf);const p=LS.get('pos',{});delete p.practice;delete p.amr;LS.set('pos',p);route()};
  $('#sDl').onchange=e=>{st.delay=+e.target.value;LS.set('delay',st.delay)};
  $('#rst').onclick=()=>{if(confirm(t('reset')+'?')){Object.keys(localStorage).filter(k=>k.startsWith('slaag.')).forEach(k=>localStorage.removeItem(k));location.reload()}};
 }
@@ -171,33 +176,37 @@ function quiz(mode,lessonId){
  let pool;
  if(mode==='mistakes'){pool=M.list().map(byId);if(!pool.length){app.innerHTML=`<section class="empty">${ICON.ok}<h2>${t('none')}</h2><a class="primary" href="#practice">${ICON.play}${t('practice')}</a></section>`;return}}
  else{const base=mode==='amr'?AMR:Q;pool=lessonId?Q.filter(q=>inL(q,lessonId)):base.slice();
-  // mix due mistakes into practice: one every 4 questions
-  const due=M.due().map(byId).filter(q=>(mode==='amr')===q.id.startsWith('AMR-')&&(!lessonId||inL(q,lessonId)));const mixed=[];let d=0;
-  pool.forEach((q,i)=>{mixed.push(q);if(i%4===3&&d<due.length)mixed.push(Object.assign({},due[d++],{_rev:1}))});pool=mixed}
+  if(st.shuf&&!lessonId){const O=LS.get('ord',{});let o=O[mode];if(!o||o.length!==pool.length){o=shuffle(pool.map(q=>q.id));O[mode]=o;LS.set('ord',O)}pool=o.map(byId).filter(Boolean)}}
+ /* Due mistakes are shown as a separate review card after every 4th answer, each id at most once per browser session,
+    and never inside the position-indexed pool (inserting them shifted the saved position and replayed questions). */
+ const revSeen=new Set(JSON.parse(sessionStorage.getItem('slaag.rev')||'[]'));let rev=null,cnt=0;
+ const nextRev=()=>mode==='mistakes'?null:M.due().map(byId).find(q=>q&&!revSeen.has(q.id)&&(mode==='amr')===q.id.startsWith('AMR-')&&(!lessonId||inL(q,lessonId))&&q.id!==pool[i].id);
  const key=mode+(lessonId||'');const pos=LS.get('pos',{});let i=Math.min(pos[key]||0,pool.length-1),answered={};
  const savePos=()=>{const p=LS.get('pos',{});p[key]=i;LS.set('pos',p)};
- function render(){clearTimers();const q=pool[i];
-  app.innerHTML=`<section class="quiz">${mode==='mistakes'?`<p class="hint">${ICON.repeat}${t('streak')} · <b>${(M.all()[q.id]||{}).streak||0}/${NEED}</b></p>`:q._rev?`<p class="hint">${ICON.repeat}${t('mistakes')}</p>`:''}
+ const cq=()=>rev?rev.q:pool[i];
+ function render(){clearTimers();const q=cq();
+  app.innerHTML=`<section class="quiz">${mode==='mistakes'?`<p class="hint">${ICON.repeat}${t('streak')} · <b>${(M.all()[q.id]||{}).streak||0}/${NEED}</b></p>`:rev?`<p class="hint">${ICON.repeat}${t('mistakes')}</p>`:''}
    ${card(q,i,pool.length)}</section>
    <div class="navbar">${ib('back',t('back'),`id="bB" ${i?'':'disabled'}`)}${ib('bulb',t('explain'),'id="bE" class="ghost" hidden')}${ib('next',t('next'),'id="bN" class="primary"')}</div>`;
   bindTools(q,render);
   app.querySelectorAll('.opt').forEach(b=>b.onclick=()=>pick(+b.dataset.k));
   const nf=$('#nf');if(nf)nf.onsubmit=e=>{e.preventDefault();const v=$('#ni').value.trim();if(v)pick(v)};
   $('#bB').onclick=prev;$('#bN').onclick=next;$('#bE').onclick=()=>explain(q);
-  if(answered[i]!=null)show(answered[i],false);
+  {const a=rev?rev.a:answered[i];if(a!=null)show(a,false)}
   document.onkeydown=e=>{if(e.target.tagName==='SELECT'||e.target.tagName==='INPUT')return;const rtl=document.dir==='rtl';
    if(e.key>='1'&&e.key<='3')pick(+e.key-1);else if(e.key==='Enter')next();
    else if(e.key==='ArrowRight')rtl?prev():next();else if(e.key==='ArrowLeft')rtl?next():prev()};
   swipe(app,dir=>{const rtl=document.dir==='rtl';(dir>0)!==rtl?prev():next()});
  }
- function pick(k){if(answered[i]!=null)return;const q=pool[i];answered[i]=k;const ok=isOk(q,k);M.record(q.id,ok);show(k,true)}
- function show(k,fresh){const q=pool[i],ok=isOk(q,k);
+ function pick(k){const q=cq();if(rev){if(rev.a!=null)return;rev.a=k}else{if(answered[i]!=null)return;answered[i]=k;cnt++}const ok=isOk(q,k);M.record(q.id,ok);show(k,true)}
+ function show(k,fresh){const q=cq(),ok=isOk(q,k);
   if(q.num!=null){const ni=$('#ni');if(ni){ni.value=k;ni.disabled=true;ni.classList.add(ok?'right':'wrong')}const nb=app.querySelector('#nf button');if(nb)nb.disabled=true}
   app.querySelectorAll('.opt').forEach((b,j)=>{b.disabled=true;if(j===q.answer){b.classList.add('right');b.querySelector('.mk').innerHTML=ICON.ok}else if(j===k){b.classList.add('wrong');b.querySelector('.mk').innerHTML=ICON.no}});
   $('#fb').innerHTML=`<p class="fb ${ok?'ok':'bad'}">${ok?ICON.ok+t('correct'):ICON.no+t('wrong')+(q.num!=null?` — <b dir="ltr">${esc(q.num)}</b>`:'')}</p>`;$('#bE').hidden=false;
   if(ok&&fresh&&st.delay>0&&i<pool.length-1)timers.push(setTimeout(next,st.delay*1000));}
- function next(){if(i<pool.length-1){i++;savePos();render()}else{const p=LS.get('pos',{});delete p[key];LS.set('pos',p);go('home')}}
- function prev(){if(i>0){i--;savePos();render()}}
+ function next(){if(rev){rev=null}else if(answered[i]!=null&&cnt&&cnt%4===0){const r=nextRev();if(r){revSeen.add(r.id);sessionStorage.setItem('slaag.rev',JSON.stringify([...revSeen]));rev={q:r,a:null};cnt++;return render()}}
+  if(i<pool.length-1){i++;savePos();render()}else{const p=LS.get('pos',{});delete p[key];LS.set('pos',p);go('home')}}
+ function prev(){if(rev){rev=null;return render()}if(i>0){i--;savePos();render()}}
  render();
 }
 function exHTML(q){const ui=st.ui==='ar'?'ar':'nl',a=q.explain[ui]||q.explain.nl||q.explain.ar||'';
@@ -211,7 +220,7 @@ function examIntro(az){const P=az?AMR:Q,n=Math.min(50,P.length),need=Math.ceil(4
  app.innerHTML=`<section class="intro"><p class="lic">${esc(t('licence'))}</p><h2>${ICON.exam}${t(az?'amrExam':'exam')}</h2>
  <div class="scard">${r(ICON.exam,t('nQ'),n)}${r(ICON.timer,t('tQ'),`15 ${esc(t('sec'))}`)}${r(ICON.ok,t('need'),`${need}/${n}`,'g')}${r('⚠',t('sf'),'<span dir="ltr">−5</span>','o')}</div>
  <p class="note">${esc(t('real'))}</p><button class="primary bigbtn" id="go"><span>${t('start')}</span>${ICON.play}</button></section>`;$('#go').onclick=()=>exam(P)}
-function exam(P){const qs=shuffle(P).slice(0,50),n=qs.length,ans=[];let i=0,left,cur=null,done=false;
+function exam(P){const seen=new Set(),qs=shuffle(P).filter(q=>{const k=tx(q.q,'nl').trim().toLowerCase()+'|'+(q.img||'');if(seen.has(k))return false;seen.add(k);return true}).slice(0,50),n=qs.length,ans=[];let i=0,left,cur=null,done=false;
  /* Real-exam rules: pick → confirm → next. No feedback, no going back, 15s → counts as unanswered. */
  function render(){clearTimers();const q=qs[i];left=15;cur=null;done=false;
   app.innerHTML=`<section class="quiz">${card(q,i,n,{timer:true,tools:true})}</section><div class="navbar"><button id="bA" class="auto ${st.auto?'on':''}" aria-pressed="${st.auto}">${ICON.bolt}<span>${t('auto')}</span></button>${ib('okc',t('confirm'),'id="bC" class="primary" disabled')}</div>`;
@@ -225,7 +234,7 @@ function exam(P){const qs=shuffle(P).slice(0,50),n=qs.length,ans=[];let i=0,left
  function sel(k){if(done)return;cur=k;app.querySelectorAll('.opt').forEach((b,j)=>b.classList.toggle('sel',j===k));const bn=$('#bC');if(bn)bn.disabled=false;if(st.auto)commit(k)}
  function confirmA(){if(cur!=null)commit(cur)}
  function commit(k){if(done)return;done=true;ans[i]=k;M.record(qs[i].id,isOk(qs[i],k));if(i<n-1){i++;render()}else finish()}
- function finish(){clearTimers();let score=n;const wrong=[];
+ function finish(){examLive=null;clearTimers();let score=n;const wrong=[];
   qs.forEach((q,j)=>{if(!isOk(q,ans[j])){score-=(q.weight>1||q.zf)?5:1;wrong.push(j)}});
   score=Math.max(0,score);const need=Math.ceil(41*n/50),pass=score>=need,ex=st.ex;
   app.innerHTML=`<section class="result ${pass?'ok':'bad'}"><div class="big">${pass?ICON.ok:ICON.no}</div><h2>${pass?t('pass'):t('fail')}</h2>
@@ -240,7 +249,7 @@ function exam(P){const qs=shuffle(P).slice(0,50),n=qs.length,ans=[];let i=0,left
    <div class="navbar static">${ib('repeat',t('mistakes'),'id="bM" class="primary"')}${ib('home',t('home'),'id="bH"')}</div></section>`;
   app.querySelectorAll('.bE').forEach(b=>b.onclick=()=>{const q=qs[+b.dataset.j],w=b.nextElementSibling;if(!w.innerHTML)w.innerHTML=exHTML(q)});
   $('#bM').onclick=()=>go('mistakes');$('#bH').onclick=()=>go('home');}
- render();
+ examLive=location.hash||'#exam';render();
 }
 
 /* ---------- Stream mode (?stream=1) — no personal data ---------- */
