@@ -37,7 +37,7 @@
  "streak": "Needs 3 correct in a row (separate sessions)",
  "rules": "50 questions · 15 s · pass 41/50 · serious fault = −5",
  "serious": "Serious fault",
- "reset": "Reset progress",
+ "reset": "Reset",
  "choose": "Choose your language",
  "exit": "Exit",
  "licence": "Rijbewijs B 🚗 Car licence",
@@ -62,5 +62,9 @@
  "amr": "Amr's questions",
  "leaveExam": "Leave the exam? Your answers will be lost.",
  "shuffle": "Shuffle order",
- "on": "On"
+ "on": "On",
+ "mastered": "Mastered",
+ "weak": "Weak",
+ "seen": "Seen",
+ "resetQ": "Reset your Amr progress and start over?"
 }

@@ -63,7 +63,7 @@ let examLive=null,skipRoute=false;
 function route(){if(skipRoute){skipRoute=false;return}
  if(examLive&&location.hash!==examLive){if(!confirm(t('leaveExam'))){skipRoute=true;location.hash=examLive;return}examLive=null}
  stopSound();menuHist=false;closeMenu(true);clearTimers();const [v,a]=(location.hash.slice(1)||'home').split('/');
- ({home,lessons,signs:()=>signs(a),lesson:()=>lesson(a),practice:()=>quiz('practice',a),amr:()=>quiz('amr'),mistakes:()=>quiz('mistakes'),exam:()=>examIntro(),amrexam:()=>examIntro(1)}[v]||home)()}
+ ({home,lessons,signs:()=>signs(a),lesson:()=>lesson(a),practice:()=>quiz('practice',a),amr:()=>amrQuiz(),mistakes:()=>quiz('mistakes'),exam:()=>examIntro(),amrexam:()=>examIntro(1)}[v]||home)()}
 
 /* ---------- Menu (everything non-essential lives here) ---------- */
 function toggleMenu(){const m=$('#menu');m.hidden?openMenu():closeMenu()}
@@ -170,6 +170,69 @@ function bindTools(q,rerender){const a=$('#bAu'),b=$('#bTr');
  readBtn(a,q);
  if(b)b.onclick=()=>{st.tr=!st.tr;LS.set('tr',st.tr);rerender()}}
 
+
+/* ---------- Amr adaptive spaced repetition ----------
+   State is keyed by question id (never by position), on a global answer counter "step":
+   S.c = consecutive correct, S.l = lapses, S.e = ease (interval multiplier), S.d = due step, S.n = times seen.
+   Wrong → due again 3-5 answers later (gap shrinks with each lapse). Correct → after a mistake 6, 20, then 120+ answers; never-missed 30, 80, 200+ (×ease).
+   3 correct in a row = mastered (shown rarely). Recent ids/texts are excluded so nothing repeats back-to-back. */
+const SR={
+ MAST:3,
+ get(){return LS.get('srs',{step:0,q:{},cur:null,hist:[]})},
+ put(s){LS.set('srs',s)},
+ reset(){localStorage.removeItem('slaag.srs')},
+ stats(s=SR.get()){let m=0,w=0,n=0;AMR.forEach(q=>{const e=s.q[q.id];if(!e)return;n++;if(e.c>=SR.MAST)m++;else if(e.l>0)w++});return{m,w,seen:n,tot:AMR.length}},
+ answer(id,ok){const s=SR.get(),e=s.q[id]||(s.q[id]={c:0,l:0,e:2.5,d:0,n:0});s.step++;e.n++;
+  if(ok){e.c++;e.e=Math.min(3,e.e+.1);e.d=s.step+Math.round((e.l?[0,6,20,120]:[0,30,80,200])[Math.min(e.c,3)]*e.e/2.5*(e.c>=SR.MAST?1+Math.random():1))}
+  else{e.l++;e.c=0;e.e=Math.max(1.3,e.e-.2);e.d=s.step+Math.max(2,5-e.l)}
+  s.hist=[id,...s.hist.filter(x=>x!==id)].slice(0,6);s.cur=null;SR.put(s)},
+ pick(){const s=SR.get();if(s.cur&&byId(s.cur))return byId(s.cur);
+  const rec=new Set(s.hist.slice(0,2)),recT=new Set(s.hist.slice(0,3).map(id=>{const q=byId(id);return q?tx(q.q,'nl').trim().toLowerCase():''}));
+  const ok=q=>!rec.has(q.id)&&!recT.has(tx(q.q,'nl').trim().toLowerCase());
+  const due=[],weak=[],fresh=[],rest=[];
+  for(const q of AMR){if(!ok(q))continue;const e=s.q[q.id];
+   if(!e)fresh.push(q);else if(e.d<=s.step)(e.c===0?weak:due).push(q);else rest.push(q)}
+  const R=a=>a[Math.random()*a.length|0];let q;
+  if(weak.length)q=weak.sort((a,b)=>s.q[a.id].d-s.q[b.id].d)[0];           /* overdue mistakes first */
+  else{const r=Math.random();
+   const late=due.filter(x=>s.q[x.id].c<SR.MAST&&s.step-s.q[x.id].d>=4);
+   if(late.length)q=late.sort((a,b)=>s.q[a.id].d-s.q[b.id].d)[0];
+   else if(due.length&&(!fresh.length||r<.4))q=R(due.filter(x=>s.q[x.id].c<SR.MAST).length?due.filter(x=>s.q[x.id].c<SR.MAST):due);
+   else if(fresh.length)q=R(fresh);
+   else q=rest.sort((a,b)=>s.q[a.id].d-s.q[b.id].d)[0]||R(AMR)}            /* everything scheduled: earliest due */
+  s.cur=q.id;SR.put(s);return q},
+ weight(q,s){const e=s.q[q.id];return !e?1.5:e.c>=SR.MAST?.5:1+e.l}
+};
+function amrQuiz(){
+ let hist=[],back=0;
+ const head=()=>{const x=SR.stats();return `<p class="hint srs">${ICON.ok}${t('mastered')} <b>${x.m}/${x.tot}</b> · ${ICON.no}${t('weak')} <b>${x.w}</b> · ${t('seen')} <b>${x.seen}</b>
+   <button id="bR" class="ghost sm">${ICON.repeat}<span>${t('reset')}</span></button></p>`};
+ function render(){clearTimers();const h=back?hist[hist.length-back]:null,q=h?h.q:SR.pick(),x=SR.stats();
+  app.innerHTML=`<section class="quiz">${head()}${card(q,x.seen,x.tot)}</section>
+   <div class="navbar">${ib('back',t('back'),`id="bB" ${back<hist.length?'':'disabled'}`)}${ib('bulb',t('explain'),'id="bE" class="ghost" hidden')}${ib('next',t('next'),'id="bN" class="primary"')}</div>`;
+  bindTools(q,render);
+  app.querySelectorAll('.opt').forEach(b=>b.onclick=()=>pick(+b.dataset.k));
+  const nf=$('#nf');if(nf)nf.onsubmit=e=>{e.preventDefault();const v=$('#ni').value.trim();if(v)pick(v)};
+  $('#bB').onclick=prev;$('#bN').onclick=next;$('#bE').onclick=()=>explain(q);
+  $('#bR').onclick=()=>{if(confirm(t('resetQ'))){SR.reset();hist=[];back=0;render()}};
+  if(h)show(q,h.a,false);
+  document.onkeydown=e=>{if(e.target.tagName==='SELECT'||e.target.tagName==='INPUT')return;const rtl=document.dir==='rtl';
+   if(e.key>='1'&&e.key<='3')pick(+e.key-1);else if(e.key==='Enter')next();
+   else if(e.key==='ArrowRight')rtl?prev():next();else if(e.key==='ArrowLeft')rtl?next():prev()};
+  swipe(app,dir=>{const rtl=document.dir==='rtl';(dir>0)!==rtl?prev():next()});
+  cur=q}
+ let cur=null,done=false;
+ function pick(k){if(back||done)return;done=true;const q=cur,ok=isOk(q,k);M.record(q.id,ok);SR.answer(q.id,ok);hist.push({q,a:k});if(hist.length>30)hist.shift();
+  show(q,k,true);const hd=app.querySelector('.srs');if(hd){hd.outerHTML=head();$('#bR').onclick=()=>{if(confirm(t('resetQ'))){SR.reset();hist=[];back=0;done=false;render()}}}}
+ function show(q,k,fresh){const ok=isOk(q,k);
+  if(q.num!=null){const ni=$('#ni');if(ni){ni.value=k;ni.disabled=true;ni.classList.add(ok?'right':'wrong')}const nb=app.querySelector('#nf button');if(nb)nb.disabled=true}
+  app.querySelectorAll('.opt').forEach((b,j)=>{b.disabled=true;if(j===q.answer){b.classList.add('right');b.querySelector('.mk').innerHTML=ICON.ok}else if(j===k){b.classList.add('wrong');b.querySelector('.mk').innerHTML=ICON.no}});
+  $('#fb').innerHTML=`<p class="fb ${ok?'ok':'bad'}">${ok?ICON.ok+t('correct'):ICON.no+t('wrong')+(q.num!=null?` — <b dir="ltr">${esc(q.num)}</b>`:'')}</p>`;$('#bE').hidden=false;
+  if(ok&&fresh&&st.delay>0)timers.push(setTimeout(next,st.delay*1000))}
+ function next(){if(back){back--;done=!!back;return render()}if(!done)return;done=false;render()}
+ function prev(){if(back<hist.length){back++;render()}}
+ render();
+}
 /* ---------- Practice / lesson quiz / mistakes ---------- */
 let timers=[];const clearTimers=()=>{stopSound();timers.forEach(clearTimeout);timers.forEach(clearInterval);timers=[];document.onkeydown=null};
 function quiz(mode,lessonId){
@@ -220,7 +283,7 @@ function examIntro(az){const P=az?AMR:Q,n=Math.min(50,P.length),need=Math.ceil(4
  app.innerHTML=`<section class="intro"><p class="lic">${esc(t('licence'))}</p><h2>${ICON.exam}${t(az?'amrExam':'exam')}</h2>
  <div class="scard">${r(ICON.exam,t('nQ'),n)}${r(ICON.timer,t('tQ'),`15 ${esc(t('sec'))}`)}${r(ICON.ok,t('need'),`${need}/${n}`,'g')}${r('⚠',t('sf'),'<span dir="ltr">−5</span>','o')}</div>
  <p class="note">${esc(t('real'))}</p><button class="primary bigbtn" id="go"><span>${t('start')}</span>${ICON.play}</button></section>`;$('#go').onclick=()=>exam(P)}
-function exam(P){const seen=new Set(),qs=shuffle(P).filter(q=>{const k=tx(q.q,'nl').trim().toLowerCase();if(seen.has(k))return false;seen.add(k);return true}).slice(0,50),n=qs.length,ans=[];let i=0,left,cur=null,done=false;
+function exam(P){const seen=new Set(),S0=SR.get(),qs=(P===AMR?P.map(q=>[Math.pow(Math.random(),1/SR.weight(q,S0)),q]).sort((a,b)=>b[0]-a[0]).map(x=>x[1]):shuffle(P)).filter(q=>{const k=tx(q.q,'nl').trim().toLowerCase();if(seen.has(k))return false;seen.add(k);return true}).slice(0,50),n=qs.length,ans=[];let i=0,left,cur=null,done=false;
  /* Real-exam rules: pick → confirm → next. No feedback, no going back, 15s → counts as unanswered. */
  function render(){clearTimers();const q=qs[i];left=15;cur=null;done=false;
   app.innerHTML=`<section class="quiz">${card(q,i,n,{timer:true,tools:true})}</section><div class="navbar"><button id="bA" class="auto ${st.auto?'on':''}" aria-pressed="${st.auto}">${ICON.bolt}<span>${t('auto')}</span></button>${ib('okc',t('confirm'),'id="bC" class="primary" disabled')}</div>`;
