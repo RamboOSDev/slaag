@@ -14,7 +14,7 @@ const tx=(o,l)=>o?(o[l]??o.nl??o.ar??''):'';const ux=o=>tx(o,st.ui==='en'?'nl':s
 const nrm=v=>String(v??'').trim().replace(',','.').replace(/\s+/g,'').toLowerCase();
 const isOk=(q,k)=>q.num!=null?k!=null&&nrm(k)===nrm(q.num):k===q.answer;
 const ansTxt=(q,k,ex)=>q.num!=null?String(k):tx(q.opts,ex)[k];
-let LR=null;
+let LR=null,AMR=[];
 
 /* ---------- Shared mistakes memory (all modes) ---------- */
 const NEED=3;
@@ -35,7 +35,7 @@ function updCount(){const n=M.list().length,el=$('#mcount');if(!el)return;el.hid
 /* ---------- Boot ---------- */
 async function boot(){
  const j=u=>fetch(u).then(r=>r.json());
- [Q,L,LANGS,LR]=await Promise.all([j('data/questions.json'),j('data/lessons.json'),j('i18n/index.json').then(x=>x.languages),j('data/learn.json')]);Q.forEach(q=>QI.set(q.id,q));st.ex='nl';
+ [Q,L,LANGS,LR]=await Promise.all([j('data/questions.json'),j('data/lessons.json'),j('i18n/index.json').then(x=>x.languages),j('data/learn.json')]);Q.forEach(q=>QI.set(q.id,q));AMR=await j('data/amr.json').catch(()=>[]);AMR.forEach(q=>QI.set(q.id,q));st.ex='nl';
  if(!st.ui){await loadLang(navigator.language.startsWith('ar')?'ar':'en');return firstRun()}
  await loadLang(st.ui);start();
 }
@@ -58,7 +58,7 @@ function start(){
 }
 function go(h){location.hash=h}
 function route(){stopSound();menuHist=false;closeMenu(true);clearTimers();const [v,a]=(location.hash.slice(1)||'home').split('/');
- ({home,lessons,signs:()=>signs(a),lesson:()=>lesson(a),practice:()=>quiz('practice',a),mistakes:()=>quiz('mistakes'),exam:examIntro}[v]||home)()}
+ ({home,lessons,signs:()=>signs(a),lesson:()=>lesson(a),practice:()=>quiz('practice',a),amr:()=>quiz('amr'),mistakes:()=>quiz('mistakes'),exam:examIntro}[v]||home)()}
 
 /* ---------- Menu (everything non-essential lives here) ---------- */
 function toggleMenu(){const m=$('#menu');m.hidden?openMenu():closeMenu()}
@@ -71,7 +71,7 @@ function openMenu(){const m=$('#menu');m.hidden=false;$('#backdrop').hidden=fals
  $('#backdrop').onclick=()=>closeMenu();if(!menuHist){history.pushState({menu:1},'');menuHist=true}$('#menuBtn').setAttribute('aria-expanded','true');
  let x0=null;m.ontouchstart=e=>{x0=e.touches[0].clientX};m.ontouchend=e=>{if(x0==null)return;const dx=e.changedTouches[0].clientX-x0;x0=null;if(Math.abs(dx)>60&&((dx>0)===(document.dir!=='rtl')))closeMenu()};
  m.innerHTML=`<button class="icon-btn close" id="mx">${ICON.x}</button>
- <a href="#home">${ICON.home}${t('home')}</a><a href="#lessons">${ICON.book}${t('lessons')}</a><a href="#signs">${ICON.danger||ICON.eye}${t('signs')}</a><a href="#practice">${ICON.play}${t('practice')}</a>
+ <a href="#home">${ICON.home}${t('home')}</a><a href="#lessons">${ICON.book}${t('lessons')}</a><a href="#signs">${ICON.danger||ICON.eye}${t('signs')}</a><a href="#practice">${ICON.play}${t('practice')}</a><a href="#amr">${ICON.star||ICON.book}${t('amr')}</a>
  <a href="#mistakes">${ICON.repeat}${t('mistakes')}</a><a href="#exam">${ICON.exam}${t('exam')}</a><a href="?stream=1" target="_blank">${ICON.tv}${t('stream')}</a>
  <label>${ICON.globe}${t('uiLang')}<select id="sUi">${LANGS.map(c=>`<option value="${c}" ${c===st.ui?'selected':''}>${c.toUpperCase()}</option>`).join('')}</select></label>
  <label>${ICON.exam}${t('examLang')}<select id="sEx"><option value="nl">Nederlands</option></select></label>
@@ -91,6 +91,7 @@ function home(){const n=M.list().length,pos=LS.get('pos',{}).practice;
   <a class="tile" href="#lessons">${ICON.book}<span>${t('lessons')}</span></a>
   <a class="tile" href="#signs">${ICON.danger||ICON.eye}<span>${t('signs')}</span><small>${LR.signs.length}</small></a>
   <a class="tile" href="#practice">${ICON.play}<span>${t('practice')}</span>${pos?`<small>${ICON.next}${pos+1}/${Q.length}</small>`:''}</a>
+  <a class="tile" href="#amr">${ICON.star||ICON.book}<span>${t('amr')}</span><small>${AMR.length}</small></a>
   <a class="tile ${n?'warn':''}" href="#mistakes">${ICON.repeat}<span>${t('mistakes')}</span><small>${n?`${n} ${t('left')}`:'✔'}</small></a>
   <a class="tile dark" href="#exam">${ICON.exam}<span>${t('exam')}</span><small>${ICON.timer}15s</small></a>
  </div><p class="note">⚠ ${t('sample')}</p></section>`}
@@ -147,7 +148,7 @@ function card(q,i,n,opt={}){const ex=st.ex,ui=st.ui in q.q?st.ui:'nl';
   <div class="qtop"><span class="pill">${i+1}/${n}</span>${q.weight>1?`<span class="pill red" title="${t('serious')}">⚠ ×5</span>`:''}
    ${opt.timer?`<span class="pill timer">${ICON.timer}<b id="tm">15</b></span>`:''}<span class="sp"></span>
    ${opt.tools===false?'':`<button class="icon-btn ${st.tr?'on':''}" id="bTr" title="${t('translate')}">${ICON.tr}</button><button class="icon-btn snd ${q.aud?'':'tts'}" id="bAu" aria-pressed="${st.read}" title="${t('listen')}${q.aud?'':' · '+t('ttsOnly')}">${ICON.audio}</button>`}</div>
-  ${q.img?`<div class="qimg"><img src="${q.img}" alt="" width="600" height="340" decoding="async"></div>`:q.sign?`<div class="signbox">${SIGN[q.sign]||''}</div>`:''}
+  ${q.img?`<div class="qimg${/img\/s\/|img\/amr\/s_/.test(q.img)?' sgn':''}"><img src="${q.img}" alt="" width="600" height="340" decoding="async"></div>`:q.sign?`<div class="signbox">${SIGN[q.sign]||''}</div>`:''}
   <p class="qt" dir="ltr" lang="${ex}">${esc(tx(q.q,ex))}</p>${st.tr&&ui!==ex?`<p class="qtr">${esc(tx(q.q,ui))}</p>`:''}
   ${q.num!=null?`<form class="numf" id="nf"><input id="ni" inputmode="decimal" autocomplete="off" dir="ltr" placeholder="…"><button class="primary" type="submit">${ICON.okc}</button></form>`:
   `<div class="opts">${tx(q.opts,ex).map((o,k)=>`<button class="opt" dir="ltr" data-k="${k}"><i>${'ABC'[k]}</i><span dir="ltr" lang="${ex}">${esc(o)}</span>${st.tr&&ui!==ex?`<small>${esc(tx(q.opts,ui)[k])}</small>`:''}<em class="mk"></em></button>`).join('')}</div>`}
@@ -166,9 +167,9 @@ let timers=[];const clearTimers=()=>{stopSound();timers.forEach(clearTimeout);ti
 function quiz(mode,lessonId){
  let pool;
  if(mode==='mistakes'){pool=M.list().map(byId);if(!pool.length){app.innerHTML=`<section class="empty">${ICON.ok}<h2>${t('none')}</h2><a class="primary" href="#practice">${ICON.play}${t('practice')}</a></section>`;return}}
- else{pool=lessonId?Q.filter(q=>inL(q,lessonId)):Q.slice();
+ else{const base=mode==='amr'?AMR:Q;pool=lessonId?Q.filter(q=>inL(q,lessonId)):base.slice();
   // mix due mistakes into practice: one every 4 questions
-  const due=M.due().map(byId).filter(q=>!lessonId||inL(q,lessonId));const mixed=[];let d=0;
+  const due=M.due().map(byId).filter(q=>(mode==='amr')===q.id.startsWith('AMR-')&&(!lessonId||inL(q,lessonId)));const mixed=[];let d=0;
   pool.forEach((q,i)=>{mixed.push(q);if(i%4===3&&d<due.length)mixed.push(Object.assign({},due[d++],{_rev:1}))});pool=mixed}
  const key=mode+(lessonId||'');const pos=LS.get('pos',{});let i=Math.min(pos[key]||0,pool.length-1),answered={};
  const savePos=()=>{const p=LS.get('pos',{});p[key]=i;LS.set('pos',p)};

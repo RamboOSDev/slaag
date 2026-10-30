@@ -57,5 +57,6 @@
  "ttsOnly": "browser voice (no recording)",
  "readOn": "Auto-read ON – tap to turn off",
  "readOff": "Tap to turn on auto-read",
- "tapResume": "Browser blocked audio – tap to resume"
+ "tapResume": "Browser blocked audio – tap to resume",
+ "amr": "Amr's questions"
 }
