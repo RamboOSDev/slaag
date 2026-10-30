@@ -58,5 +58,6 @@
  "readOn": "Auto-read ON – tap to turn off",
  "readOff": "Tap to turn on auto-read",
  "tapResume": "Browser blocked audio – tap to resume",
+ "amrExam": "Amr's exam",
  "amr": "Amr's questions"
 }

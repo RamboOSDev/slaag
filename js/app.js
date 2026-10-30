@@ -15,6 +15,8 @@ const nrm=v=>String(v??'').trim().replace(',','.').replace(/\s+/g,'').toLowerCas
 const isOk=(q,k)=>q.num!=null?k!=null&&nrm(k)===nrm(q.num):k===q.answer;
 const ansTxt=(q,k,ex)=>q.num!=null?String(k):tx(q.opts,ex)[k];
 let LR=null,AMR=[];
+/* Amr questions carry no grave-error tag: infer zware fout from classic topics (overtaking, rail crossings, red light/police, wrong-way, solid line, stop, pedestrian crossing). */
+const ZF=/rood licht|overweg|spoorweg|tegen de rijrichting|doorlopende (witte )?lijn|stopbord|oversteekplaats|zebrapad|spookrij|inhalen|haaientanden|agent/i;
 
 /* ---------- Shared mistakes memory (all modes) ---------- */
 const NEED=3;
@@ -35,7 +37,7 @@ function updCount(){const n=M.list().length,el=$('#mcount');if(!el)return;el.hid
 /* ---------- Boot ---------- */
 async function boot(){
  const j=u=>fetch(u).then(r=>r.json());
- [Q,L,LANGS,LR]=await Promise.all([j('data/questions.json'),j('data/lessons.json'),j('i18n/index.json').then(x=>x.languages),j('data/learn.json')]);Q.forEach(q=>QI.set(q.id,q));AMR=await j('data/amr.json').catch(()=>[]);AMR.forEach(q=>QI.set(q.id,q));st.ex='nl';
+ [Q,L,LANGS,LR]=await Promise.all([j('data/questions.json'),j('data/lessons.json'),j('i18n/index.json').then(x=>x.languages),j('data/learn.json')]);Q.forEach(q=>QI.set(q.id,q));AMR=await j('data/amr.json').catch(()=>[]);AMR.forEach(q=>{QI.set(q.id,q);if(ZF.test(q.q.nl||''))q.zf=1});st.ex='nl';
  if(!st.ui){await loadLang(navigator.language.startsWith('ar')?'ar':'en');return firstRun()}
  await loadLang(st.ui);start();
 }
@@ -58,7 +60,7 @@ function start(){
 }
 function go(h){location.hash=h}
 function route(){stopSound();menuHist=false;closeMenu(true);clearTimers();const [v,a]=(location.hash.slice(1)||'home').split('/');
- ({home,lessons,signs:()=>signs(a),lesson:()=>lesson(a),practice:()=>quiz('practice',a),amr:()=>quiz('amr'),mistakes:()=>quiz('mistakes'),exam:examIntro}[v]||home)()}
+ ({home,lessons,signs:()=>signs(a),lesson:()=>lesson(a),practice:()=>quiz('practice',a),amr:()=>quiz('amr'),mistakes:()=>quiz('mistakes'),exam:()=>examIntro(),amrexam:()=>examIntro(1)}[v]||home)()}
 
 /* ---------- Menu (everything non-essential lives here) ---------- */
 function toggleMenu(){const m=$('#menu');m.hidden?openMenu():closeMenu()}
@@ -72,7 +74,7 @@ function openMenu(){const m=$('#menu');m.hidden=false;$('#backdrop').hidden=fals
  let x0=null;m.ontouchstart=e=>{x0=e.touches[0].clientX};m.ontouchend=e=>{if(x0==null)return;const dx=e.changedTouches[0].clientX-x0;x0=null;if(Math.abs(dx)>60&&((dx>0)===(document.dir!=='rtl')))closeMenu()};
  m.innerHTML=`<button class="icon-btn close" id="mx">${ICON.x}</button>
  <a href="#home">${ICON.home}${t('home')}</a><a href="#lessons">${ICON.book}${t('lessons')}</a><a href="#signs">${ICON.danger||ICON.eye}${t('signs')}</a><a href="#practice">${ICON.play}${t('practice')}</a><a href="#amr">${ICON.star||ICON.book}${t('amr')}</a>
- <a href="#mistakes">${ICON.repeat}${t('mistakes')}</a><a href="#exam">${ICON.exam}${t('exam')}</a><a href="?stream=1" target="_blank">${ICON.tv}${t('stream')}</a>
+ <a href="#mistakes">${ICON.repeat}${t('mistakes')}</a><a href="#exam">${ICON.exam}${t('exam')}</a><a href="#amrexam">${ICON.exam}${t('amrExam')}</a><a href="?stream=1" target="_blank">${ICON.tv}${t('stream')}</a>
  <label>${ICON.globe}${t('uiLang')}<select id="sUi">${LANGS.map(c=>`<option value="${c}" ${c===st.ui?'selected':''}>${c.toUpperCase()}</option>`).join('')}</select></label>
  <label>${ICON.exam}${t('examLang')}<select id="sEx"><option value="nl">Nederlands</option></select></label>
  <label>${ICON.next}${t('autoDelay')}<select id="sDl">${[0,1,1.5,2,3].map(v=>`<option value="${v}" ${v==st.delay?'selected':''}>${v||t('off')}</option>`).join('')}</select></label>
@@ -94,6 +96,7 @@ function home(){const n=M.list().length,pos=LS.get('pos',{}).practice;
   <a class="tile" href="#amr">${ICON.star||ICON.book}<span>${t('amr')}</span><small>${AMR.length}</small></a>
   <a class="tile ${n?'warn':''}" href="#mistakes">${ICON.repeat}<span>${t('mistakes')}</span><small>${n?`${n} ${t('left')}`:'✔'}</small></a>
   <a class="tile dark" href="#exam">${ICON.exam}<span>${t('exam')}</span><small>${ICON.timer}15s</small></a>
+  <a class="tile dark" href="#amrexam">${ICON.exam}<span>${t('amrExam')}</span><small>${ICON.timer}15s</small></a>
  </div><p class="note">⚠ ${t('sample')}</p></section>`}
 function inL(q,id){if(q.lesson===id)return true;const l=L.find(x=>x.id===id);return !!(l&&l.qids&&l.qids.includes(q.id))}
 function lessons(){app.innerHTML=`<section><h2>${ICON.book}${t('lessons')}</h2><div class="list">${L.map((l,i)=>`<a class="row" href="#lesson/${l.id}"><b>${i+1}</b><span>${esc(l.title[st.ui]||l.title.en)}${l.n?` <small class="mut">(${l.n})</small>`:''}</span>${ICON.next}</a>`).join('')}</div></section>`}
@@ -203,12 +206,12 @@ function explain(q){const fb=$('#fb');if(fb.querySelector('.ex'))return;fb.inser
 function swipe(el,cb){let x0=null;el.ontouchstart=e=>{x0=e.touches[0].clientX};el.ontouchend=e=>{if(x0==null)return;const dx=e.changedTouches[0].clientX-x0;x0=null;if(Math.abs(dx)>60)cb(dx)}}
 
 /* ---------- Mock exam ---------- */
-function examIntro(){const n=Math.min(50,Q.length),need=Math.ceil(41*n/50);
+function examIntro(az){const P=az?AMR:Q,n=Math.min(50,P.length),need=Math.ceil(41*n/50);
  const r=(ic,l,v,c='')=>`<div class="srow ${c}"><span class="sic">${ic}</span><span class="sl">${esc(l)}</span><b>${v}</b></div>`;
- app.innerHTML=`<section class="intro"><p class="lic">${esc(t('licence'))}</p><h2>${ICON.exam}${t('exam')}</h2>
+ app.innerHTML=`<section class="intro"><p class="lic">${esc(t('licence'))}</p><h2>${ICON.exam}${t(az?'amrExam':'exam')}</h2>
  <div class="scard">${r(ICON.exam,t('nQ'),n)}${r(ICON.timer,t('tQ'),`15 ${esc(t('sec'))}`)}${r(ICON.ok,t('need'),`${need}/${n}`,'g')}${r('⚠',t('sf'),'<span dir="ltr">−5</span>','o')}</div>
- <p class="note">${esc(t('real'))}</p><button class="primary bigbtn" id="go"><span>${t('start')}</span>${ICON.play}</button></section>`;$('#go').onclick=exam}
-function exam(){const qs=shuffle(Q).slice(0,50),n=qs.length,ans=[];let i=0,left,cur=null,done=false;
+ <p class="note">${esc(t('real'))}</p><button class="primary bigbtn" id="go"><span>${t('start')}</span>${ICON.play}</button></section>`;$('#go').onclick=()=>exam(P)}
+function exam(P){const qs=shuffle(P).slice(0,50),n=qs.length,ans=[];let i=0,left,cur=null,done=false;
  /* Real-exam rules: pick → confirm → next. No feedback, no going back, 15s → counts as unanswered. */
  function render(){clearTimers();const q=qs[i];left=15;cur=null;done=false;
   app.innerHTML=`<section class="quiz">${card(q,i,n,{timer:true,tools:true})}</section><div class="navbar"><button id="bA" class="auto ${st.auto?'on':''}" aria-pressed="${st.auto}">${ICON.bolt}<span>${t('auto')}</span></button>${ib('okc',t('confirm'),'id="bC" class="primary" disabled')}</div>`;
@@ -223,13 +226,13 @@ function exam(){const qs=shuffle(Q).slice(0,50),n=qs.length,ans=[];let i=0,left,
  function confirmA(){if(cur!=null)commit(cur)}
  function commit(k){if(done)return;done=true;ans[i]=k;M.record(qs[i].id,isOk(qs[i],k));if(i<n-1){i++;render()}else finish()}
  function finish(){clearTimers();let score=n;const wrong=[];
-  qs.forEach((q,j)=>{if(!isOk(q,ans[j])){score-=q.weight>1?5:1;wrong.push(j)}});
+  qs.forEach((q,j)=>{if(!isOk(q,ans[j])){score-=(q.weight>1||q.zf)?5:1;wrong.push(j)}});
   score=Math.max(0,score);const need=Math.ceil(41*n/50),pass=score>=need,ex=st.ex;
   app.innerHTML=`<section class="result ${pass?'ok':'bad'}"><div class="big">${pass?ICON.ok:ICON.no}</div><h2>${pass?t('pass'):t('fail')}</h2>
    <p class="score">${score}/${n} <small>(${ICON.ok}${need})</small></p>
    <p class="hint">${ICON.no}<b>${wrong.length}</b> · ${ICON.repeat}${t('mistakes')}</p>
    <div class="list review">${wrong.map(j=>{const q=qs[j],a=ans[j];return `<div class="rv card">
-     <div class="qtop"><span class="pill">${j+1}</span>${q.weight>1?'<span class="pill red">⚠ ×5</span>':''}</div>
+     <div class="qtop"><span class="pill">${j+1}</span>${(q.weight>1||q.zf)?'<span class="pill red">⚠ ×5</span>':''}</div>
      ${q.img?`<div class="qimg sm"><img src="${q.img}" alt="" loading="lazy"></div>`:''}<p class="qt" dir="ltr">${esc(tx(q.q,ex))}</p>
      <p class="fb bad" dir="ltr">${ICON.no}${a==null?'⏱ '+esc(t('noAns')):esc(ansTxt(q,a,ex))}</p>
      <p class="fb ok" dir="ltr">${ICON.ok}${esc(q.num!=null?q.num:tx(q.opts,ex)[q.answer])}</p>
