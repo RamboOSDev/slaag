@@ -220,7 +220,7 @@ function examIntro(az){const P=az?AMR:Q,n=Math.min(50,P.length),need=Math.ceil(4
  app.innerHTML=`<section class="intro"><p class="lic">${esc(t('licence'))}</p><h2>${ICON.exam}${t(az?'amrExam':'exam')}</h2>
  <div class="scard">${r(ICON.exam,t('nQ'),n)}${r(ICON.timer,t('tQ'),`15 ${esc(t('sec'))}`)}${r(ICON.ok,t('need'),`${need}/${n}`,'g')}${r('⚠',t('sf'),'<span dir="ltr">−5</span>','o')}</div>
  <p class="note">${esc(t('real'))}</p><button class="primary bigbtn" id="go"><span>${t('start')}</span>${ICON.play}</button></section>`;$('#go').onclick=()=>exam(P)}
-function exam(P){const seen=new Set(),qs=shuffle(P).filter(q=>{const k=tx(q.q,'nl').trim().toLowerCase()+'|'+(q.img||'');if(seen.has(k))return false;seen.add(k);return true}).slice(0,50),n=qs.length,ans=[];let i=0,left,cur=null,done=false;
+function exam(P){const seen=new Set(),qs=shuffle(P).filter(q=>{const k=tx(q.q,'nl').trim().toLowerCase();if(seen.has(k))return false;seen.add(k);return true}).slice(0,50),n=qs.length,ans=[];let i=0,left,cur=null,done=false;
  /* Real-exam rules: pick → confirm → next. No feedback, no going back, 15s → counts as unanswered. */
  function render(){clearTimers();const q=qs[i];left=15;cur=null;done=false;
   app.innerHTML=`<section class="quiz">${card(q,i,n,{timer:true,tools:true})}</section><div class="navbar"><button id="bA" class="auto ${st.auto?'on':''}" aria-pressed="${st.auto}">${ICON.bolt}<span>${t('auto')}</span></button>${ib('okc',t('confirm'),'id="bC" class="primary" disabled')}</div>`;
